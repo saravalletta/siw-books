@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -15,7 +16,8 @@ public class Libro {
 	private Long id;
 	private String titolo;
 	private Integer annoPubblicazione;
-	private String urlImage; // una o più immagini quindi da cambiare
+	private HashMap<Integer, Autore> autori;
+	private String urlImmagine; // una o più immagini quindi da cambiare
 	
 	// Getter e setter
 	public Long getId() {
@@ -39,17 +41,25 @@ public class Libro {
 		this.annoPubblicazione = annoPubblicazione;
 	}
 	
-	public String getUrlImage() {
-		return urlImage;
+	public HashMap<Integer, Autore> getAutori() {
+		return autori;
 	}
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
+	public void setAutori(HashMap<Integer, Autore> autori) {
+		this.autori = autori;
 	}
 	
-	// Equals e hashCode
+	public String getUrlImmagine() {
+		return urlImmagine;
+	}
+	public void setUrlImmagine(String urlImmagine) {
+		this.urlImmagine = urlImmagine;
+	}
+	
+	
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(annoPubblicazione, id, titolo, urlImage);
+		return Objects.hash(annoPubblicazione, autori, id, titolo, urlImmagine);
 	}
 	
 	@Override
@@ -61,8 +71,8 @@ public class Libro {
 		if (getClass() != obj.getClass())
 			return false;
 		Libro other = (Libro) obj;
-		return Objects.equals(annoPubblicazione, other.annoPubblicazione) && Objects.equals(id, other.id)
-				&& Objects.equals(titolo, other.titolo) && Objects.equals(urlImage, other.urlImage);
+		return Objects.equals(annoPubblicazione, other.annoPubblicazione) && Objects.equals(autori, other.autori)
+				&& Objects.equals(id, other.id) && Objects.equals(titolo, other.titolo)
+				&& Objects.equals(urlImmagine, other.urlImmagine);
 	}
-	
 }

@@ -70,7 +70,8 @@ public class Autore {
 		this.urlImmagine = urlImmagine;
 	}
 	
-	// Equals e hashCode
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(cognome, dataDiMorte, dataDiNascita, id, nazionalità, nome, urlImmagine);
