@@ -16,7 +16,7 @@ public class LibroService {
 		return libroRepository.findById(id).get();
 	}
 	
-	public Iterable<Libro> getAllLibro() {
+	public Iterable<Libro> getAllLibri() {
 		return libroRepository.findAll();
 	}
 
