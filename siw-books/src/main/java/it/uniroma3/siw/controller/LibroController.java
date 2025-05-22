@@ -24,7 +24,7 @@ public class LibroController {
 	@GetMapping("/libro")
 	public String showLibri(Model model) {
 		model.addAttribute("libri", this.libroService.getAllLibri());
-		return "libro.html";
+		return "libri.html";
 	}
 
 }
