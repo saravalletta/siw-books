@@ -14,6 +14,10 @@ public class LibroController {
 	@Autowired
 	private LibroService libroService;
 	
+	@GetMapping("/") 
+	public String getHomePage() {
+		return "homepage.html";
+	}
 	
 	@GetMapping("/libro/{id}")
 	public String getLibro(@PathVariable("id") Long id, Model model) {
