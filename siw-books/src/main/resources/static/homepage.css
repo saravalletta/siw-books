@@ -57,6 +57,8 @@ hr {
 	display: flex;
 	margin-top: 8vh;
 	margin-left: 8vw;
+	margin-right: 8vw;
+	background-color: aqua;
 }
 
 .immagine-hero {
