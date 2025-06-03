@@ -52,13 +52,12 @@ hr {
 	border: none;
 }
 
-.hero {
+section {
 	align-items: center;
 	display: flex;
 	margin-top: 8vh;
 	margin-left: 8vw;
 	margin-right: 8vw;
-	background-color: aqua;
 }
 
 .immagine-hero {
@@ -90,4 +89,8 @@ hr {
 	padding: 12px 16px;
 	margin-top: 4vh;
 	margin-left: 2vw;
+}
+
+p {
+	margin-top: 1vh;
 }
