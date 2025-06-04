@@ -21,7 +21,7 @@ public class AutoreController {
 		return "autore.html";
 	}
 	
-	@GetMapping("/autore") 
+	@GetMapping("/autori") 
 	public String showAutori(Model model) {
 		model.addAttribute("auotri", this.autoreService.getAllAutori());
 		return "autori.html";
