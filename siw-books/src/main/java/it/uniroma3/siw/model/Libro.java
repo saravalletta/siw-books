@@ -1,8 +1,8 @@
 package it.uniroma3.siw.model;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +19,7 @@ public class Libro {
 	private String titolo;
 	private Integer annoPubblicazione;
 	@OneToMany
-	private List<Autore> autori = new LinkedList<Autore>();
+	private Set<Autore> autori = new HashSet<Autore>();
 	private String urlImmagine; // una o più immagini quindi da cambiare
 	
 	// Getter e setter
@@ -44,10 +44,10 @@ public class Libro {
 		this.annoPubblicazione = annoPubblicazione;
 	}
 	
-	public List<Autore> getAutori() {
+	public Set<Autore> getAutori() {
 		return autori;
 	}
-	public void setAutori(List<Autore> autori) {
+	public void setAutori(Set<Autore> autori) {
 		this.autori = autori;
 	}
 	
