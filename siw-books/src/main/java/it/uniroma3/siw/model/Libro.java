@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -17,10 +18,17 @@ public class Libro {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String titolo;
-	private Integer annoPubblicazione;
+	private LocalDate annoPubblicazione;
 	@OneToMany
-	private Set<Autore> autori = new HashSet<Autore>();
+	private Set<Autore> autori;
 	private String urlImmagine; // una o più immagini quindi da cambiare
+	
+	public Libro(String titolo, LocalDate annoPubblicazione, String urlImmagine) {
+		this.titolo = titolo;
+		this.annoPubblicazione = annoPubblicazione;
+		this.autori = new HashSet<Autore>();
+		this.urlImmagine = urlImmagine;
+	}
 	
 	// Getter e setter
 	public Long getId() {
@@ -37,10 +45,10 @@ public class Libro {
 		this.titolo = titolo;
 	}
 	
-	public Integer getAnnoPubblicazione() {
+	public LocalDate getAnnoPubblicazione() {
 		return annoPubblicazione;
 	}
-	public void setAnnoPubblicazione(Integer annoPubblicazione) {
+	public void setAnnoPubblicazione(LocalDate annoPubblicazione) {
 		this.annoPubblicazione = annoPubblicazione;
 	}
 	

@@ -15,7 +15,13 @@ public class Credenziali {
 	private String password;
 	private String ruolo;
 	
+	public Credenziali(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
 	
+	
+	// Getter e setter
 	public Long getId() {
 		return id;
 	}

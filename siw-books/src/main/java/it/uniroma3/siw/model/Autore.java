@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -15,8 +16,8 @@ public class Autore {
 	private Long id;
 	private String nome;
 	private String cognome;
-	private java.time.LocalDate dataDiNascita;
-	private java.time.LocalDate dataDiMorte;
+	private LocalDate dataDiNascita;
+	private LocalDate dataDiMorte;
 	private String nazionalità;
 	private String urlImmagine;
 	

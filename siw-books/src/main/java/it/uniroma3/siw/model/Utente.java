@@ -15,7 +15,14 @@ public class Utente {
 	private String cognome;
 	private String email;
 	
+	public Utente(String nome, String cognome, String email) {
+		this.nome = nome;
+		this.cognome = cognome;
+		this.email = email;
+	}
 	
+	
+	// Getter e setter
 	public Long getId() {
 		return id;
 	}
