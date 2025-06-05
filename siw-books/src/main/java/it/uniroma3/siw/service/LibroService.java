@@ -13,7 +13,7 @@ public class LibroService {
 	private LibroRepository libroRepository;
 	
 	public Libro getLibroById(Long id) {
-		return libroRepository.findById(id).get();
+		return libroRepository.findById(id).orElse(null);
 	}
 	
 	public Iterable<Libro> getAllLibri() {

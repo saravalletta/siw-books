@@ -13,7 +13,11 @@ public class CredenzialiService {
 	private CredenzialiRepository credenzialiRepository;
 	
 	public Credenziali getCredenzialiById(Long id) {
-		return credenzialiRepository.findById(id).get();
+		return credenzialiRepository.findById(id).orElse(null);
+	}
+	
+	public Credenziali getCredenzialiByUsername(String username) {
+		return credenzialiRepository.findByUsername(username).orElse(null);
 	}
 	
 	public Iterable<Credenziali> getAllCredenziali() {

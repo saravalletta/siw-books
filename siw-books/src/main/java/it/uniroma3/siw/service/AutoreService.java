@@ -13,7 +13,7 @@ public class AutoreService {
 	private AutoreRepository autoreRepository;
 	
 	public Autore getAutoreById(Long id) {
-		return autoreRepository.findById(id).get();
+		return autoreRepository.findById(id).orElse(null);
 	}
 	
 	public Iterable<Autore> getAllAutori() {

@@ -13,7 +13,7 @@ public class UtenteService {
 	private UtenteRepository utenteRepository;
 	
 	public Utente getUtenteById(Long id) {
-		return utenteRepository.findById(id).get();
+		return utenteRepository.findById(id).orElse(null);
 	}
 	
 	public Iterable<Utente> getAllUtenti() {
