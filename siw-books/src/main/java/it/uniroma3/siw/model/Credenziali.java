@@ -1,12 +1,18 @@
 package it.uniroma3.siw.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Credenziali {
+	
+	public static final String DEFAULT_ROLE = "UTENTE";
+	public static final String ADMIN_ROLE = "ADMIN";
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,10 +20,14 @@ public class Credenziali {
 	private String username;
 	private String password;
 	private String ruolo;
+	@OneToOne(cascade=CascadeType.ALL)
+	private Utente utente;
 	
-	public Credenziali(String username, String password) {
+	public Credenziali(String username, String password, String ruolo, Utente utente) {
 		this.username = username;
 		this.password = password;
+		this.ruolo = ruolo;
+		this.utente = utente;
 	}
 	
 	
