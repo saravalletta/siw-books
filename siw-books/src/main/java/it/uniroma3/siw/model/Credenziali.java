@@ -1,5 +1,7 @@
 package it.uniroma3.siw.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -62,5 +64,27 @@ public class Credenziali {
 	public void setRuolo(String ruolo) {
 		this.ruolo = ruolo;
 	}
+
+
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, password, ruolo, username, utente);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Credenziali other = (Credenziali) obj;
+		return Objects.equals(id, other.id) && Objects.equals(password, other.password)
+				&& Objects.equals(ruolo, other.ruolo) && Objects.equals(username, other.username)
+				&& Objects.equals(utente, other.utente);
+	}
+	
 	
 }
