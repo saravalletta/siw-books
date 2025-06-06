@@ -8,18 +8,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Utente {
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String nome;
-	private String cognome;
+	private String name;
+	private String surname;
 	private String email;
 	
-	public Utente(String nome, String cognome, String email) {
-		this.nome = nome;
-		this.cognome = cognome;
+	public User(String name, String surname, String email) {
+		this.name = name;
+		this.surname = surname;
 		this.email = email;
 	}
 	
@@ -32,18 +32,18 @@ public class Utente {
 		this.id = id;
 	}
 	
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
-	public String getCognome() {
-		return cognome;
+	public String getSurname() {
+		return surname;
 	}
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 	
 	public String getEmail() {
@@ -57,7 +57,7 @@ public class Utente {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(cognome, email, id, nome);
+		return Objects.hash(surname, email, id, name);
 	}
 
 	@Override
@@ -68,9 +68,9 @@ public class Utente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Utente other = (Utente) obj;
-		return Objects.equals(cognome, other.cognome) && Objects.equals(email, other.email)
-				&& Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
+		User other = (User) obj;
+		return Objects.equals(surname, other.surname) && Objects.equals(email, other.email)
+				&& Objects.equals(id, other.id) && Objects.equals(name, other.name);
 	}
 	
 

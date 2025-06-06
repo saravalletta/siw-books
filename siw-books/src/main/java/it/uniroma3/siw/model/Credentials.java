@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class Credenziali {
+public class Credentials {
 	
 	public static final String DEFAULT = "UTENTE";
 	public static final String ADMIN = "ADMIN";
@@ -24,15 +24,15 @@ public class Credenziali {
 	private String username;
 	@Column(nullable=false)
 	private String password;
-	private String ruolo;
+	private String role;
 	@OneToOne(cascade=CascadeType.ALL)
-	private Utente utente;
+	private User user;
 	
-	public Credenziali(String username, String password, String ruolo, Utente utente) {
+	public Credentials(String username, String password, String role, User user) {
 		this.username = username;
 		this.password = password;
-		this.ruolo = ruolo;
-		this.utente = utente;
+		this.role = role;
+		this.user = user;
 	}
 	
 	
@@ -58,18 +58,18 @@ public class Credenziali {
 		this.password = password;
 	}
 	
-	public String getRuolo() {
-		return ruolo;
+	public String getRole() {
+		return role;
 	}
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, password, ruolo, username, utente);
+		return Objects.hash(id, password, role, username, user);
 	}
 
 	@Override
@@ -80,10 +80,10 @@ public class Credenziali {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Credenziali other = (Credenziali) obj;
+		Credentials other = (Credentials) obj;
 		return Objects.equals(id, other.id) && Objects.equals(password, other.password)
-				&& Objects.equals(ruolo, other.ruolo) && Objects.equals(username, other.username)
-				&& Objects.equals(utente, other.utente);
+				&& Objects.equals(role, other.role) && Objects.equals(username, other.username)
+				&& Objects.equals(user, other.user);
 	}
 	
 	

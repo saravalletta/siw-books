@@ -2,8 +2,8 @@ package it.uniroma3.siw.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import it.uniroma3.siw.model.Autore;
+import it.uniroma3.siw.model.Author;
 
-public interface AutoreRepository extends CrudRepository<Autore, Long> {
+public interface AutoreRepository extends CrudRepository<Author, Long> {
 
 }

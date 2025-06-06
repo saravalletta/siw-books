@@ -23,7 +23,7 @@ public class AutoreController {
 	
 	@GetMapping("/autori") 
 	public String showAutori(Model model) {
-		model.addAttribute("auotri", this.autoreService.getAllAutori());
+		model.addAttribute("autori", this.autoreService.getAllAutori());
 		return "autori.html";
 	}
 
