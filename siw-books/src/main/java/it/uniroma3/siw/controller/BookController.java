@@ -9,26 +9,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import it.uniroma3.siw.service.BookService;
 
 @Controller
-public class LibroController {
+public class BookController {
 	
 	@Autowired
-	private BookService libroService;
+	private BookService bookService;
 	
 	@GetMapping("/") 
 	public String getHomePage() {
 		return "homepage.html";
 	}
 	
-	@GetMapping("/libro/{id}")
-	public String getLibro(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("libro", this.libroService.getLibroById(id));
-		return "libro.html";
+	@GetMapping("/book/{id}")
+	public String getBook(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("book", this.bookService.getBookById(id));
+		return "book.html";
 	}
 	
-	@GetMapping("/libri")
-	public String showLibri(Model model) {
-		model.addAttribute("libri", this.libroService.getAllLibri());
-		return "libri.html";
+	@GetMapping("/books")
+	public String showBooks(Model model) {
+		model.addAttribute("books", this.bookService.getAllBooks());
+		return "books.html";
 	}
 
 }
