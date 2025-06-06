@@ -10,14 +10,14 @@ import it.uniroma3.siw.repository.AutoreRepository;
 public class AuthorService {
 	
 	@Autowired
-	private AutoreRepository autoreRepository;
+	private AutoreRepository authorRepository;
 	
-	public Author getAutoreById(Long id) {
-		return autoreRepository.findById(id).orElse(null);
+	public Author getAuthorById(Long id) {
+		return authorRepository.findById(id).orElse(null);
 	}
 	
-	public Iterable<Author> getAllAutori() {
-		return autoreRepository.findAll();
+	public Iterable<Author> getAllAuthors() {
+		return authorRepository.findAll();
 	}
 
 }

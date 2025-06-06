@@ -10,14 +10,14 @@ import it.uniroma3.siw.repository.LibroRepository;
 public class BookService {
 	
 	@Autowired
-	private LibroRepository libroRepository;
+	private LibroRepository bookRepository;
 	
-	public Book getLibroById(Long id) {
-		return libroRepository.findById(id).orElse(null);
+	public Book getBookById(Long id) {
+		return bookRepository.findById(id).orElse(null);
 	}
 	
-	public Iterable<Book> getAllLibri() {
-		return libroRepository.findAll();
+	public Iterable<Book> getAllBooks() {
+		return bookRepository.findAll();
 	}
 
 }

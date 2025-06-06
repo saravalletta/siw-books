@@ -10,18 +10,18 @@ import it.uniroma3.siw.repository.CredenzialiRepository;
 public class CredentialsService {
 	
 	@Autowired
-	private CredenzialiRepository credenzialiRepository;
+	private CredenzialiRepository credentialsRepository;
 	
-	public Credentials getCredenzialiById(Long id) {
-		return credenzialiRepository.findById(id).orElse(null);
+	public Credentials getCredentialsById(Long id) {
+		return credentialsRepository.findById(id).orElse(null);
 	}
 	
-	public Credentials getCredenzialiByUsername(String username) {
-		return credenzialiRepository.findByUsername(username).orElse(null);
+	public Credentials getCredentialsByUsername(String username) {
+		return credentialsRepository.findByUsername(username).orElse(null);
 	}
 	
-	public Iterable<Credentials> getAllCredenziali() {
-		return credenzialiRepository.findAll();
+	public Iterable<Credentials> getAllCredentials() {
+		return credentialsRepository.findAll();
 	}
 
 }

@@ -10,14 +10,14 @@ import it.uniroma3.siw.repository.UtenteRepository;
 public class UserService {
 	
 	@Autowired
-	private UtenteRepository utenteRepository;
+	private UtenteRepository userRepository;
 	
-	public User getUtenteById(Long id) {
-		return utenteRepository.findById(id).orElse(null);
+	public User getUserById(Long id) {
+		return userRepository.findById(id).orElse(null);
 	}
 	
-	public Iterable<User> getAllUtenti() {
-		return utenteRepository.findAll();
+	public Iterable<User> getAllUsers() {
+		return userRepository.findAll();
 	}
 
 }
