@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import it.uniroma3.siw.model.Book;
 
-public interface LibroRepository extends CrudRepository<Book, Long> {
+public interface BookRepository extends CrudRepository<Book, Long> {
 
 }

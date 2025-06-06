@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import it.uniroma3.siw.model.User;
 
 
-public interface UtenteRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
 }
