@@ -7,7 +7,7 @@ import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.repository.CredenzialiRepository;
 
 @Service
-public class CredenzialiService {
+public class CredentialsService {
 	
 	@Autowired
 	private CredenzialiRepository credenzialiRepository;

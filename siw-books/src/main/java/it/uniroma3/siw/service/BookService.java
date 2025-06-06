@@ -7,7 +7,7 @@ import it.uniroma3.siw.model.Book;
 import it.uniroma3.siw.repository.LibroRepository;
 
 @Service
-public class LibroService {
+public class BookService {
 	
 	@Autowired
 	private LibroRepository libroRepository;

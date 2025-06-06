@@ -6,13 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import it.uniroma3.siw.service.LibroService;
+import it.uniroma3.siw.service.BookService;
 
 @Controller
 public class LibroController {
 	
 	@Autowired
-	private LibroService libroService;
+	private BookService libroService;
 	
 	@GetMapping("/") 
 	public String getHomePage() {

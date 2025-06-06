@@ -7,7 +7,7 @@ import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.UtenteRepository;
 
 @Service
-public class UtenteService {
+public class UserService {
 	
 	@Autowired
 	private UtenteRepository utenteRepository;

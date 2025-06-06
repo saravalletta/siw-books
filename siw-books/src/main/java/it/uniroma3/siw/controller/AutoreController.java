@@ -6,13 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import it.uniroma3.siw.service.AutoreService;
+import it.uniroma3.siw.service.AuthorService;
 
 @Controller
 public class AutoreController {
 	
 	@Autowired
-	private AutoreService autoreService;
+	private AuthorService autoreService;
 	
 	
 	@GetMapping("/autore/{id}")
