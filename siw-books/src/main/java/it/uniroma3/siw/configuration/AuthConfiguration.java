@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import static it.uniroma3.siw.model.Credenziali.ADMIN_ROLE;
+import static it.uniroma3.siw.model.Credenziali.ADMIN;
 
 @Configuration
 @EnableWebSecurity
@@ -45,11 +45,11 @@ public class AuthConfiguration {
 	@Bean
 	protected SecurityFilterChain configure(final HttpSecurity HttpSecurity) throws Exception {
 		HttpSecurity.csrf().and().cors().disable().authorizeHttpRequests()
-			.requestMatchers(HttpMethod.GET, "/", "/homepage", "/signup", "/css/**", "/imges/**", "favicon.ico").permitAll()
-			.requestMatchers(HttpMethod.GET, "/signup", "/login").permitAll()
-			.requestMatchers(HttpMethod.POST, "/signup", "/login").permitAll()
-			.requestMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
-			.requestMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
+			.requestMatchers(HttpMethod.GET, "/", "/homepage", "/register", "/css/**", "/imges/**", "favicon.ico").permitAll()
+			.requestMatchers(HttpMethod.GET, "/register", "/login").permitAll()
+			.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
+			.requestMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN)
+			.requestMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN)
 			.anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
 			.defaultSuccessUrl("/success", true)
 			.failureUrl("/login?error=true").and().logout().logoutSuccessUrl("/").invalidateHttpSession(true)
