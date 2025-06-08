@@ -19,5 +19,11 @@ public class UserService {
 	public Iterable<User> getAllUsers() {
 		return userRepository.findAll();
 	}
+	
+	public User createUser(String name, String surname, String email) {
+		User user = new User(name, surname, email);
+		user = this.userRepository.save(user);
+		return user;
+	}
 
 }
