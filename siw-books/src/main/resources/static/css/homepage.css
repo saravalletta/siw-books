@@ -9,18 +9,18 @@ header {
 	justify-content: space-between;
 }
 
-.logoETitolo {
+.logo-title {
 	align-items: center;
 	display: flex;
 }
 
-.immagine-logo {
+.image-logo {
 	height: 10vh;
 	margin-left: 4vw;
 	margin-right: 2vw;
 }
 
-.menu {
+.nav {
 	align-items: center;
 	display: flex;
 	justify-content: space-evenly;
@@ -60,7 +60,7 @@ section {
 	margin-right: 8vw;
 }
 
-.immagine-hero {
+.image-hero {
 	height: 30vh;
 	margin-right: 8vw;
 }
