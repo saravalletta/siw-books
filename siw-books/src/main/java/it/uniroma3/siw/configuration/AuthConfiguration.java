@@ -45,7 +45,7 @@ public class AuthConfiguration {
 	@Bean
 	protected SecurityFilterChain configure(final HttpSecurity HttpSecurity) throws Exception {
 		HttpSecurity.csrf().and().cors().disable().authorizeHttpRequests()
-			.requestMatchers(HttpMethod.GET, "/", "/homepage", "/register", "/css/**", "/imges/**", "favicon.ico").permitAll()
+			.requestMatchers(HttpMethod.GET, "/", "/homepage", "/register", "/css/**", "/imges/**", "favicon.ico", "/books.html", "/authors.html").permitAll()
 			.requestMatchers(HttpMethod.GET, "/register", "/login").permitAll()
 			.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
 			.requestMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN)
