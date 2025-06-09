@@ -25,13 +25,16 @@ public class Book {
 	@OneToMany
 	private Set<Author> authors;
 	@ElementCollection
-	private List<String> urlImage; // una o più immagini quindi da cambiare
+	private List<String> urlImage;
+	@OneToMany
+	private List<Review> reviews;
 	
 	public Book(String title, LocalDate year) {
 		this.title = title;
 		this.year = year;
 		this.authors = new HashSet<Author>();
 		this.urlImage = new LinkedList<String>();
+		this.reviews = new LinkedList<Review>();
 	}
 	
 	// Getter e setter
@@ -59,24 +62,31 @@ public class Book {
 	public Set<Author> getAuthors() {
 		return authors;
 	}
-	public void setAuthors(HashSet<Author> authors) {
+	public void setAuthors(Set<Author> authors) {
 		this.authors = authors;
 	}
 	
 	public List<String> getUrlImage() {
 		return urlImage;
 	}
-	public void setUrlImage(LinkedList<String> urlImage) {
+	public void setUrlImage(List<String> urlImage) {
 		this.urlImage = urlImage;
 	}
 	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
 	
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(year, authors, id, title, urlImage);
+		return Objects.hash(id);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -86,8 +96,7 @@ public class Book {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
-		return Objects.equals(year, other.year) && Objects.equals(authors, other.authors)
-				&& Objects.equals(id, other.id) && Objects.equals(title, other.title)
-				&& Objects.equals(urlImage, other.urlImage);
+		return Objects.equals(id, other.id);
 	}
+	
 }

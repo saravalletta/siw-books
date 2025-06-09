@@ -80,14 +80,14 @@ public class Author {
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
 	}
-	
+
 	
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(surname, deathDate, birthDate, id, nationality, name, urlImage);
+		return Objects.hash(id);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -97,9 +97,7 @@ public class Author {
 		if (getClass() != obj.getClass())
 			return false;
 		Author other = (Author) obj;
-		return Objects.equals(surname, other.surname) && Objects.equals(deathDate, other.deathDate)
-				&& Objects.equals(birthDate, other.birthDate) && Objects.equals(id, other.id)
-				&& Objects.equals(nationality, other.nationality) && Objects.equals(name, other.name)
-				&& Objects.equals(urlImage, other.urlImage);
+		return Objects.equals(id, other.id);
 	}
+	
 }

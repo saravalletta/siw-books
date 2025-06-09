@@ -51,7 +51,7 @@ public class Review {
 	}
 	
 	
-	// Equals e hashCode
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

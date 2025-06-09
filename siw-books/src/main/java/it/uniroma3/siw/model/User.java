@@ -1,11 +1,14 @@
 package it.uniroma3.siw.model;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,11 +21,14 @@ public class User {
 	private String name;
 	private String surname;
 	private String email;
+	@OneToMany
+	private List<Review> reviews;
 	
 	public User(String name, String surname, String email) {
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
+		this.reviews = new LinkedList<Review>();
 	}
 	
 	public User() {}
@@ -56,12 +62,19 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
 
-
+	
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(surname, email, id, name);
+		return Objects.hash(email, id);
 	}
 
 	@Override
@@ -73,8 +86,7 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(surname, other.surname) && Objects.equals(email, other.email)
-				&& Objects.equals(id, other.id) && Objects.equals(name, other.name);
+		return Objects.equals(email, other.email) && Objects.equals(id, other.id);
 	}
 	
 

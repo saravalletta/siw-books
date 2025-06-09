@@ -73,12 +73,12 @@ public class Credentials {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	
-
-
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, password, role, username, user);
+		return Objects.hash(id, username);
 	}
 
 	@Override
@@ -90,10 +90,7 @@ public class Credentials {
 		if (getClass() != obj.getClass())
 			return false;
 		Credentials other = (Credentials) obj;
-		return Objects.equals(id, other.id) && Objects.equals(password, other.password)
-				&& Objects.equals(role, other.role) && Objects.equals(username, other.username)
-				&& Objects.equals(user, other.user);
+		return Objects.equals(id, other.id) && Objects.equals(username, other.username);
 	}
-	
 	
 }
