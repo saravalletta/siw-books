@@ -2,7 +2,7 @@
 <html>
 	<head>
 	    <title>Autori</title>
-		<link rel="stylesheet" href="css/homepage.css">
+		<link rel="stylesheet" href="css/index.css">
 	</head>
 	
 	<body>
@@ -18,7 +18,8 @@
 				<a href="/" class="nav-link">Home</a>
 				<a href="/books" class="nav-link">Libri</a>
 				<a href="/authors" class="nav-link">Autori</a>
-				<a href="/login" class="login-button">Accedi/Registrati</a>
+				<a th:if="${user==null}" href="/login" class="login-button">Accedi/Registrati</a>
+				<a sec:authorize="isAuthenticated()" href="/logout" class="login-button">Logout</a>
 			</nav>
 		</header>
 		

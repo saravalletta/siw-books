@@ -17,15 +17,18 @@ import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.model.UserDto;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.UserService;
+import it.uniroma3.siw.sessionData.SessionData;
 import jakarta.validation.Valid;
 
 import static it.uniroma3.siw.model.Credentials.DEFAULT;
+import static it.uniroma3.siw.model.Credentials.ADMIN;
 
 @Controller
 public class AuthController {
 	
 	@Autowired private CredentialsService credentialsService;
 	@Autowired private UserService userService;
+	@Autowired private SessionData sessionData;
 	
 	@GetMapping("/login")
 	public String login() {
@@ -33,7 +36,7 @@ public class AuthController {
 	}
 	
 	@GetMapping("/success")
-	public String defaultAfterLogin() {
+	public String defaultAfterLogin(Model model) {
 		UserDetails userDetails = null;
 		Credentials credentials = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -45,11 +48,14 @@ public class AuthController {
 			userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			credentials = this.credentialsService.getCredentialsByUsername(userDetails.getUsername());
 			
-			if(credentials.getRole().equals(credentials.ADMIN)) {
+			if(credentials.getRole().equals(ADMIN)) {
 				return "admin/books.html";
 			}
-			return "homepage.html";
 		}
+		User loggedUser = this.sessionData.getLoggedUser();
+		model.addAttribute("user", loggedUser);
+		
+		return "homepage.html";
 	}
 	
 	@GetMapping("/register")
@@ -66,7 +72,7 @@ public class AuthController {
 			User user = this.userService.createUser(userDto.getName(), userDto.getSurname(), userDto.getEmail());
 			Credentials credentials = this.credentialsService.createCredentials(userDto.getUsername(), userDto.getPassword(), DEFAULT, user);
 			model.addAttribute("user", user);
-			return "homepage.html";
+			return "login.html";
 		}
 		return "register.html";
 	}

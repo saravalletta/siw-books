@@ -1,0 +1,53 @@
+body {
+  font-family: "Arial", "Helvetica", sans-serif;
+  color: #2E2E2E;
+}
+
+header {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+}
+
+.logo-title {
+	align-items: center;
+	display: flex;
+}
+
+.image-logo {
+	height: 10vh;
+	margin-left: 4vw;
+	margin-right: 2vw;
+}
+
+.nav {
+	align-items: center;
+	display: flex;
+	justify-content: space-evenly;
+	width: 40vw;
+	margin-right: 4vw;
+	margin-top: 2vh;
+}
+
+.nav-link {
+	text-decoration: none;
+	color: #2E2E2E;
+	font-weight: 500;
+	font-size: 18px;
+}
+
+.login-button {
+	text-decoration: none;
+	color: #2E2E2E;
+	font-weight: 500;
+	font-size: 18px;
+	background-color: #F5F5F5;
+	border-radius: 6px;
+	padding: 10px 16px;
+}
+
+hr {
+	background-color: #2E2E2E;
+	height: 0.5px;
+	border: none;
+}

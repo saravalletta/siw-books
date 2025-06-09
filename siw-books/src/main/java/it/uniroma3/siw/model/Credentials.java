@@ -35,6 +35,8 @@ public class Credentials {
 		this.user = user;
 	}
 	
+	public Credentials() {}
+	
 	
 	// Getter e setter
 	public Long getId() {
