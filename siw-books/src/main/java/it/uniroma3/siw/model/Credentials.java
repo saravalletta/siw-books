@@ -64,9 +64,16 @@ public class Credentials {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-
 	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, password, role, username, user);

@@ -66,7 +66,7 @@ public class AuthController {
 			User user = this.userService.createUser(userDto.getName(), userDto.getSurname(), userDto.getEmail());
 			Credentials credentials = this.credentialsService.createCredentials(userDto.getUsername(), userDto.getPassword(), DEFAULT, user);
 			model.addAttribute("user", user);
-			return "registerSuccessful.html";
+			return "homepage.html";
 		}
 		return "register.html";
 	}
