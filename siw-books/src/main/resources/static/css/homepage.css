@@ -7,12 +7,12 @@ section {
 	margin-right: 8vw;
 }
 
-.image-hero {
+#image-hero {
 	height: 30vh;
 	margin-right: 8vw;
 }
 
-.books-button {
+#books-button {
 	display: inline-block;
 	text-decoration: none;
 	color: white;
@@ -24,7 +24,7 @@ section {
 	margin-top: 4vh;
 }
 
-.authors-button {
+#authors-button {
 	display: inline-block;
 	text-decoration: none;
 	color: #4276D6;

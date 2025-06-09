@@ -3,30 +3,51 @@
 	<head>
 	    <title>Login</title>
 		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/login.css">
 	</head>
 	
 	<body>
 		
-		<div>
-			<h1>Accedi</h1>
+		<header>
+					
+			<div class="logo-title">
+				<span><img src="images/siw-books-logo.png" class="image-logo"></span>
+				<span><h1>SiwBooks</h1></span>
+			</div>
 			
-			<form th:action="@{/login}" method="post">
-				<div>
-					<label for="username"></label>
-					<input type="text" name="username" id="username" required>
-				</div>
+			<nav class="nav">
+				<a href="/" class="nav-link">Home</a>
+				<a href="/books" class="nav-link">Libri</a>
+				<a href="/authors" class="nav-link">Autori</a>
+				<a th:if="${user==null}" href="/login" class="login-button">Accedi/Registrati</a>
+				<a th:if="${user!=null}" href="/logout" class="login-button">Logout</a>
+			</nav>
+		</header>
+		
+		<hr>
+		
+		<main>
+			<div class="main">
+				<h1 id="title">Accedi</h1>
 				
-				<div>
-					<label for="password"></label>
-					<input type="password" name="password" id="password" required>
-				</div>
+				<form th:action="@{/login}" method="post">
+					<div class="input-field">
+						<label for="username"></label>
+						<input type="text" name="username" id="username" required>
+					</div>
+					
+					<div class="input-field">
+						<label for="password"></label>
+						<input type="password" name="password" id="password" required>
+					</div>
+					
+					<div class="input-field">
+						<button type="submit">Accedi</button>
+					</div>
+				</form>
 				
-				<div>
-					<button type="submit">Accedi</button>
-				</div>
-			</form>
-			
-			<a href="/register">Registrati</a>
-		</div>
+				<a href="/register">Registrati</a>
+			</div>
+		</main>
 	</body>
 </html>

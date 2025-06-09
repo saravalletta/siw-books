@@ -2,9 +2,12 @@ package it.uniroma3.siw.model;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,13 +24,14 @@ public class Book {
 	private LocalDate year;
 	@OneToMany
 	private Set<Author> authors;
-	private String urlImage; // una o più immagini quindi da cambiare
+	@ElementCollection
+	private List<String> urlImage; // una o più immagini quindi da cambiare
 	
-	public Book(String title, LocalDate year, String urlImage) {
+	public Book(String title, LocalDate year) {
 		this.title = title;
 		this.year = year;
 		this.authors = new HashSet<Author>();
-		this.urlImage = urlImage;
+		this.urlImage = new LinkedList<String>();
 	}
 	
 	// Getter e setter
@@ -55,14 +59,14 @@ public class Book {
 	public Set<Author> getAuthors() {
 		return authors;
 	}
-	public void setAuthors(Set<Author> authors) {
+	public void setAuthors(HashSet<Author> authors) {
 		this.authors = authors;
 	}
 	
-	public String getUrlImage() {
+	public List<String> getUrlImage() {
 		return urlImage;
 	}
-	public void setUrlImage(String urlImage) {
+	public void setUrlImage(LinkedList<String> urlImage) {
 		this.urlImage = urlImage;
 	}
 	
