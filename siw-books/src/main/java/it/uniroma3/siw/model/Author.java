@@ -21,6 +21,16 @@ public class Author {
 	private String nationality;
 	private String urlImage;
 	
+	public Author(String name, String surname, LocalDate birthDate, LocalDate deathDate, 
+			String nationality, String urlImage) {
+		this.name = name;
+		this.surname = surname;
+		this.birthDate = birthDate;
+		this.deathDate = deathDate;
+		this.nationality = nationality;
+		this.urlImage = urlImage;
+	}
+	
 	// Getter e setter
 	public Long getId() {
 		return id;

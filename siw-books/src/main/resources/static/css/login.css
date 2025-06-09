@@ -7,3 +7,10 @@
 	width: 15vw;
 }
 
+#container {
+	align-items: center;
+	display: flex;
+	height: 20vh;
+	width: 30vw;
+	background-color: red;
+}
