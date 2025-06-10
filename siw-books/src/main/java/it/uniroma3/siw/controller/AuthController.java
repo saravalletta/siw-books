@@ -47,13 +47,13 @@ public class AuthController {
 		else {
 			userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			credentials = this.credentialsService.getCredentialsByUsername(userDetails.getUsername());
+			User loggedUser = this.sessionData.getLoggedUser();
+			model.addAttribute("user", loggedUser);
 			
 			if(credentials.getRole().equals(ADMIN)) {
 				return "admin/adminHomepage.html";
 			}
 		}
-		User loggedUser = this.sessionData.getLoggedUser();
-		model.addAttribute("user", loggedUser);
 		
 		return "homepage.html";
 	}
