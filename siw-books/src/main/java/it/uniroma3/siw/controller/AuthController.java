@@ -49,7 +49,7 @@ public class AuthController {
 			credentials = this.credentialsService.getCredentialsByUsername(userDetails.getUsername());
 			
 			if(credentials.getRole().equals(ADMIN)) {
-				return "admin/books.html";
+				return "admin/adminHomepage.html";
 			}
 		}
 		User loggedUser = this.sessionData.getLoggedUser();
