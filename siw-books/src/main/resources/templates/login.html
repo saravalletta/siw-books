@@ -26,26 +26,27 @@
 		
 		<hr>
 		
-		<main id="container">
-			<div>
+		<main id="login-container">
+			<div id="login-box">
 				<h1 id="title">Accedi</h1>
 				
 				<form th:action="@{/login}" method="post">
 					<div class="input-field">
-						<label for="username"></label>
+						<label for="username">Username</label>
 						<input type="text" name="username" id="username" required>
 					</div>
 					
 					<div class="input-field">
-						<label for="password"></label>
+						<label for="password">Password</label>
 						<input type="password" name="password" id="password" required>
 					</div>
 					
 					<div class="input-field">
-						<button type="submit">Accedi</button>
+						<button type="submit" class="button">Accedi</button>
 					</div>
 				</form>
 				
+				<p>Non hai un account?</p>
 				<a href="/register">Registrati</a>
 			</div>
 		</main>
