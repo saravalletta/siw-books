@@ -12,18 +12,18 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	public User createUser(String name, String surname, String email) {
+		User user = new User(name, surname, email);
+		user = this.userRepository.save(user);
+		return user;
+	}
+	
 	public User getUserById(Long id) {
 		return userRepository.findById(id).orElse(null);
 	}
 	
 	public Iterable<User> getAllUsers() {
 		return userRepository.findAll();
-	}
-	
-	public User createUser(String name, String surname, String email) {
-		User user = new User(name, surname, email);
-		user = this.userRepository.save(user);
-		return user;
 	}
 
 }
