@@ -1,3 +1,16 @@
+#container {
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 65vh;
+	width: 40vw;
+	background-color: #f3f4f6;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 #title {
 	margin-top: 20vh;
 }
@@ -5,12 +18,4 @@
 .input-field {
 	height: 4vh;
 	width: 15vw;
-}
-
-#container {
-	align-items: center;
-	display: flex;
-	height: 20vh;
-	width: 30vw;
-	background-color: red;
 }
