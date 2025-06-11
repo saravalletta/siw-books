@@ -50,7 +50,7 @@ public class AuthController {
 			User loggedUser = this.sessionData.getLoggedUser();
 			model.addAttribute("user", loggedUser);
 			
-			if(credentials.getRole().equals(ADMIN)) {
+			if(credentials.getRole().trim().equals(ADMIN)) {
 				return "/admin/adminHomepage";
 			}
 		}
