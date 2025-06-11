@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import it.uniroma3.siw.service.BookService;
+import it.uniroma3.siw.sessionData.SessionData;
 
 @Controller
 public class BookController {
 	
 	@Autowired
 	private BookService bookService;
+	@Autowired
+	private SessionData sessionData;
 	
 	@GetMapping("/book/{id}")
 	public String getBook(@PathVariable("id") Long id, Model model) {

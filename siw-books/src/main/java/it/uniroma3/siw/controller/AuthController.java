@@ -51,7 +51,7 @@ public class AuthController {
 			model.addAttribute("user", loggedUser);
 			
 			if(credentials.getRole().equals(ADMIN)) {
-				return "admin/adminHomepage.html";
+				return "/admin/adminHomepage";
 			}
 		}
 		

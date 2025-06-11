@@ -26,8 +26,8 @@
 		
 		<hr>
 		
-		<main id="login-container">
-			<div id="login-box">
+		<main class="container">
+			<div class="box">
 				<h1 id="title">Accedi</h1>
 				
 				<form th:action="@{/login}" method="post">
@@ -45,6 +45,11 @@
 						<button type="submit" class="button">Accedi</button>
 					</div>
 				</form>
+				
+				<p id="forgot-password">
+					Password dimenticata?
+					<a href="" class="link-button">Recupera Password</a>
+				</p>
 				
 				<p>
 					Non hai un account?

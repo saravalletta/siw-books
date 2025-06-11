@@ -2,8 +2,8 @@
 <html>
 	<head>
 	    <title>HomePage</title>
-		<link rel="stylesheet" href="css/index.css">
-		<link rel="stylesheet" href="css/homepage.css">
+		<link rel="stylesheet" href="../css/index.css">
+		<link rel="stylesheet" href="../css/homepage.css">
 	</head>
 	
 	<body>
@@ -11,7 +11,7 @@
 		<header>
 			
 			<div class="logo-title">
-				<span><img src="images/siw-books-logo.png" class="image-logo"></span>
+				<span><img src="../images/siw-books-logo.png" class="image-logo"></span>
 				<span><h1>SiwBooks</h1></span>
 			</div>
 			
@@ -20,7 +20,7 @@
 				<a href="/books" class="nav-link">Libri</a>
 				<a href="/authors" class="nav-link">Autori</a>
 				<a href="/addBook" class="login-button">Aggiungi Libro</a>
-				<a th:if="${user!=null}" href="/logout" class="login-button">Logout</a>
+				<a href="/logout" class="login-button">Logout</a>
 			</nav>
 		</header>
 		
@@ -28,7 +28,7 @@
 		
 		<main>
 			<section>
-				<span><img src="images/homepage-image.png" id="image-hero"></span>
+				<span><img src="../images/homepage-image.png" id="image-hero"></span>
 				<div>
 					<h1>Esplora centinaia di libri e i loro autori</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
