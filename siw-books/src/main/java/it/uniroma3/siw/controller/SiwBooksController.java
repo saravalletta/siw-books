@@ -19,7 +19,7 @@ public class SiwBooksController {
 
 
     @GetMapping("/admin/adminHomepage")
-    public String adminHompage(){
+    public String adminHomepage(){
         return "/admin/adminHomepage.html";
     }
 
