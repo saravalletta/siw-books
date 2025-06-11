@@ -1,5 +1,7 @@
 package it.uniroma3.siw.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class AuthorService {
 		return authorRepository.findById(id).orElse(null);
 	}
 	
-	public Iterable<Author> getAllAuthors() {
+	public List<Author> getAllAuthors() {
 		return authorRepository.findAll();
 	}
 
