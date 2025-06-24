@@ -32,6 +32,11 @@ public class SiwBooksController {
         return "/admin/adminHomepage.html";
     }
     
+    @GetMapping("/adminBooks")
+    public String adminBooks() {
+    	return "/admin/adminBooks.html";
+    }
+    
     @GetMapping("/addBook")
     public String addBook(Model model) {
     	BookDto bookDto = new BookDto();
