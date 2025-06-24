@@ -14,7 +14,7 @@ public class CredentialsService {
 	@Autowired
 	private CredentialsRepository credentialsRepository;
 	@Autowired
-	private PasswordEncoder passwordEncorder;
+	private PasswordEncoder passwordEncoder;
 	
 	public Credentials getCredentialsById(Long id) {
 		return credentialsRepository.findById(id).orElse(null);
@@ -29,7 +29,7 @@ public class CredentialsService {
 	}
 	
 	public Credentials createCredentials(String username, String password, String role, User user) {
-		String cryptedPassword = this.passwordEncorder.encode(password);
+		String cryptedPassword = this.passwordEncoder.encode(password);
 		Credentials credentials = new Credentials(username, cryptedPassword, role, user);
 		credentials = this.credentialsRepository.save(credentials);
 		return credentials;

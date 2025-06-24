@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import it.uniroma3.siw.service.BookService;
 import it.uniroma3.siw.sessionData.SessionData;
+import it.uniroma3.siw.model.User;
 
 @Controller
 public class BookController {
@@ -18,7 +19,9 @@ public class BookController {
 	private SessionData sessionData;
 	
 	@GetMapping("/book/{id}")
-	public String getBook(@PathVariable("id") Long id, Model model) {
+	public String getBook(@PathVariable("id") Long id, Model model,Model model1) {
+		User user = this.sessionData.getLoggedUser();
+        model1.addAttribute("user", user);
 		model.addAttribute("book", this.bookService.getBookById(id));
 		return "book.html";
 	}
