@@ -22,7 +22,7 @@ public class Author {
 	private LocalDate deathDate;
 	private String nationality;
 	private String urlImage;
-	@ManyToMany()
+	@ManyToMany(mappedBy="authors")
 	private Set<Book> books;
 	
 	public Author(String name, String surname, LocalDate birthDate, LocalDate deathDate, 

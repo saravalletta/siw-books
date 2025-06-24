@@ -23,7 +23,7 @@ public class Book {
 	private Long id;
 	private String title;
 	private LocalDate year;
-	@ManyToMany(mappedBy="books")
+	@ManyToMany
 	private Set<Author> authors;
 	@ElementCollection
 	private List<String> urlImage;
