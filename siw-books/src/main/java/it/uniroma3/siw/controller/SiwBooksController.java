@@ -27,19 +27,19 @@ public class SiwBooksController {
     @Autowired private ReviewService reviewService;
 
 
-    @GetMapping("/admin/adminHomepage")
+    @GetMapping("/adminHomepage")
     public String adminHomepage(){
         return "/admin/adminHomepage.html";
     }
     
-    @GetMapping("/admin/addBook")
+    @GetMapping("/addBook")
     public String addBook(Model model) {
     	BookDto bookDto = new BookDto();
     	model.addAttribute("book", bookDto);
     	return "/admin/addBook.html";
     }
     
-    @PostMapping("/admin/addBook")
+    @PostMapping("/addBook")
     public String insertBook(@Valid @ModelAttribute("book") BookDto bookDto, BindingResult bookBindingResult,
 			Model model) {
     	if(!bookBindingResult.hasErrors()) {
