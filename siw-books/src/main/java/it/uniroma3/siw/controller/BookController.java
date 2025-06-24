@@ -28,6 +28,8 @@ public class BookController {
 	
 	@GetMapping("/books")
 	public String showBooks(Model model) {
+		User loggedUser = this.sessionData.getLoggedUser();
+		model.addAttribute("user", loggedUser);
 		model.addAttribute("books", this.bookService.getAllBooks());
 		return "books.html";
 	}
