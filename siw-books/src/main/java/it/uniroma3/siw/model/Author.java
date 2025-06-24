@@ -2,11 +2,13 @@ package it.uniroma3.siw.model;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Author {
@@ -20,6 +22,8 @@ public class Author {
 	private LocalDate deathDate;
 	private String nationality;
 	private String urlImage;
+	@ManyToMany()
+	private Set<Book> books;
 	
 	public Author(String name, String surname, LocalDate birthDate, LocalDate deathDate, 
 			String nationality, String urlImage) {
@@ -79,10 +83,17 @@ public class Author {
 	}
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
+	}	
+	
+	public Set<Book> getBooks() {
+		return books;
 	}
+	public void setBooks(Set<Book> books) {
+		this.books = books;
+	}
+	
+	
 
-	
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
