@@ -40,7 +40,7 @@ public class SiwBooksController {
     @GetMapping("/addBook")
     public String addBook(Model model) {
     	BookDto bookDto = new BookDto();
-    	model.addAttribute("book", bookDto);
+    	model.addAttribute("bookDto", bookDto);
     	return "/admin/addBook.html";
     }
     

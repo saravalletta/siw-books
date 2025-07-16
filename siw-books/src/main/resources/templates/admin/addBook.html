@@ -3,7 +3,7 @@
 	<head>
 	    <title>HomePage</title>
 		<link rel="stylesheet" href="../css/style.css">
-		<link rel="stylesheet" href="../css/homepage.css">
+		<link rel="stylesheet" href="../css/books.css">
 	</head>
 	
 	<body>
@@ -16,7 +16,7 @@
 			</div>
 			
 			<nav class="nav">
-				<a href="/admin/adminHomepage" class="nav-link">Home</a>
+				<a href="/adminHomepage" class="nav-link">Home</a>
 				<a href="/books" class="nav-link">Libri</a>
 				<a href="/authors" class="nav-link">Autori</a>
 				<a href="/addBook" class="login-button">Aggiungi Libro</a>
@@ -26,7 +26,22 @@
 		
 		<hr>
 		
-		<main class="">
+		<main class="form-container">
+			<div class="form-box">
+				<h1>Aggiungi Libro</h1>
+				
+				<form th:action="@{/addBooks}" method="post" th:object="${bookDto}">
+					<div class="input-field">
+						<label for="title">Titolo</label>
+						<input type="text" name="title" id="title" th:field="*{title}" required>
+					</div>
+					
+					<div class="input-field">
+						<label for="year">Anno di Pubblicazione</label>
+						<input type="date" name="year" id="year" th:field="*{year}" required>
+					</div>
+				</form>
+			</div>
 		</main>
 		
 	</body>
