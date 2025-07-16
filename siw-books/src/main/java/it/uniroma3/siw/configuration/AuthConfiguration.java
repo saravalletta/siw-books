@@ -43,19 +43,27 @@ public class AuthConfiguration {
 	}
 	
 	@Bean
-	protected SecurityFilterChain configure(final HttpSecurity HttpSecurity) throws Exception {
-		HttpSecurity.csrf().and().cors().disable().authorizeHttpRequests()
-			.requestMatchers(HttpMethod.GET, "/", "/homepage", "/register", "/css/**", "/images/**", "favicon.ico", "/books", "/authors").permitAll()
-			.requestMatchers(HttpMethod.GET, "/register", "/login").permitAll()
-			.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
-			.requestMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN)
-			.requestMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN)
-			.anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
-			.defaultSuccessUrl("/success", true)
-			.failureUrl("/login?error=true").and().logout().logoutSuccessUrl("/").invalidateHttpSession(true)
-			.deleteCookies("JSESSIONID").logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.clearAuthentication(true).permitAll();
-		return HttpSecurity.build();
+	protected SecurityFilterChain configure(final HttpSecurity http) throws Exception {
+		http.csrf(csrf -> csrf.disable())
+		.cors(cors -> cors.disable()).authorizeHttpRequests(auth -> auth
+				.requestMatchers(HttpMethod.GET, "/", "/homepage", "/login", "/register", "/css/**", "/images/**", "favicon.ico", "/books", "/authors").permitAll()
+				.requestMatchers(HttpMethod.POST, "/", "/homepage", "/login", "/register", "/css/**", "/images/**", "favicon.ico", "/books", "/authors").permitAll()
+				.requestMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN)
+				.requestMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN)
+				.anyRequest().authenticated())
+		.formLogin(form -> form
+				.loginPage("/login").permitAll()
+				.defaultSuccessUrl("/success", true)
+				.failureUrl("/login?error=true"))
+		.logout(logout -> logout
+				.logoutSuccessUrl("/")
+				.invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID")
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.clearAuthentication(true)
+				.permitAll());
+		
+		return http.build();
 	}
 
 }

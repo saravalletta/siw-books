@@ -37,13 +37,15 @@ public class SessionData {
 
     private void update() {
        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-       if (obj instanceof UserDetails) {
-           UserDetails loggedUser = (UserDetails) obj;
+       if(obj instanceof UserDetails) {
+    	   UserDetails loggedUser = (UserDetails) obj;
            this.credentials = this.credentialsRepository.findByUsername(loggedUser.getUsername()).get();
            this.credentials.setPassword("[PROTECTED]");
            this.user = this.credentials.getUser();
-       }else {
-           throw new RuntimeException();
+       }
+       else {
+    	   this.credentials = null;
+    	   this.user = null;
        }
     }
 
