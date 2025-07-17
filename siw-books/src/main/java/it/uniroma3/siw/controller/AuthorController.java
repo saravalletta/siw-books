@@ -15,8 +15,6 @@ public class AuthorController {
 	
 	@Autowired
 	private AuthorService authorService;
-	@Autowired
-	private SessionData sessionData;
 	
 	
 	@GetMapping("/author/{id}")
