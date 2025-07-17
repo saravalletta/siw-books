@@ -24,6 +24,7 @@ hr {
 	border: none;
 }
 
+/* Per l'header */
 .logo-title {
 	align-items: center;
 	display: flex;
@@ -35,6 +36,7 @@ hr {
 	margin-right: 2vw;
 }
 
+/* Menù */ 
 .nav {
 	align-items: center;
 	display: flex;

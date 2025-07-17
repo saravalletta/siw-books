@@ -27,8 +27,6 @@ public class AuthorController {
 	
 	@GetMapping("/authors") 
 	public String showAuthors(Model model) {
-		User loggedUser = this.sessionData.getLoggedUser();
-		model.addAttribute("user", loggedUser);
 		model.addAttribute("authors", this.authorService.getAllAuthors());
 		return "authors.html";
 	}

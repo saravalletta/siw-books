@@ -18,8 +18,9 @@
 				<a href="/" class="nav-link">Home</a>
 				<a href="/books" class="nav-link">Libri</a>
 				<a href="/authors" class="nav-link">Autori</a>
-				<a th:if="${user==null}" href="/login" class="login-button">Accedi/Registrati</a>
-				<a th:if="${user!=null}" href="/account" class="login-button">Account</a>
+				<a th:if="${isAdmin}" href="/addBook" class="login-button">Aggiungi Libro</a>
+				<a th:if="${isAnonymous}" href="/login" class="login-button">Accedi/Registrati</a>
+				<a th:if="${!isAnonymous}" href="/account" class="login-button">Account</a>
 			</nav>
 		</header>
 		
@@ -28,6 +29,10 @@
 		<main>
 			
 		</main>
+		
+		<footer>
+			<p>© 2025 SiwBooks - Tutti i diritti riservati</p>
+		</footer>
 		
 	</body>
 </html>
