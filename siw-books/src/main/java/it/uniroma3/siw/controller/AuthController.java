@@ -76,5 +76,12 @@ public class AuthController {
 		}
 		return "register.html";
 	}
+	
+	@GetMapping("/account")
+	public String showAccount(Model model) {
+		User loggedUser = this.sessionData.getLoggedUser();
+		model.addAttribute("user", loggedUser);
+		return "account.html";
+	}
 
 }

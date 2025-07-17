@@ -54,5 +54,10 @@ public class SiwBooksController {
     	
     	return "";
     }
+    
+    @GetMapping("/addAuthor")
+    public String addAuthor() {
+    	return "admin/addAuthor.html";
+    }
 
 }
