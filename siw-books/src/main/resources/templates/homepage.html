@@ -19,6 +19,7 @@
 				<a href="/" class="nav-link">Home</a>
 				<a href="/books" class="nav-link">Libri</a>
 				<a href="/authors" class="nav-link">Autori</a>
+				<a th:if="${isAdmin}" href="/addBook" class="login-button">Aggiungi Libro</a>
 				<a th:if="${user==null}" href="/login" class="login-button">Accedi/Registrati</a>
 				<a th:if="${user!=null}" href="/account" class="login-button">Account</a>
 			</nav>
@@ -31,12 +32,10 @@
 				<span><img src="images/homepage-image.png" id="image-hero"></span>
 				<div>
 					<h1>Esplora centinaia di libri e i loro autori</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-						incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum 
-						exercitationem ullamco laboriosam, nisi ut aliquid ex ea commodi consequatur. Duis 
-						aute irure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-						pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia 
-						deserunt mollit anim id est laborum.</p>
+					<p>Lasciati guidare dalla curiosità e immergiti in un mondo fatto di storie, emozioni e parole. Scopri centinaia di libri, 
+						dai grandi classici alle nuove uscite, esplora trame appassionanti e conosci gli autori che le hanno create. Leggi 
+						recensioni autentiche, confronta opinioni e lasciati ispirare da prospettive, esperienze e modi di raccontare diversi. 
+						Su SiwBooks trovi strumenti utili per orientarti nella lettura e rricchire la tua esperienza come lettore.</p>
 					<a href="/books" id="books-button">Sfoglia Libri</a>
 					<a href="/authors" id="authors-button">Esplora gli autori</a>
 				</div>
@@ -50,6 +49,10 @@
 				<h1>Recensioni Recenti</h1>
 			</section>
 		</main>
+		
+		<footer>
+			<p>© 2025 SiwBooks - Tutti i diritti riservati</p>
+		</footer>
 		
 	</body>
 </html>

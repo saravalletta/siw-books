@@ -4,9 +4,24 @@ body {
 }
 
 header {
-	align-items: center;
+	align-items: center; /* elementi centrati */
 	display: flex;
 	justify-content: space-between;
+}
+
+footer {
+	text-align: center; /* testo centrato orizzontalmente */
+	position: fixed; /* testo fissato in basso */
+	bottom: 0;
+	width: 100%; /* prende l'intera larghezza */
+	border-top: 0.5px solid #2E2E2E; /* bordo superiore */
+	padding-top: 1rem; /* per aumentare l'altezza del footer */
+}
+
+hr {
+	background-color: #2E2E2E;
+	height: 0.5px; /* spessore */
+	border: none;
 }
 
 .logo-title {
@@ -44,12 +59,6 @@ header {
 	background-color: #F5F5F5;
 	border-radius: 6px;
 	padding: 10px 16px;
-}
-
-hr {
-	background-color: #2E2E2E;
-	height: 0.5px;
-	border: none;
 }
 
 /* Form */
