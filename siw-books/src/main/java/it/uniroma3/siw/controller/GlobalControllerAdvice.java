@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import static it.uniroma3.siw.model.Credentials.ADMIN;
+
 @ControllerAdvice
 public class GlobalControllerAdvice {
 	
@@ -27,7 +29,7 @@ public class GlobalControllerAdvice {
             Object principal = auth.getPrincipal();
             if (principal instanceof UserDetails userDetails) {
 
-                boolean isAdmin = auth.getAuthorities().stream().anyMatch(authority -> authority.getAuthority().trim().equals("ADMIN"));
+                boolean isAdmin = auth.getAuthorities().stream().anyMatch(authority -> authority.getAuthority().trim().equals(ADMIN));
                 model.addAttribute("isAdmin", isAdmin);
             }
         } else {

@@ -26,16 +26,6 @@ public class SiwBooksController {
     @Autowired private AuthorService authorService;
     @Autowired private ReviewService reviewService;
 
-
-    @GetMapping("/adminHomepage")
-    public String adminHomepage(){
-        return "/admin/adminHomepage.html";
-    }
-    
-    @GetMapping("/adminBooks")
-    public String adminBooks() {
-    	return "/admin/adminBooks.html";
-    }
     
     @GetMapping("/addBook")
     public String addBook(Model model) {
