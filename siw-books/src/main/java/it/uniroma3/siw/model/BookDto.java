@@ -17,7 +17,7 @@ public class BookDto {
 	@NotBlank
 	private Set<Long> authorsIds = new HashSet<Long>();
 	@NotBlank
-	private List<String> urlImage = new LinkedList<String>();
+	private List<String> urlImages = new LinkedList<String>();
 	
 	
 	// Getter e setter
@@ -43,10 +43,10 @@ public class BookDto {
 	}
 	
 	public List<String> getUrlImage() {
-		return urlImage;
+		return urlImages;
 	}
 	public void setUrlImage(List<String> urlImage) {
-		this.urlImage = urlImage;
+		this.urlImages = urlImage;
 	}
 	
 }

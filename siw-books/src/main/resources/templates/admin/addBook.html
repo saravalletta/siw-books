@@ -40,6 +40,31 @@
 						<label for="year">Anno di Pubblicazione</label>
 						<input type="date" name="year" id="year" th:field="*{year}" required>
 					</div>
+					
+					<div class="input-field" style="padding-bottom: 6vh;">
+						<label for="authorsIds">Autori</label>
+						<div th:if="${#lists.isEmpty(authors)}" class="empty-message">
+							Nessun autore disponibile al momento.
+						</div>
+						
+						<div th:if="${not #lists.isEmpty(authors)}" th:each="author : ${authors}">
+							<input type="checkbox" th:id="'author-' + ${author.id}" th:name="author" th:value="${author.id}">
+							<label th:for="'author-' + ${author.id}" th:text="${author.name} + ${author.surname}"></label>
+						</div>
+						
+						<div>
+							<a href="" class="generic-button1">Aggiungi Autore</a>
+						</div>
+					</div>
+					
+					<div class="input-field">
+						<label for="urlImages">Foto</label>
+						<input type="file" name="urlImages" accept="image/*">
+					</div>
+					
+					<div class="input-field">
+						<button type="submit" class="submit-button">Salva Libro</button>
+					</div>
 				</form>
 			</div>
 		</main>

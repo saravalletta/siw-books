@@ -48,18 +48,6 @@
 	font-size: 16px;
 }
 
-.button {
-	text-decoration: none;
-	color: white;
-	font-weight: 500;
-	font-size: 18px;
-	background-color: #4276D6;
-	border: none;
-	border-radius: 6px;
-	padding: 12px;
-	width: 25vw;
-}
-
 #forgot-password {
 	color: #2E2E2E;
 	font-weight: 200;
