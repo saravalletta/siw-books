@@ -3,7 +3,6 @@
 	<head>
 	    <title>Login</title>
 		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/login.css">
 	</head>
 	
 	<body>
@@ -23,37 +22,37 @@
 			</nav>
 		</header>
 		
-		<hr>
-		
-		<main class="login-container">
-			<div class="login-box">
-				<h1 id="title">Accedi</h1>
-				
-				<form th:action="@{/login}" method="post">
-					<div class="input-field">
-						<label for="username">Username</label>
-						<input type="text" name="username" id="username" required>
-					</div>
+		<main class="main-form">
+			<div class="form-container">
+				<div class="form-box">
+					<h1 id="title">Accedi</h1>
 					
-					<div class="input-field">
-						<label for="password">Password</label>
-						<input type="password" name="password" id="password" required>
-					</div>
+					<form th:action="@{/login}" method="post">
+						<div class="input-field">
+							<label for="username">Username</label>
+							<input type="text" name="username" id="username" required>
+						</div>
+						
+						<div class="input-field">
+							<label for="password">Password</label>
+							<input type="password" name="password" id="password" required>
+						</div>
+						
+						<div class="input-field">
+							<button type="submit" class="submit-button">Accedi</button>
+						</div>
+					</form>
 					
-					<div class="input-field">
-						<button type="submit" class="submit-button">Accedi</button>
-					</div>
-				</form>
-				
-				<p id="forgot-password">
-					Password dimenticata?
-					<a href="" class="link-button">Recupera Password</a>
-				</p>
-				
-				<p>
-					Non hai un account?
-					<a href="/register" class="link-button">Registrati</a>
-				</p>
+					<p id="forgot-password">
+						Password dimenticata?
+						<a href="" class="link-button">Recupera Password</a>
+					</p>
+					
+					<p>
+						Non hai un account?
+						<a href="/register" class="link-button">Registrati</a>
+					</p>
+				</div>
 			</div>
 		</main>
 		

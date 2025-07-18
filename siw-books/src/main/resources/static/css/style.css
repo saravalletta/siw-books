@@ -1,18 +1,25 @@
 body {
-  font-family: "Arial", "Helvetica", sans-serif;
-  color: #2E2E2E;
+	font-family: "Arial", "Helvetica", sans-serif;
+	color: #2E2E2E;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+main {
+  flex: 1; /* fa in modo che main occupi tutto lo spazio disponibile */
 }
 
 header {
 	align-items: center; /* elementi centrati */
 	display: flex;
 	justify-content: space-between;
+	border-bottom: 0.5px solid #2E2E2E; /* bordo inferiore */;
 }
 
 footer {
 	text-align: center; /* testo centrato orizzontalmente */
-	position: fixed; /* testo fissato in basso */
-	bottom: 0;
+	
 	width: 100%; /* prende l'intera larghezza */
 	border-top: 0.5px solid #2E2E2E; /* bordo superiore */
 	padding-top: 1rem; /* per aumentare l'altezza del footer */
@@ -24,7 +31,8 @@ hr {
 	border: none;
 }
 
-/* Per l'header */
+
+/* PER L'HEADER */
 .logo-title {
 	align-items: center;
 	display: flex;
@@ -36,7 +44,8 @@ hr {
 	margin-right: 2vw;
 }
 
-/* Menù */ 
+
+/* MENU */ 
 .nav {
 	align-items: center;
 	display: flex;
@@ -63,15 +72,86 @@ hr {
 	padding: 10px 16px;
 }
 
-/* Form */
+
+/* FORM */
 .empty-message {
 	padding: 1.5rem 0%;
 	text-align: center;
 	color: #A8A8A8;
 }
 
+.main-form {
+	display: flex;
+	justify-content: center; /* per centrare gli elementi orizzontalmente*/
+	align-items: center; /* per centrare gli elementi orizzontalmente*/
+	margin: 2rem;
+}
 
-/* Tipi di bottoni */
+.form-container {
+	height: auto; /* altezza che si adatta al contenuto */
+	width: 40vw; /* larghezza fissa */
+	border-radius: 12px;
+	background-color: #F5F5F5;
+	padding: 4rem 1rem; /* spazio verticale e orizzontale con il container interno */
+	display: flex;
+	justify-content: center; /* per centrare gli elementi orizzontalmente*/
+	align-items: center; /* per centrare gli elementi orizzontalmente*/
+}
+
+.form-box {
+	height: auto;
+	width: 30vw;
+	background-color: white;
+	padding: 2rem;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column; /* per centrare gli elementi verticalmente*/
+	align-items: center;
+	justify-content: center;
+}
+
+.input-field {
+	height: 12vh;
+	width: 25vw;
+}
+
+.input-field input {
+	height: 4vh;
+	width: 100%;
+	margin-top: 1vh;
+	padding: 4px 6px;
+	font-size: 14px;
+	border: 0.5px solid #5F5F5F;
+	border-radius: 6px;
+}
+
+.input-field label {
+	text-decoration: none;
+	color: #2E2E2E;
+	font-weight: 200;
+	font-size: 16px;
+}
+
+#forgot-password {
+	color: #2E2E2E;
+	font-weight: 200;
+	font-size: 12px;
+	margin-top: -5vh;
+	margin-bottom: 4vh;
+}
+
+.form-box p {
+	color: #2E2E2E;
+	font-weight: 200;
+	font-size: 16px;
+}
+
+.link-button {
+	color: #4276D6;
+}
+
+
+/* TIPI DI BOTTONI */
 .generic-button1 {
 	text-decoration: none;
 	color: white;
@@ -103,4 +183,8 @@ hr {
 	border-radius: 6px;
 	padding: 12px;
 	width: 25vw;
+}
+
+.submit-button:hover {
+  background-color: #3F60AB;
 }

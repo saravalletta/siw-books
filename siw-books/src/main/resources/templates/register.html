@@ -3,7 +3,6 @@
 	<head>
 	    <title>Register</title>
 		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/register.css">
 	</head>
 	
 	<body>
@@ -23,47 +22,47 @@
 			</nav>
 		</header>
 		
-		<hr>
-		
-		<main class="register-container">
-			<div class="register-box">
-				<h1>Registrati</h1>
-				
-				<form th:action="@{/register}" method="post" th:object="${userDto}">
-					<div class="input-field">
-						<label for="name">Nome</label>
-						<input type="text" name="name" id="name" th:field="*{name}" required>
-					</div>
+		<main class="main-form">
+			<div class="form-container">
+				<div class="form-box">
+					<h1>Registrati</h1>
 					
-					<div class="input-field">
-						<label for="surname">Cognome</label>
-						<input type="text" name="surname" id="surname" th:field="*{surname}" required>
-					</div>
+					<form th:action="@{/register}" method="post" th:object="${userDto}">
+						<div class="input-field">
+							<label for="name">Nome</label>
+							<input type="text" name="name" id="name" th:field="*{name}" required>
+						</div>
+						
+						<div class="input-field">
+							<label for="surname">Cognome</label>
+							<input type="text" name="surname" id="surname" th:field="*{surname}" required>
+						</div>
+						
+						<div class="input-field">
+							<label for="email">Email</label>
+							<input type="text" name="email" id="email" th:field="*{email}" required>
+						</div>
+						
+						<div class="input-field">
+							<label for="username">Username</label>
+							<input type="text" name="username" id="username" th:field="*{username}" required>
+						</div>
+						
+						<div class="input-field">
+							<label for="password">Password</label>
+							<input type="password" name="password" id="password" th:field="*{password}" required>
+						</div>
+						
+						<div>
+							<button type="submit" class="submit-button">Registrati</button>
+						</div>
+					</form>
 					
-					<div class="input-field">
-						<label for="email">Email</label>
-						<input type="text" name="email" id="email" th:field="*{email}" required>
-					</div>
-					
-					<div class="input-field">
-						<label for="username">Username</label>
-						<input type="text" name="username" id="username" th:field="*{username}" required>
-					</div>
-					
-					<div class="input-field">
-						<label for="password">Password</label>
-						<input type="password" name="password" id="password" th:field="*{password}" required>
-					</div>
-					
-					<div>
-						<button type="submit" class="submit-button">Registrati</button>
-					</div>
-				</form>
-				
-				<p>
-					Hai già un account?
-					<a href="/login" class="link-button">Accedi</a>
-				</p>
+					<p>
+						Hai già un account?
+						<a href="/login" class="link-button">Accedi</a>
+					</p>
+				</div>
 			</div>
 		</main>
 		
