@@ -84,6 +84,8 @@ public class AuthController {
 	
 	@GetMapping("/account")
 	public String showAccount(Model model) {
+		Credentials credentials = this.sessionData.getLoggedCredentials();
+		model.addAttribute("credentials", credentials);
 		return "account.html";
 	}
 

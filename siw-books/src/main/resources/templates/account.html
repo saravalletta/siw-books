@@ -24,11 +24,35 @@
 			</nav>
 		</header>
 		
-		<hr>
-		
-		<main class="from-container">
-			<div class="form-box">
+		<main class="main-form">
+			<div class="form-box" style="border: 0.5px solid #2E2E2E;">
 				<h1>Account</h1>
+				
+				<form th:action="@{/account}" method="post" th:object="${credentials}">
+					<div class="input-field">
+						<label for="name">Nome</label>
+						<input type="text" name="name" id="name" th:value="${credentials.user.name}">
+					</div>
+					
+					<div class="input-field">
+						<label for="name">Cognome</label>
+						<input type="text" name="surname" id="surname" th:value="${credentials.user.surname}">
+					</div>
+					
+					<div class="input-field">
+						<label for="name">Email</label>
+						<input type="text" name="email" id="email" th:value="${credentials.user.email}">
+					</div>
+					
+					<div class="input-field">
+						<label for="name">Username</label>
+						<input type="text" name="username" id="username" th:value="${credentials.username}">
+					</div>
+					
+					<div>
+						<button type="submit" class="submit-button">Modifica Account</button>
+					</div>
+				</form>
 			</div>
 		</main>
 		
