@@ -13,14 +13,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.model.Review;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.model.UserDto;
 import it.uniroma3.siw.service.CredentialsService;
+import it.uniroma3.siw.service.ReviewService;
 import it.uniroma3.siw.service.UserService;
 import it.uniroma3.siw.sessionData.SessionData;
 import jakarta.validation.Valid;
 
 import static it.uniroma3.siw.model.Credentials.DEFAULT;
+
+import java.util.List;
+
 import static it.uniroma3.siw.model.Credentials.ADMIN;
 
 @Controller
@@ -28,6 +33,7 @@ public class AuthController {
 	
 	@Autowired private CredentialsService credentialsService;
 	@Autowired private UserService userService;
+	@Autowired private ReviewService reviewService;
 	@Autowired private SessionData sessionData;
 	
 	@GetMapping("/") 
@@ -85,7 +91,9 @@ public class AuthController {
 	@GetMapping("/account")
 	public String showAccount(Model model) {
 		Credentials credentials = this.sessionData.getLoggedCredentials();
+		List<Review> reviews = this.reviewService.getAllReviews(); // Da cambiare con getUserReview()
 		model.addAttribute("credentials", credentials);
+		model.addAttribute("reviews", reviews);
 		return "account.html";
 	}
 

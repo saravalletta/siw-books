@@ -19,7 +19,6 @@ header {
 
 footer {
 	text-align: center; /* testo centrato orizzontalmente */
-	
 	width: 100%; /* prende l'intera larghezza */
 	border-top: 0.5px solid #2E2E2E; /* bordo superiore */
 	padding-top: 1rem; /* per aumentare l'altezza del footer */
@@ -29,6 +28,10 @@ hr {
 	background-color: #2E2E2E;
 	height: 0.5px; /* spessore */
 	border: none;
+}
+
+h1 {
+	font-size: 32px;
 }
 
 
@@ -82,7 +85,7 @@ hr {
 
 .main-form {
 	display: flex;
-	justify-content: center; /* per centrare gli elementi orizzontalmente*/
+	flex-direction: column;
 	align-items: center; /* per centrare gli elementi orizzontalmente*/
 	margin: 2rem;
 }

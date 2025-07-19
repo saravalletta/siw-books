@@ -25,35 +25,53 @@
 		</header>
 		
 		<main class="main-form">
-			<div class="form-box" style="border: 0.5px solid #2E2E2E;">
+			<section class="form-box" style="border: 0.5px solid #2E2E2E;">
 				<h1>Account</h1>
 				
 				<form th:action="@{/account}" method="post" th:object="${credentials}">
 					<div class="input-field">
 						<label for="name">Nome</label>
-						<input type="text" name="name" id="name" th:value="${credentials.user.name}">
+						<input type="text" name="name" id="name" th:value="${credentials.user.name}" readonly>
 					</div>
 					
 					<div class="input-field">
 						<label for="name">Cognome</label>
-						<input type="text" name="surname" id="surname" th:value="${credentials.user.surname}">
+						<input type="text" name="surname" id="surname" th:value="${credentials.user.surname}" readonly>
 					</div>
 					
 					<div class="input-field">
 						<label for="name">Email</label>
-						<input type="text" name="email" id="email" th:value="${credentials.user.email}">
+						<input type="text" name="email" id="email" th:value="${credentials.user.email}" readonly>
 					</div>
 					
 					<div class="input-field">
 						<label for="name">Username</label>
-						<input type="text" name="username" id="username" th:value="${credentials.username}">
+						<input type="text" name="username" id="username" th:value="${credentials.username}" readonly>
+					</div>
+					
+					<div class="input-field">
+						<label for="role">Ruolo</label>
+						<input type="text" name="role" id="role" th:value="${credentials.role}" readonly>
 					</div>
 					
 					<div>
-						<button type="submit" class="submit-button">Modifica Account</button>
+						<button href="" class="submit-button">Modifica Account</button>
 					</div>
 				</form>
-			</div>
+				
+				<div style="margin-top: 1rem; width: 25vw; display: flex; justify-content: space-between;">
+					<a href="" class="generic-button2" style="width: 40%; display: inline-block; text-align: center;">Logout</a>
+					<a href="" class="generic-button2" style="width: 40%; display: inline-block; text-align: center;">Elimina Account</a>
+				</div>
+			</section>
+			
+			<section class="form-box" style="border: 0.5px solid #2E2E2E; margin-top: 2rem;">
+				<h1>Le tue recensioni</h1>
+				
+				<div th:if="${#lists.isEmpty(reviews)}" class="empty-message">
+					Nessuna recensione disponibile al momento.
+				</div>
+			</section>
 		</main>
 		
 		<footer>
