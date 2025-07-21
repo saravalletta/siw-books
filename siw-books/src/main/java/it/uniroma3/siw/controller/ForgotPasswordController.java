@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.configuration.Utilita;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.UserNotFoundException;
 import it.uniroma3.siw.service.UserService;
 import it.uniroma3.siw.sessionData.SessionData;
@@ -31,7 +31,7 @@ public class ForgotPasswordController {
 	/**
 	 * metodo per visualizzare il form per richiedere il reset della passworod
 	 * 
-	 * @return password_dimenticata_form.html
+	 * @return forgotPassword.html
 	 **/
 	@GetMapping("/forgotPassword")
 	public String showForgotPasswordForm(Model model) {
@@ -73,7 +73,7 @@ public class ForgotPasswordController {
 		} catch (UnsupportedEncodingException | MessagingException e) {
 
 			// gestisce altri eventuali problemi con la email
-			model.addAttribute("error", "errore nnell'invio della mail");
+			model.addAttribute("error", "errore nell'invio della mail");
 		}
 		return "forgotPassword.html";
 	}
@@ -91,7 +91,7 @@ public class ForgotPasswordController {
 		MimeMessageHelper helper = new MimeMessageHelper(message);
 		
 		//visualizzo il mittente e il nome
-		helper.setFrom("ContactEcommerce@gmail.com", "Ecommerce support");
+		helper.setFrom("ContactSiwBooks@gmail.com", "SiwBooks support");
 		helper.setTo(email);
 		
 		//oggetto e corpo HTML
@@ -132,7 +132,7 @@ public class ForgotPasswordController {
 
 	/**
 	 * metodo che processa il form di reset della password
-	 * @return pagina di logi (login.html) 
+	 * @return pagina di login (login.html) 
 	 **/
 	@PostMapping("/resetPassword")
 	public String processResetPassword(HttpServletRequest request, Model model) throws UserNotFoundException {
