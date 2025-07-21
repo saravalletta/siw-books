@@ -4,11 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +26,8 @@ public class User {
 	private String email;
 	@OneToMany
 	private List<Review> reviews;
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Credentials credentials;
 	
 	public User(String name, String surname, String email) {
 		this.name = name;
@@ -68,6 +73,13 @@ public class User {
 	}
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
+	}
+	
+	public Credentials getCredentials() {
+		return credentials;
+	}
+	public void setCredentials(Credentials credentials) {
+		this.credentials = credentials;
 	}
 
 	

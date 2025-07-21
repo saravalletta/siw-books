@@ -27,6 +27,8 @@ public class Credentials {
 	private String role;
 	@OneToOne(cascade=CascadeType.ALL)
 	private User user;
+	@Column(name ="reset_password_token")
+	private String resetPasswordToken;
 	
 	public Credentials(String username, String password, String role, User user) {
 		this.username = username;
@@ -72,6 +74,13 @@ public class Credentials {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public String getResetPasswordToken() {
+		return resetPasswordToken;
+	}
+	public void setResetPasswordToken(String resetPasswordToken) {
+		this.resetPasswordToken = resetPasswordToken;
 	}
 
 	
