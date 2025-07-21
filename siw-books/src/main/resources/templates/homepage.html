@@ -33,19 +33,51 @@
 					<p>Lasciati guidare dalla curiosità e immergiti in un mondo fatto di storie, emozioni e parole. Scopri centinaia di libri, 
 						dai grandi classici alle nuove uscite, esplora trame appassionanti e conosci gli autori che le hanno create. Leggi 
 						recensioni autentiche, confronta opinioni e lasciati ispirare da prospettive, esperienze e modi di raccontare diversi. 
-						Su SiwBooks trovi strumenti utili per orientarti nella lettura e rricchire la tua esperienza come lettore.</p>
+						Su SiwBooks trovi strumenti utili per orientarti nella lettura e arricchire la tua esperienza come lettore.</p>
 					<a href="/books" id="books-button">Sfoglia Libri</a>
 					<a href="/authors" id="authors-button">Esplora gli autori</a>
 				</div>
 			</section>
 			
-			<section>
+			<div class="homepage-section">
 				<h1>Ultimi Libri</h1>
-			</section>
+				
+				<div th:if="${#lists.isEmpty(books)}" class="empty-message">
+					Nessun libro disponibile al momento.
+				</div>
+				
+				<div th:if="${not #lists.isEmpty(books)}" th:each="book : ${books}">
+					<div class="carousel-track">
+						<div class="carousel-card" th:each="book : ${books}">
+							<a th:href="@{'/book/' + ${book.id}}">
+	                            <img th:if="${book.urlImgage} != null" th:src="@{'/images/' + ${book.urlImgage}}" alt="Immagine">
+	                            <h5 th:text="${book.title}">Title</h5>
+	                            <p th:text="${book.year}">Year</p>
+	                        </a>
+						</div>
+					</div>
+				</div>
+			</div>
 			
-			<section>
+			<div class="homepage-section">
 				<h1>Recensioni Recenti</h1>
-			</section>
+				
+				<div th:if="${#lists.isEmpty(reviews)}" class="empty-message">
+					Nessuna recensione disponibile al momento.
+				</div>
+				
+				<div th:if="${not #lists.isEmpty(reviews)}" th:each="review : ${reviews}">
+					<div class="carousel-track">
+						<div class="carousel-card" th:each="review : ${reviews}">
+							<a th:href="@{'/book/' + ${book.id}}">
+	                            <img th:if="${book.urlImgage} != null" th:src="@{'/images/' + ${book.urlImgage}}" alt="Immagine">
+	                            <h5 th:text="${book.title}">Title</h5>
+	                            <p th:text="${book.year}">Year</p>
+	                        </a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</main>
 		
 		<footer>

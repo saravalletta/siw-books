@@ -1,6 +1,7 @@
 package it.uniroma3.siw.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class BookService {
 		return bookRepository.findById(id).orElse(null);
 	}
 	
-	public Iterable<Book> getAllBooks() {
+	public List<Book> getAllBooks() {
 		return bookRepository.findAll();
 	}
 

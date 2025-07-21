@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.model.Book;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Review;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.model.UserDto;
+import it.uniroma3.siw.service.BookService;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.ReviewService;
 import it.uniroma3.siw.service.UserService;
@@ -34,10 +36,15 @@ public class AuthController {
 	@Autowired private CredentialsService credentialsService;
 	@Autowired private UserService userService;
 	@Autowired private ReviewService reviewService;
+	@Autowired private BookService bookService;
 	@Autowired private SessionData sessionData;
 	
 	@GetMapping("/") 
 	public String getHomePage(Model model) {
+		List<Book> lastBooks  = this.bookService.getAllBooks(); // Da cambiare con getLastBooks()
+		List<Review> lastReviews = this.reviewService.getAllReviews(); // Da cambiare con getLastReviews()
+		model.addAttribute("books", lastBooks);
+		model.addAttribute("reviews", lastReviews);
 		return "homepage.html";
 	}
 	
@@ -91,7 +98,7 @@ public class AuthController {
 	@GetMapping("/account")
 	public String showAccount(Model model) {
 		Credentials credentials = this.sessionData.getLoggedCredentials();
-		List<Review> reviews = this.reviewService.getAllReviews(); // Da cambiare con getUserReview()
+		List<Review> reviews = this.reviewService.getAllReviews(); // Da cambiare con getUserReviews()
 		model.addAttribute("credentials", credentials);
 		model.addAttribute("reviews", reviews);
 		return "account.html";
