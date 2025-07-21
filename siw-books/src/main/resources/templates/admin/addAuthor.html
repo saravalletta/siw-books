@@ -29,7 +29,52 @@
 					<h1>Aggiungi Autore</h1>
 					
 					<form th:action="@{/addAuthor}" method="post">
+						<div class="input-field">
+							<label for="name">Nome</label>
+							<input type="text" name="name" id="name" th:field="*{name}" required>
+						</div>
 						
+						<div class="input-field">
+							<label for="surname">Cognome</label>
+							<input type="text" name="surname" id="surname" th:field="*{surname}" required>
+						</div>
+						
+						<div class="input-field">
+							<label for="birthDate">Data di nascita</label>
+							<input type="date" name="birthDate" id="birthDate" th:field="*{birthDate}" required>
+						</div>
+						
+						<div class="input-field">
+							<label for="deathDate">Data di morte</label>
+							<input type="date" name="deathDate" id="deathDate" th:field="*{deathDate}">
+						</div>
+						
+						<div class="input-field">
+							<label for="nationality">Nazionalità</label>
+							<input type="text" name="nationality" id="nationality" th:field="*{nationality}" required>
+						</div>
+						
+						<div class="input-field" style="padding-bottom: 6vh;">
+							<label for="booksIds">Libri</label>
+							<div th:if="${#lists.isEmpty(books)}" class="empty-message">
+								Nessun autore disponibile al momento.
+							</div>
+							
+							<div th:if="${not #lists.isEmpty(books)}" th:each="book : ${books}">
+								<input type="checkbox" th:id="'book-' + ${book.id}" th:name="book" th:value="${book.id}">
+								<label th:for="'book-' + ${book.id}" th:text="${book.title}"></label>
+							</div>
+							
+						</div>
+						
+						<div class="input-field">
+							<label for="urlImages">Foto</label>
+							<input type="file" name="urlImages" accept="image/*">
+						</div>
+						
+						<div class="input-field">
+							<button type="submit" class="submit-button">Salva Autore</button>
+						</div>
 						
 					</form>
 				</div>
