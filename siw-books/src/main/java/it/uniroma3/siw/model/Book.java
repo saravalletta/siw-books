@@ -38,6 +38,8 @@ public class Book {
 		this.reviews = new LinkedList<Review>();
 	}
 	
+	public Book() {}
+	
 	// Getter e setter
 	public Long getId() {
 		return id;

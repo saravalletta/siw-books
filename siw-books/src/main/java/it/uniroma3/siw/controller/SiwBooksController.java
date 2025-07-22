@@ -37,7 +37,7 @@ public class SiwBooksController {
     }
     
     @PostMapping("/addBook")
-    public String insertBook(@Valid @ModelAttribute("book") BookDto bookDto, 
+    public String insertBook(@Valid @ModelAttribute("bookDto") BookDto bookDto, 
     		@RequestParam(name = "authors", required = false) List<Long> authorsIds, BindingResult bookBindingResult,
 			Model model) {
     	if(!bookBindingResult.hasErrors()) {

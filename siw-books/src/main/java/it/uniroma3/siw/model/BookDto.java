@@ -10,13 +10,13 @@ import jakarta.validation.constraints.NotBlank;
 
 public class BookDto {
 	
-	@NotBlank
+	//@NotBlank
 	private String title;
-	@NotBlank
+	//@NotBlank
 	private LocalDate year;
-	@NotBlank
+	//@NotBlank
 	private List<Author> authors = new LinkedList<Author>();
-	@NotBlank
+	//@NotBlank
 	private List<String> urlImages = new LinkedList<String>();
 	
 	
