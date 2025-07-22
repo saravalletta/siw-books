@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.siw.model.Author;
 import it.uniroma3.siw.model.Book;
 import it.uniroma3.siw.repository.BookRepository;
 
@@ -16,8 +17,8 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
 	
-	public Book createBook(String title, LocalDate year) {
-		Book book = new Book(title, year);
+	public Book createBook(String title, LocalDate year, List<Author> authors) {
+		Book book = new Book(title, year, authors);
 		book = this.bookRepository.save(book);
 		return book;
 	}

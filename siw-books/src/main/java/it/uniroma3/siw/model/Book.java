@@ -24,16 +24,16 @@ public class Book {
 	private String title;
 	private LocalDate year;
 	@ManyToMany
-	private Set<Author> authors;
+	private List<Author> authors;
 	@ElementCollection
 	private List<String> urlImage;
 	@OneToMany
 	private List<Review> reviews;
 	
-	public Book(String title, LocalDate year) {
+	public Book(String title, LocalDate year, List<Author> authors) {
 		this.title = title;
 		this.year = year;
-		this.authors = new HashSet<Author>();
+		this.authors = authors;
 		this.urlImage = new LinkedList<String>();
 		this.reviews = new LinkedList<Review>();
 	}
@@ -60,10 +60,10 @@ public class Book {
 		this.year = year;
 	}
 	
-	public Set<Author> getAuthors() {
+	public List<Author> getAuthors() {
 		return authors;
 	}
-	public void setAuthors(Set<Author> authors) {
+	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
 	}
 	
