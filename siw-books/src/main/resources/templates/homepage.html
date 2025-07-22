@@ -42,7 +42,7 @@
 			<div class="homepage-section">
 				<h1>Ultimi Libri</h1>
 				
-				<div th:if="${#lists.isEmpty(books)}" class="empty-message">
+				<div th:if="${#lists.isEmpty(books)}" class="message">
 					Nessun libro disponibile al momento.
 				</div>
 				
@@ -62,7 +62,7 @@
 			<div class="homepage-section">
 				<h1>Recensioni Recenti</h1>
 				
-				<div th:if="${#lists.isEmpty(reviews)}" class="empty-message">
+				<div th:if="${#lists.isEmpty(reviews)}" class="message">
 					Nessuna recensione disponibile al momento.
 				</div>
 				

@@ -95,9 +95,9 @@ public class ForgotPasswordController {
 		helper.setTo(email);
 		
 		//oggetto e corpo HTML
-		String subject = "questo e' il link per resettare la password!";
+		String subject = "Clicca sul link per resettare la tua password!";
 		String content = "<p>Ciao!</p>" + "<p>Hai chiesto di cambiare la password.</p>"
-				+ "<p>clicca il link qua sotto per reimpostarla!</p>" + "<p><a href=\"" + resetPasswordLink
+				+ "<p>Clicca il link qui sotto per reimpostarla!</p>" + "<p><a href=\"" + resetPasswordLink
 				+ "\">Cambia la mia password!</a></p>";
 		
 		helper.setSubject(subject);
