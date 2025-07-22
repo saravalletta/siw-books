@@ -2,6 +2,7 @@ package it.uniroma3.siw.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,13 @@ public class BookService {
 	public List<Book> getAllBooks() {
 		return bookRepository.findAll();
 	}
+	
+	// Per la ricerca
+	public List<Book> listAllKeyWord(String keyWord){
+        if (keyWord != null){
+            return this.bookRepository.findAllWithThatKeyword(keyWord);
+        }
+        return this.getAllBooks();
+    }
 
 }

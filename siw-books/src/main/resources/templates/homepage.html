@@ -39,6 +39,15 @@
 				</div>
 			</section>
 			
+			<section>
+				<form th:action="@{/searchBar}" method="post">
+					<div class="input-field">
+						<input type="text" th:value="${keyword}" placeholder="Cerca libri, autori ...">
+					</div>
+					<button type="submit">Cerca</button>
+				</form>
+			</section>
+			
 			<div class="homepage-section">
 				<h1>Ultimi Libri</h1>
 				

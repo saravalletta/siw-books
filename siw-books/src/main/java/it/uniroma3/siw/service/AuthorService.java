@@ -21,5 +21,17 @@ public class AuthorService {
 	public List<Author> getAllAuthors() {
 		return authorRepository.findAll();
 	}
+	
+	public List<Author> findAllById(List<Long> authorsIds) {
+        return authorRepository.findAllById(authorsIds);
+    }
+	
+	// Per la ricerca
+	public List<Author> listAll(String keyWord){
+        if (keyWord != null){
+            return this.authorRepository.findAllWithThatKeyWord(keyWord);
+        }
+        return this.getAllAuthors();
+    }
 
 }

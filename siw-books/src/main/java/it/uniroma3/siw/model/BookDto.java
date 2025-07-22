@@ -15,7 +15,7 @@ public class BookDto {
 	@NotBlank
 	private LocalDate year;
 	@NotBlank
-	private Set<Long> authorsIds = new HashSet<Long>();
+	private List<Author> authors = new LinkedList<Author>();
 	@NotBlank
 	private List<String> urlImages = new LinkedList<String>();
 	
@@ -35,11 +35,11 @@ public class BookDto {
 		this.year = year;
 	}
 	
-	public Set<Long> getAuthorsIds() {
-		return authorsIds;
+	public List<Author> getAuthors() {
+		return authors;
 	}
-	public void setAuthorsIds(Set<Long> authorsIds) {
-		this.authorsIds = authorsIds;
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
 	}
 	
 	public List<String> getUrlImage() {

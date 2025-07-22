@@ -24,13 +24,14 @@ public class SiwBooksController {
 
     @Autowired private BookService bookService;
     @Autowired private AuthorService authorService;
-    @Autowired private ReviewService reviewService;
 
     
     @GetMapping("/addBook")
     public String addBook(Model model) {
     	BookDto bookDto = new BookDto();
+    	List<Author> authors = this.authorService.getAllAuthors();
     	model.addAttribute("bookDto", bookDto);
+    	model.addAttribute("authors", authors);
     	return "/admin/addBook.html";
     }
     
