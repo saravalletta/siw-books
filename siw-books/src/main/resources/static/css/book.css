@@ -6,6 +6,8 @@ section {
 	margin-right: 8vw;
 }
 
+/* DETTAGLI LIBRO */
+
 .book-image {
 	height: 30vh;
 	margin-right: 8vw;
@@ -46,4 +48,24 @@ section {
 	padding: 12px 16px;
 	margin-top: 4vh;
 	margin-left: 2vw;
+}
+
+/* SEZIONE RECENSIONI */
+.reviews-section {
+	height: auto;
+	width: auto;
+	background-color: white;
+	padding: 0.5rem 2rem 2rem 2rem; /* top - right - bottom - left */
+	border: 0.5px solid #2E2E2E;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column; /* per centrare gli elementi verticalmente*/
+	align-items: center;
+	justify-content: center;
+}
+
+.reviews-section h2 {
+	width: 100%;
+	border-bottom: 2px solid #2E2E2E;
+	text-align: center;
 }
