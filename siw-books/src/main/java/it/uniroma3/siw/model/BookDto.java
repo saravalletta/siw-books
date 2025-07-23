@@ -13,6 +13,8 @@ public class BookDto {
 	//@NotBlank
 	private String title;
 	//@NotBlank
+	private String description;
+	//@NotBlank
 	private LocalDate year;
 	//@NotBlank
 	private List<Author> authors = new LinkedList<Author>();
@@ -26,6 +28,13 @@ public class BookDto {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	public LocalDate getYear() {
@@ -50,8 +59,9 @@ public class BookDto {
 	}
 	
 	// Per copiare un libro esistente 
-	public void copyBook(String title, LocalDate year, List<Author> authors) {
+	public void copyBook(String title, String description, LocalDate year, List<Author> authors) {
 		this.setTitle(title);
+		this.setDescription(description);
     	this.setYear(year);
     	this.setAuthors(authors);
 	}

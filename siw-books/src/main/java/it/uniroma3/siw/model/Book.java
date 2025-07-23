@@ -22,6 +22,7 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String title;
+	private String description;
 	private LocalDate year;
 	@ManyToMany
 	private List<Author> authors;
@@ -30,8 +31,9 @@ public class Book {
 	@OneToMany
 	private List<Review> reviews;
 	
-	public Book(String title, LocalDate year, List<Author> authors) {
+	public Book(String title, String description, LocalDate year, List<Author> authors) {
 		this.title = title;
+		this.description = description;
 		this.year = year;
 		this.authors = authors;
 		this.urlImage = new LinkedList<String>();
@@ -53,6 +55,13 @@ public class Book {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	public LocalDate getYear() {
@@ -84,8 +93,9 @@ public class Book {
 	}
 	
 	// Per copiare un libro esistente 
-	public void copyBook(String title, LocalDate year, List<Author> authors) {
+	public void copyBook(String title, String description, LocalDate year, List<Author> authors) {
 		this.setTitle(title);
+		this.setDescription(description);
     	this.setYear(year);
     	this.setAuthors(authors);
 	}

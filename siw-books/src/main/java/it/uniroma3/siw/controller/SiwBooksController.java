@@ -48,7 +48,7 @@ public class SiwBooksController {
     			bookDto.setAuthors(authors);
     		}
     		
-    		Book book = this.bookService.createBook(bookDto.getTitle(), bookDto.getYear(), bookDto.getAuthors());
+    		Book book = this.bookService.createBook(bookDto.getTitle(), bookDto.getDescription(), bookDto.getYear(), bookDto.getAuthors());
     		model.addAttribute("book", book);
     		return "redirect:/book/" + book.getId();
     	}
@@ -64,7 +64,7 @@ public class SiwBooksController {
     public String updateBook(@PathVariable("id") Long id, Model model) {
     	Book book = this.bookService.getBookById(id);
     	BookDto bookDto = new BookDto();
-    	bookDto.copyBook(book.getTitle(), book.getYear(), book.getAuthors());
+    	bookDto.copyBook(book.getTitle(), book.getDescription(), book.getYear(), book.getAuthors());
     	List<Author> authors = this.authorService.getAllAuthors();
     	model.addAttribute("bookDto", bookDto);
     	model.addAttribute("authors", authors);
@@ -82,7 +82,7 @@ public class SiwBooksController {
     		}
     		
     		Book book = this.bookService.getBookById(id);
-    		book.copyBook(bookDto.getTitle(), bookDto.getYear(), bookDto.getAuthors());
+    		book.copyBook(bookDto.getTitle(), bookDto.getDescription(), bookDto.getYear(), bookDto.getAuthors());
     		Book updatedBook = this.bookService.save(book);
     		model.addAttribute("book", updatedBook);
     		return "redirect:/book/" + updatedBook.getId();
@@ -90,6 +90,8 @@ public class SiwBooksController {
     	throw new IllegalArgumentException("Libro non valido");
 
     }
+    
+    
     
     @GetMapping("/addAuthor")
     public String addAuthor() {

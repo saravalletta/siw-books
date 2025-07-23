@@ -1,0 +1,12 @@
+section {
+	align-items: center;
+	display: flex;
+	margin-top: 8vh;
+	margin-left: 8vw;
+	margin-right: 8vw;
+}
+
+.book-image {
+	height: 30vh;
+	margin-right: 8vw;
+}

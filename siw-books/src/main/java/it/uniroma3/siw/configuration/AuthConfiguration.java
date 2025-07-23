@@ -46,8 +46,8 @@ public class AuthConfiguration {
 	protected SecurityFilterChain configure(final HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())
 		.cors(cors -> cors.disable()).authorizeHttpRequests(auth -> auth
-				.requestMatchers(HttpMethod.GET, "/", "/homepage", "/login", "/register", "/css/**", "/images/**", "favicon.ico", "/books", "/authors", "/forgotPassword", "/resetPassword").permitAll()
-				.requestMatchers(HttpMethod.POST, "/", "/homepage", "/login", "/register", "/css/**", "/images/**", "favicon.ico", "/books", "/authors", "/forgotPassword", "/resetPassword", "/searchBar").permitAll()
+				.requestMatchers(HttpMethod.GET, "/", "/homepage", "/login", "/register", "/css/**", "/images/**", "favicon.ico", "/books", "/book/**", "/authors", "/forgotPassword", "/resetPassword").permitAll()
+				.requestMatchers(HttpMethod.POST, "/", "/homepage", "/login", "/register", "/css/**", "/images/**", "favicon.ico", "/books", "/book/**", "/authors", "/forgotPassword", "/resetPassword", "/searchBar").permitAll()
 				.requestMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN)
 				.requestMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN)
 				.anyRequest().authenticated())

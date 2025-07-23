@@ -53,9 +53,9 @@
 					Nessun libro disponibile al momento.
 				</div>
 				
-				<div th:if="${not #sets.isEmpty(books)}" th:each="book : ${books}">
+				<div th:if="${not #sets.isEmpty(books)}" class="carousel-container">
 					<div class="carousel-track">
-						<div class="carousel-card">
+						<div class="carousel-card" th:each="book : ${books}">
 							<a th:href="@{'/book/' + ${book.id}}">
 	                            <!--<img th:if="${book.urlImgage} != null" th:src="@{'/images/' + ${book.urlImgage}}" alt="Immagine"> -->
 	                            <h5 th:text="${book.title}">Title</h5>

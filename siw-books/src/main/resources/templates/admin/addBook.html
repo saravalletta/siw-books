@@ -34,6 +34,11 @@
 							<input type="text" name="title" id="title" th:field="*{title}" required>
 						</div>
 						
+						<div class="input-field" style="height: 18vh;">
+							<label for="description">Descrizione</label>
+							<textarea type="text" name="description" id="description" rows="5" cols="50" th:field="*{description}" required></textarea>
+						</div>
+						
 						<div class="input-field">
 							<label for="year">Anno di Pubblicazione</label>
 							<input type="date" name="year" id="year" th:field="*{year}" required>
