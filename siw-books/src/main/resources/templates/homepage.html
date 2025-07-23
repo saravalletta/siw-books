@@ -40,11 +40,9 @@
 			</section>
 			
 			<section>
-				<form th:action="@{/searchBar}" method="post">
-					<div class="input-field">
-						<input type="text" th:value="${keyword}" placeholder="Cerca libri, autori ...">
-					</div>
-					<button type="submit">Cerca</button>
+				<inputform th:action="@{/searchBar}" method="post" class="searchbar">
+					<input type="text" th:value="${keyword}" placeholder="Cerca libri, autori ...">
+					<button type="submit" class="submit-button">Cerca</button>
 				</form>
 			</section>
 			
@@ -59,7 +57,7 @@
 					<div class="carousel-track">
 						<div class="carousel-card" th:each="book : ${books}">
 							<a th:href="@{'/book/' + ${book.id}}">
-	                            <img th:if="${book.urlImgage} != null" th:src="@{'/images/' + ${book.urlImgage}}" alt="Immagine">
+	                            <!--<img th:if="${book.urlImgage} != null" th:src="@{'/images/' + ${book.urlImgage}}" alt="Immagine"> -->
 	                            <h5 th:text="${book.title}">Title</h5>
 	                            <p th:text="${book.year}">Year</p>
 	                        </a>
