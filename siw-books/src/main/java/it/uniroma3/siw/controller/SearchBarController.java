@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -21,7 +22,7 @@ public class SearchBarController {
 	
 	@PostMapping("/searchBar")
     public String searchBar(Model model, @Param("keyword") String keyword) {
-        List<Book> books = this.bookService.listAllKeyWord(keyword);
+        Set<Book> books = this.bookService.listAllKeyWord(keyword);
         List<Author> authors = this.authorService.listAll(keyword);
         model.addAttribute("books", books);
         model.addAttribute("autori", authors);

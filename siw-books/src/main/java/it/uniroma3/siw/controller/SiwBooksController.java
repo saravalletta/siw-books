@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -57,6 +58,37 @@ public class SiwBooksController {
         	model.addAttribute("authors", authors);
         	return "/admin/addBook.html";
     	}
+    }
+    
+    @GetMapping("/updateBook/{id}")
+    public String updateBook(@PathVariable("id") Long id, Model model) {
+    	Book book = this.bookService.getBookById(id);
+    	BookDto bookDto = new BookDto();
+    	bookDto.copyBook(book.getTitle(), book.getYear(), book.getAuthors());
+    	List<Author> authors = this.authorService.getAllAuthors();
+    	model.addAttribute("bookDto", bookDto);
+    	model.addAttribute("authors", authors);
+    	return "/admin/updateBook.html";
+    }
+    
+    @PostMapping("/updateBook{id}")
+    public String updateBook(@Valid @ModelAttribute("bookDto") BookDto bookDto,BindingResult bookBindingResult, 
+    		@PathVariable("id") Long id, @RequestParam(name = "authors", required = false) List<Long> authorsIds, Model model) {
+    	if(!bookBindingResult.hasErrors()) {
+    		// Gestione degli autori
+    		if(authorsIds != null && !authorsIds.isEmpty()) {
+    			List<Author> authors = authorService.findAllById(authorsIds);
+    			bookDto.setAuthors(authors);
+    		}
+    		
+    		Book book = this.bookService.getBookById(id);
+    		book.copyBook(bookDto.getTitle(), bookDto.getYear(), bookDto.getAuthors());
+    		Book updatedBook = this.bookService.save(book);
+    		model.addAttribute("book", updatedBook);
+    		return "redirect:/book/" + updatedBook.getId();
+    	}
+    	throw new IllegalArgumentException("Libro non valido");
+
     }
     
     @GetMapping("/addAuthor")

@@ -23,16 +23,20 @@ public class BookService {
 		return book;
 	}
 	
+	public Book save(Book book) {
+		return this.bookRepository.save(book);
+	}
+	
 	public Book getBookById(Long id) {
 		return bookRepository.findById(id).orElse(null);
 	}
 	
-	public List<Book> getAllBooks() {
+	public Set<Book> getAllBooks() {
 		return bookRepository.findAll();
 	}
 	
 	// Per la ricerca
-	public List<Book> listAllKeyWord(String keyWord){
+	public Set<Book> listAllKeyWord(String keyWord){
         if (keyWord != null){
             return this.bookRepository.findAllWithThatKeyword(keyWord);
         }

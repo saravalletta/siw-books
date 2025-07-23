@@ -49,4 +49,11 @@ public class BookDto {
 		this.urlImages = urlImage;
 	}
 	
+	// Per copiare un libro esistente 
+	public void copyBook(String title, LocalDate year, List<Author> authors) {
+		this.setTitle(title);
+    	this.setYear(year);
+    	this.setAuthors(authors);
+	}
+	
 }

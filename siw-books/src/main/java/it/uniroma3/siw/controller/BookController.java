@@ -19,7 +19,7 @@ public class BookController {
 	private SessionData sessionData;
 	
 	@GetMapping("/book/{id}")
-	public String getBook(@PathVariable("id") Long id, Model model,Model model1) {
+	public String getBook(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("book", this.bookService.getBookById(id));
 		return "book.html";
 	}

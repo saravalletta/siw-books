@@ -82,6 +82,13 @@ public class Book {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
+	
+	// Per copiare un libro esistente 
+	public void copyBook(String title, LocalDate year, List<Author> authors) {
+		this.setTitle(title);
+    	this.setYear(year);
+    	this.setAuthors(authors);
+	}
 
 	
 	

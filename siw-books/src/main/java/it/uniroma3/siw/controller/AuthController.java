@@ -27,6 +27,7 @@ import jakarta.validation.Valid;
 import static it.uniroma3.siw.model.Credentials.DEFAULT;
 
 import java.util.List;
+import java.util.Set;
 
 import static it.uniroma3.siw.model.Credentials.ADMIN;
 
@@ -41,7 +42,7 @@ public class AuthController {
 	
 	@GetMapping("/") 
 	public String getHomePage(Model model) {
-		List<Book> lastBooks  = this.bookService.getAllBooks(); // Da cambiare con getLastBooks()
+		Set<Book> lastBooks  = this.bookService.getAllBooks(); // Da cambiare con getLastBooks()
 		List<Review> lastReviews = this.reviewService.getAllReviews(); // Da cambiare con getLastReviews()
 		model.addAttribute("books", lastBooks);
 		model.addAttribute("reviews", lastReviews);
