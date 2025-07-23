@@ -71,7 +71,7 @@ public class SiwBooksController {
     	return "/admin/updateBook.html";
     }
     
-    @PostMapping("/updateBook{id}")
+    @PostMapping("/updateBook/{id}")
     public String updateBook(@Valid @ModelAttribute("bookDto") BookDto bookDto,BindingResult bookBindingResult, 
     		@PathVariable("id") Long id, @RequestParam(name = "authors", required = false) List<Long> authorsIds, Model model) {
     	if(!bookBindingResult.hasErrors()) {
@@ -91,7 +91,11 @@ public class SiwBooksController {
 
     }
     
-    
+    @GetMapping("/deleteBook/{id}")
+    public String deleteBook(@PathVariable("id") Long id) {
+    	this.bookService.delete(id);
+    	return "redirect:/books";
+    }
     
     @GetMapping("/addAuthor")
     public String addAuthor() {

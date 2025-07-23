@@ -61,6 +61,8 @@ public class AuthController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		if(auth instanceof AnonymousAuthenticationToken) {
+			Set<Book> lastBooks  = this.bookService.getAllBooks(); // Da cambiare con getLastBooks()
+			model.addAttribute("books", lastBooks);
 			return "homepage.html";
 		}
 		else {
@@ -68,6 +70,8 @@ public class AuthController {
 			credentials = this.credentialsService.getCredentialsByUsername(userDetails.getUsername());
 			User loggedUser = this.sessionData.getLoggedUser();
 			model.addAttribute("user", loggedUser);
+			Set<Book> lastBooks  = this.bookService.getAllBooks(); // Da cambiare con getLastBooks()
+			model.addAttribute("books", lastBooks);
 			
 			if(credentials.getRole().trim().equals(ADMIN)) {
 				return "homepage.html";

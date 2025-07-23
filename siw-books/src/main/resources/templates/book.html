@@ -32,10 +32,11 @@
 				</div>
 				<div>
 					<h1 th:text="${book.title}">Titolo</h1>
-					<p class="subtitle" th:text="${book.year}">Anno di Pubblicazione</p>
-					<p th:text="${book.description}">Descrizione</p>
-					<a href="/books" id="books-button">Sfoglia Libri</a>
-					<a href="/authors" id="authors-button">Esplora gli autori</a>
+					<p class="subtitle" th:text="'Anno di pubblicazione: ' + ${book.year}">Anno di Pubblicazione</p>
+					<p class="description" th:text="${book.description}">Descrizione</p>
+					<p><span style="font-weight: bold;">Autori: </span><span></span></p>
+					<a th:if="${isAdmin}" th:href="@{'/updateBook/' + ${book.id}}" id="update-button">Modifica Libro</a>
+					<a th:if="${isAdmin}" th:href="@{'/deleteBook/' + ${book.id}}" id="delete-button">Elimina Libro</a>
 				</div>
 			</section>
 		</main>
