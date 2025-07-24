@@ -3,6 +3,7 @@
 	<head>
 	    <title>SiwBooks</title>
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/books.css">
 	</head>
 	
 	<body>
@@ -25,6 +26,12 @@
 		</header>
 		
 		<main>
+			<section>
+				<form th:action="@{/searchBar}" method="post" class="searchbar">
+					<input type="text" th:value="${keyword}" placeholder="Cerca libri, autori ...">
+					<button type="submit" class="submit-button">Cerca</button>
+				</form>
+			</section>
 			
 		</main>
 		
