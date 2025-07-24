@@ -26,9 +26,9 @@
 		<main class="main-form">
 			<div class="form-container">
 				<div class="form-box">
-					<h1>Aggiungi Autore</h1>
+					<h1>Modifica Autore</h1>
 					
-					<form th:action="@{/addAuthor}" method="post" th:object="${authorDto}">
+					<form th:action="@{'/updateAuthor/' + ${id}}" method="post" th:object="${authorDto}">
 						<div class="input-field">
 							<label for="name">Nome</label>
 							<input type="text" name="name" id="name" th:field="*{name}" required>
@@ -60,7 +60,7 @@
 						</div>
 						
 						<div class="input-field">
-							<button type="submit" class="submit-button">Salva Autore</button>
+							<button type="submit" class="submit-button">Salva Modifiche</button>
 							<a href="/"><button type="button" class="form-button">Annulla</button></a>
 						</div>
 						

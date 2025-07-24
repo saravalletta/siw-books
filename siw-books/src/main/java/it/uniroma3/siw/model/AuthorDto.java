@@ -6,17 +6,17 @@ import jakarta.validation.constraints.NotBlank;
 
 public class AuthorDto {
 	
-	@NotBlank
+	//@NotBlank
 	private String name;
-	@NotBlank
+	//@NotBlank
 	private String surname;
-	@NotBlank
+	//@NotBlank
 	private LocalDate birthDate;
-	@NotBlank
+	//@NotBlank
 	private LocalDate deathDate;
-	@NotBlank
+	//@NotBlank
 	private String nationality;
-	@NotBlank
+	//@NotBlank
 	private String urlImage;
 	
 	// Getter e setter

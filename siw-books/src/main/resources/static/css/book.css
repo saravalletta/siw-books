@@ -6,6 +6,10 @@ section {
 	margin-right: 8vw;
 }
 
+a {
+	color: inherit; /* mantiene il colore del testo definito */
+}
+
 /* DETTAGLI LIBRO */
 
 .book-image {

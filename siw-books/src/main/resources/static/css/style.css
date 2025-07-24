@@ -197,6 +197,30 @@ input[type=number] {
 	color: #4276D6;
 }
 
+.checkbox-container {
+	display: flex;
+	flex-direction: column; /* Dispone le checkbox verticalmente */
+	gap: 10px; /* Spazio tra una checkbox e l'altra */
+	margin: 15px 0;
+	height: auto;
+}
+
+.checkbox-container input[type="checkbox"] {
+	width: 18px; /* Dimensioni coerenti per la checkbox */
+	height: 18px;
+	cursor: pointer; /* Puntatore interattivo */
+	margin-bottom: 1rem;
+}
+
+.checkbox-container label {
+	font-size: 1rem;         /* Dimensione del testo */
+	margin-left: 5px;        /* Spazio tra la checkbox e il testo */
+	cursor: pointer;         /* Anche la label è interattiva */
+	display: inline-flex;    /* Align testo e checkbox */
+	align-items: center;     /* Allinea centrato con checkbox */
+	gap: 5px;                /* Spazio tra checkbox e testo */
+}
+
 
 /* TIPI DI BOTTONI */
 .generic-button1 {

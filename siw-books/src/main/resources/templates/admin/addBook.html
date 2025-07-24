@@ -28,7 +28,7 @@
 				<div class="form-box">
 					<h1>Aggiungi Libro</h1>
 					
-					<form th:action="@{/addBook}" method="post" th:object="${bookDto}">
+					<form th:action="@{/addBook}" enctype="multipart/form-data" method="post" th:object="${bookDto}">
 						<div class="input-field">
 							<label for="title">Titolo</label>
 							<input type="text" name="title" id="title" th:field="*{title}" required>
@@ -50,17 +50,15 @@
 								Nessun autore disponibile al momento.
 							</div>
 							
-							<div th:if="${not #lists.isEmpty(authors)}" th:each="author : ${authors}">
-								<input type="checkbox" th:id="'author-' + ${author.id}" th:name="author" th:value="${author.id}">
-								<label th:for="'author-' + ${author.id}" th:text="${author.name} + ${author.surname}"></label>
-							</div>
-							
-							<div>
-								<a href="/addAuthor" class="generic-button1">Aggiungi Autore</a>
+							<div class="checkbox-container">
+								<div th:if="${not #lists.isEmpty(authors)}" th:each="author : ${authors}">
+									<input type="checkbox" th:id="'author-' + ${author.id}" th:name="author" th:value="${author.id}">
+									<label th:for="'author-' + ${author.id}" th:text="${author.name} + '  ' + ${author.surname}"></label>
+								</div>
 							</div>
 						</div>
 						
-						<div class="input-field">
+						<div class="input-field" style="margin-top: 2rem;">
 							<label for="urlImages">Foto</label>
 							<input type="file" name="urlImages" accept="image/*">
 						</div>

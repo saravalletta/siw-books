@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
 import it.uniroma3.siw.model.Author;
+import it.uniroma3.siw.model.AuthorDto;
 import it.uniroma3.siw.model.Book;
 import it.uniroma3.siw.model.BookDto;
 import it.uniroma3.siw.service.AuthorService;
@@ -28,6 +29,7 @@ public class SiwBooksController {
     @Autowired private AuthorService authorService;
 
     
+    // LIBRI
     @GetMapping("/addBook")
     public String addBook(Model model) {
     	BookDto bookDto = new BookDto();
@@ -39,7 +41,7 @@ public class SiwBooksController {
     
     @PostMapping("/addBook")
     public String insertBook(@Valid @ModelAttribute("bookDto") BookDto bookDto, 
-    		@RequestParam(name = "authors", required = false) List<Long> authorsIds, BindingResult bookBindingResult,
+    		@RequestParam(name = "author", required = false) List<Long> authorsIds, BindingResult bookBindingResult,
 			Model model) {
     	if(!bookBindingResult.hasErrors()) {
     		 // Gestione degli autori
@@ -73,7 +75,7 @@ public class SiwBooksController {
     
     @PostMapping("/updateBook/{id}")
     public String saveUpdatedBook(@Valid @ModelAttribute("bookDto") BookDto bookDto, BindingResult bookBindingResult, 
-    		@PathVariable("id") Long id, @RequestParam(name = "authors", required = false) List<Long> authorsIds, Model model) {
+    		@PathVariable("id") Long id, @RequestParam(name = "author", required = false) List<Long> authorsIds, Model model) {
     	if(!bookBindingResult.hasErrors()) {
     		// Gestione degli autori
     		if(authorsIds != null && !authorsIds.isEmpty()) {
@@ -101,9 +103,61 @@ public class SiwBooksController {
     	return "redirect:/books";
     }
     
+    // AUTORI
     @GetMapping("/addAuthor")
-    public String addAuthor() {
-    	return "admin/addAuthor.html";
+    public String addAuthor(Model model) {
+    	AuthorDto authorDto = new AuthorDto();
+    	model.addAttribute("authorDto", authorDto);
+    	return "/admin/addAuthor.html";
+    }
+    
+    @PostMapping("/addAuthor")
+    public String insertAuthor(@Valid @ModelAttribute("authorDto") AuthorDto authorDto, BindingResult authorBindingResult,
+    		Model model) {
+    	if(!authorBindingResult.hasErrors()) {
+    		Author author = this.authorService.createAuthor(authorDto.getName(), authorDto.getSurname(), authorDto.getBirthDate(), 
+    				authorDto.getDeathDate(), authorDto.getNationality(), null);
+    		model.addAttribute("author", author);
+    		return "redirect:/author/" + author.getId();
+    	}
+    	else {
+    		System.out.println("Errori di validazione:");
+    	    authorBindingResult.getAllErrors().forEach(System.out::println);
+    	    return "/admin/addAuthor.html"; 
+    	}
+    }
+    
+    @GetMapping("/updateAuthor/{id}")
+    public String updateAuthor(@PathVariable("id") Long id, Model model) {
+    	Author author = this.authorService.getAuthorById(id);
+    	AuthorDto authorDto = new AuthorDto();
+    	authorDto.copyAuthor(author.getName(), author.getSurname(), author.getBirthDate(), author.getDeathDate(), author.getNationality());
+    	model.addAttribute("id", id);
+    	model.addAttribute("authorDto", authorDto);
+    	return "/admin/updateAuthor.html";
+    }
+    
+    @PostMapping("/updateAuthor/{id}")
+    public String saveUpdatedAuthor(@Valid @ModelAttribute("authorDto") AuthorDto authorDto, BindingResult authorBindingResult,
+    		@PathVariable("id") Long id, Model model) {
+    	if(!authorBindingResult.hasErrors()) {
+    		Author author = this.authorService.getAuthorById(id);
+        	author.copyAuthor(authorDto.getName(), authorDto.getSurname(), authorDto.getBirthDate(), authorDto.getDeathDate(), authorDto.getNationality());
+        	Author updatedAuthor = this.authorService.save(author);
+        	model.addAttribute("author", updatedAuthor);
+        	return "redirect:/author/" + updatedAuthor.getId();
+    	}
+    	else {
+    		System.out.println("Errori di validazione:");
+    	    authorBindingResult.getAllErrors().forEach(System.out::println);
+    	    return "/admin/updateBook.html"; 
+    	}
+    }
+    
+    @GetMapping("/deleteAuthor/{id}")
+    public String deleteAuthor(@PathVariable("id") Long id) {
+    	this.authorService.delete(id);
+    	return "redirect:/authors";
     }
 
 }

@@ -34,7 +34,10 @@
 					<h1 th:text="${book.title}">Titolo</h1>
 					<p class="subtitle" th:text="'Anno di pubblicazione: ' + ${book.year}">Anno di Pubblicazione</p>
 					<p class="description" th:text="${book.description}">Descrizione</p>
-					<p><span style="font-weight: bold;">Autori: </span><span></span></p>
+					<p><strong>Autori:</strong></p>
+					<ul>
+					    <a href="'/author/' + ${author.id}" th:each="author : ${book.authors}"><li th:text="${author.name} + ' ' + ${author.surname}"></li></a>
+					</ul>
 					<a th:if="${isAdmin}" th:href="@{'/updateBook/' + ${book.id}}" id="update-button">Modifica Libro</a>
 					<a th:if="${isAdmin}" th:href="@{'/deleteBook/' + ${book.id}}" id="delete-button">Elimina Libro</a>
 				</div>

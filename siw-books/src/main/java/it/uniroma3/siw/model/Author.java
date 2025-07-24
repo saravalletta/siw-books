@@ -35,6 +35,8 @@ public class Author {
 		this.urlImage = urlImage;
 	}
 	
+	public Author() {}
+	
 	// Getter e setter
 	public Long getId() {
 		return id;
