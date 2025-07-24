@@ -52,7 +52,11 @@ public class SiwBooksController {
     		model.addAttribute("book", book);
     		return "redirect:/book/" + book.getId();
     	}
-    	throw new IllegalArgumentException("Libro non valido");
+    	else {
+    		System.out.println("Errori di validazione:");
+    	    bookBindingResult.getAllErrors().forEach(System.out::println);
+    	    return "/admin/addBook.html"; 
+    	}
     }
     
     @GetMapping("/updateBook/{id}")
@@ -68,7 +72,7 @@ public class SiwBooksController {
     }
     
     @PostMapping("/updateBook/{id}")
-    public String updateBook(@Valid @ModelAttribute("bookDto") BookDto bookDto,BindingResult bookBindingResult, 
+    public String saveUpdatedBook(@Valid @ModelAttribute("bookDto") BookDto bookDto,BindingResult bookBindingResult, 
     		@PathVariable("id") Long id, @RequestParam(name = "authors", required = false) List<Long> authorsIds, Model model) {
     	if(!bookBindingResult.hasErrors()) {
     		// Gestione degli autori
@@ -83,7 +87,11 @@ public class SiwBooksController {
     		model.addAttribute("book", updatedBook);
     		return "redirect:/book/" + updatedBook.getId();
     	}
-    	throw new IllegalArgumentException("Libro non valido");
+    	else {
+    		System.out.println("Errori di validazione:");
+    	    bookBindingResult.getAllErrors().forEach(System.out::println);
+    	    return "/admin/updateBook.html"; 
+    	}
 
     }
     

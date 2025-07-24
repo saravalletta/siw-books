@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>SiwBooks</title>
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	
+	<body>
+		
+		<header>
+			
+			<div class="logo-title">
+				<span><img src="../images/siw-books-logo.png" class="image-logo"></span>
+				<span><h1>SiwBooks</h1></span>
+			</div>
+			
+			<nav class="nav">
+				<a href="/" class="nav-link">Home</a>
+				<a href="/books" class="nav-link">Libri</a>
+				<a href="/authors" class="nav-link">Autori</a>
+				<a href="/addBook" class="login-button">Aggiungi Libro</a>
+				<a href="/account" class="login-button">Account</a>
+			</nav>
+		</header>
+		
+		<main class="main-form">
+			<div class="form-container">
+				<div class="form-box">
+					<h1>Modifica Account</h1>
+					
+					<form th:action="@{/updateAccount}" method="post" th:object="${credentials}">
+						<div class="input-field">
+							<label for="name">Nome</label>
+							<input type="text" name="name" id="name" th:value="${credentials.user.name}">
+						</div>
+						
+						<div class="input-field">
+							<label for="name">Cognome</label>
+							<input type="text" name="surname" id="surname" th:value="${credentials.user.surname}">
+						</div>
+						
+						<div class="input-field">
+							<label for="name">Email</label>
+							<input type="text" name="email" id="email" th:value="${credentials.user.email}">
+						</div>
+						
+						<div class="input-field">
+							<label for="name">Username</label>
+							<input type="text" name="username" id="username" th:value="${credentials.username}">
+						</div>
+						
+						<div class="input-field">
+							<button type="submit" class="submit-button">Salva Modifiche</button>
+							<a href="/account"><button type="button" class="form-button">Annulla</button></a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</main>
+		
+	</body>
+</html>

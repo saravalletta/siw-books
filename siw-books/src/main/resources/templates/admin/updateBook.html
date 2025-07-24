@@ -36,7 +36,7 @@
 						
 						<div class="input-field" style="height: 18vh;">
 							<label for="description">Descrizione</label>
-							<textarea type="text" name="description" id="description" rows="5" cols="50" th:field="*{description}" required></textarea>
+							<textarea type="text" name="description" id="description" th:field="*{description}" required></textarea>
 						</div>
 						
 						<div class="input-field">
@@ -66,7 +66,7 @@
 						</div>
 						
 						<div class="input-field">
-							<button type="submit" class="submit-button">Salva Libro</button>
+							<button type="submit" class="submit-button">Salva Modifiche</button>
 							<a th:href="@{'/book/' + ${id}}"><button type="button" class="form-button">Annulla</button></a>
 						</div>
 					</form>

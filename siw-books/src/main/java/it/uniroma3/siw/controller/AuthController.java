@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.model.Book;
@@ -110,5 +111,13 @@ public class AuthController {
 		model.addAttribute("reviews", userWithReviews.getReviews());
 		return "account.html";
 	}
+	
+	@GetMapping("/updateAccount")
+	public String updateAccount( Model model) {
+		Credentials credentials = this.sessionData.getLoggedCredentials();
+		model.addAttribute("credentials", credentials);
+		return "updateAccount.html";
+	}
+	
 
 }
