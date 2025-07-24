@@ -1,10 +1,8 @@
 package it.uniroma3.siw.model;
 
-import java.time.LocalDate;
-import java.util.HashSet;
+
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -15,7 +13,7 @@ public class BookDto {
 	//@NotBlank
 	private String description;
 	//@NotBlank
-	private LocalDate year;
+	private Integer year;
 	//@NotBlank
 	private List<Author> authors = new LinkedList<Author>();
 	//@NotBlank
@@ -37,10 +35,10 @@ public class BookDto {
 		this.description = description;
 	}
 	
-	public LocalDate getYear() {
+	public Integer getYear() {
 		return year;
 	}
-	public void setYear(LocalDate year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 	
@@ -59,7 +57,7 @@ public class BookDto {
 	}
 	
 	// Per copiare un libro esistente 
-	public void copyBook(String title, String description, LocalDate year, List<Author> authors) {
+	public void copyBook(String title, String description, Integer year, List<Author> authors) {
 		this.setTitle(title);
 		this.setDescription(description);
     	this.setYear(year);

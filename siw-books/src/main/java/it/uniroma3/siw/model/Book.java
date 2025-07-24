@@ -1,11 +1,8 @@
 package it.uniroma3.siw.model;
 
-import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -23,7 +20,7 @@ public class Book {
 	private Long id;
 	private String title;
 	private String description;
-	private LocalDate year;
+	private Integer year;
 	@ManyToMany
 	private List<Author> authors;
 	@ElementCollection
@@ -31,7 +28,7 @@ public class Book {
 	@OneToMany
 	private List<Review> reviews;
 	
-	public Book(String title, String description, LocalDate year, List<Author> authors) {
+	public Book(String title, String description, Integer year, List<Author> authors) {
 		this.title = title;
 		this.description = description;
 		this.year = year;
@@ -64,10 +61,10 @@ public class Book {
 		this.description = description;
 	}
 	
-	public LocalDate getYear() {
+	public Integer getYear() {
 		return year;
 	}
-	public void setYear(LocalDate year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 	
@@ -93,7 +90,7 @@ public class Book {
 	}
 	
 	// Per copiare un libro esistente 
-	public void copyBook(String title, String description, LocalDate year, List<Author> authors) {
+	public void copyBook(String title, String description, Integer year, List<Author> authors) {
 		this.setTitle(title);
 		this.setDescription(description);
     	this.setYear(year);

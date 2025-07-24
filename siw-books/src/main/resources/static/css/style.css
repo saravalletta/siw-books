@@ -160,6 +160,18 @@ h1 {
 	border-radius: 6px;
 }
 
+/* per togliere le freccette */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* per togliere le freccette su firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .input-field label {
 	text-decoration: none;
 	color: #2E2E2E;

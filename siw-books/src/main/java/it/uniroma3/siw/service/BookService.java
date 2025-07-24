@@ -18,7 +18,7 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
 	
-	public Book createBook(String title, String description, LocalDate year, List<Author> authors) {
+	public Book createBook(String title, String description, Integer year, List<Author> authors) {
 		Book book = new Book(title, description, year, authors);
 		book = this.bookRepository.save(book);
 		return book;
