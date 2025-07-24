@@ -52,12 +52,7 @@ public class SiwBooksController {
     		model.addAttribute("book", book);
     		return "redirect:/book/" + book.getId();
     	}
-    	else {
-    		List<Author> authors = this.authorService.getAllAuthors();
-        	model.addAttribute("bookDto", bookDto);
-        	model.addAttribute("authors", authors);
-        	return "/admin/addBook.html";
-    	}
+    	throw new IllegalArgumentException("Libro non valido");
     }
     
     @GetMapping("/updateBook/{id}")
