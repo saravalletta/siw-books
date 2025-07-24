@@ -32,6 +32,10 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
+	public User getUserWithReviews(Long id) {
+        return userRepository.findByIdWithReviews(id);
+    }
+	
 	// Per prendere l'utente tramite l'email
 	@Transactional
 	public User getUser(String email) {

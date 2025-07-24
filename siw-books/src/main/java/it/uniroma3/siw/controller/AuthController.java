@@ -103,9 +103,11 @@ public class AuthController {
 	@GetMapping("/account")
 	public String showAccount(Model model) {
 		Credentials credentials = this.sessionData.getLoggedCredentials();
-		List<Review> reviews = credentials.getUser().getReviews(); // Recensioni scritte dall'utente loggato
+		// Carico l'utente con le recensioni già inizializzate per evitare problemi di lazying
+	    User userWithReviews = this.userService.getUserWithReviews(credentials.getUser().getId());
+
 		model.addAttribute("credentials", credentials);
-		model.addAttribute("reviews", reviews);
+		model.addAttribute("reviews", userWithReviews.getReviews());
 		return "account.html";
 	}
 
