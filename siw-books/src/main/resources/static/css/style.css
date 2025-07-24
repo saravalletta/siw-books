@@ -260,13 +260,34 @@ h1 {
 .carousel-card {
     display: flex;
     flex-direction: column;
-    flex: 0 0 calc(20% - 20px);
-    width: 100%; /* Adatta la larghezza disponibile, entro il max-width */
-    box-sizing: border-box;
     margin: 15px;
-	background-color: #F8F8F8;
+	background-color: white;
+	box-shadow: 0 4px 8px #EAEAEA;
     border-radius: 6px;
-    text-align: center;
-    padding: 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel-card a {
+    text-decoration: none;
+    color: inherit; /* mantiene il colore del testo definito in h4 e p */
+}
+
+.carousel-card img {
+	width: 10vw;
+}
+
+.carousel-card-details {
+	padding: 10px;
+	margin-top: -1.5rem;
+}
+
+.carousel-card-details h4 {
+	color: #2E2E2E;
+	font-size: 18px;
+}
+
+.carousel-card-details p {
+	color: #A8A8A8;
+	margin-top: -1rem;
+	font-size: 14px;
 }
