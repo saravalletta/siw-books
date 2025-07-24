@@ -224,6 +224,23 @@ h1 {
   background-color: #3F60AB;
 }
 
+.form-button {
+	text-decoration: none;
+	color: #4276D6;
+	font-weight: 500;
+	font-size: 18px;
+	background-color: white;
+	border: 0.5px solid #4276D6;
+	border-radius: 6px;
+	padding: 12px;
+	width: 25vw;
+	margin-top: 1rem;
+}
+
+.form-button:hover {
+	background-color: #F4F6F6;
+}
+
 /* CAROSELLO */
 .carousel-container {
     position: relative;

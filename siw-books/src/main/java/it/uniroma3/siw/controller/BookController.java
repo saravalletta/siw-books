@@ -1,5 +1,7 @@
 package it.uniroma3.siw.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import it.uniroma3.siw.service.BookService;
 import it.uniroma3.siw.sessionData.SessionData;
+import it.uniroma3.siw.model.Book;
+import it.uniroma3.siw.model.Review;
 import it.uniroma3.siw.model.User;
 
 @Controller
@@ -20,7 +24,10 @@ public class BookController {
 	
 	@GetMapping("/book/{id}")
 	public String getBook(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("book", this.bookService.getBookById(id));
+		Book book = this.bookService.getBookById(id);
+		List<Review> reviews = book.getReviews();
+		model.addAttribute("book", book);
+		model.addAttribute("reviews", reviews);
 		return "book.html";
 	}
 	
