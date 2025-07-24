@@ -72,7 +72,7 @@ public class SiwBooksController {
     }
     
     @PostMapping("/updateBook/{id}")
-    public String saveUpdatedBook(@Valid @ModelAttribute("bookDto") BookDto bookDto,BindingResult bookBindingResult, 
+    public String saveUpdatedBook(@Valid @ModelAttribute("bookDto") BookDto bookDto, BindingResult bookBindingResult, 
     		@PathVariable("id") Long id, @RequestParam(name = "authors", required = false) List<Long> authorsIds, Model model) {
     	if(!bookBindingResult.hasErrors()) {
     		// Gestione degli autori

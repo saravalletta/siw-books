@@ -20,6 +20,9 @@ public class BookService {
 	
 	public Book createBook(String title, String description, Integer year, List<Author> authors) {
 		Book book = new Book(title, description, year, authors);
+		for(Author a : authors) {
+			a.addBook(book);
+		}
 		book = this.bookRepository.save(book);
 		return book;
 	}

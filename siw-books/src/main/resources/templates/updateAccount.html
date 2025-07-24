@@ -31,22 +31,22 @@
 					<form th:action="@{/updateAccount}" method="post" th:object="${credentials}">
 						<div class="input-field">
 							<label for="name">Nome</label>
-							<input type="text" name="name" id="name" th:value="${credentials.user.name}">
+							<input type="text" name="name" id="name" th:field="*{credentials.user.name}">
 						</div>
 						
 						<div class="input-field">
 							<label for="name">Cognome</label>
-							<input type="text" name="surname" id="surname" th:value="${credentials.user.surname}">
+							<input type="text" name="surname" id="surname" th:field="*{credentials.user.surname}">
 						</div>
 						
 						<div class="input-field">
 							<label for="name">Email</label>
-							<input type="text" name="email" id="email" th:value="${credentials.user.email}">
+							<input type="text" name="email" id="email" th:field="*{credentials.user.email}">
 						</div>
 						
 						<div class="input-field">
 							<label for="name">Username</label>
-							<input type="text" name="username" id="username" th:value="${credentials.username}">
+							<input type="text" name="username" id="username" th:field="*{credentials.username}">
 						</div>
 						
 						<div class="input-field">
