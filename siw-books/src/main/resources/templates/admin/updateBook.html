@@ -28,7 +28,7 @@
 				<div class="form-box">
 					<h1>Modifica Libro</h1>
 					
-					<form th:action="@{/addBook}" method="post" th:object="${bookDto}">
+					<form th:action="@{/updateBook}" method="post" th:object="${bookDto}">
 						<div class="input-field">
 							<label for="title">Titolo</label>
 							<input type="text" name="title" id="title" th:field="*{title}" required>
@@ -67,7 +67,7 @@
 						
 						<div class="input-field">
 							<button type="submit" class="submit-button">Salva Libro</button>
-							<a href=""><button type="button" class="form-button">Annulla</button></a>
+							<a th:href="@{'/book/' + ${id}}"><button type="button" class="form-button">Annulla</button></a>
 						</div>
 					</form>
 				</div>

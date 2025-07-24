@@ -61,6 +61,7 @@ public class SiwBooksController {
     	BookDto bookDto = new BookDto();
     	bookDto.copyBook(book.getTitle(), book.getDescription(), book.getYear(), book.getAuthors());
     	List<Author> authors = this.authorService.getAllAuthors();
+    	model.addAttribute("id", id);
     	model.addAttribute("bookDto", bookDto);
     	model.addAttribute("authors", authors);
     	return "/admin/updateBook.html";
