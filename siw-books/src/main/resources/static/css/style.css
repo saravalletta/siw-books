@@ -272,7 +272,7 @@ input[type=number] {
 .carousel-card {
     display: flex;
     flex-direction: column;
-    margin: 15px;
+    margin: 15px 10px;
 	background-color: white;
 	box-shadow: 0 4px 8px #EAEAEA;
     border-radius: 6px;
