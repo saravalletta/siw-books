@@ -277,6 +277,7 @@ input[type=number] {
 	box-shadow: 0 4px 8px #EAEAEA;
     border-radius: 6px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+	max-width: 13vw;
 }
 
 .carousel-card a {
@@ -302,4 +303,11 @@ input[type=number] {
 	color: #A8A8A8;
 	margin-top: -1rem;
 	font-size: 14px;
+}
+
+.carousel-card-details h4, 
+.carousel-card-details p {
+	white-space: normal;          /* permette il ritorno a capo */
+	word-wrap: break-word;        /* spezza parole lunghe */
+	overflow-wrap: break-word;    /* compatibilità */
 }

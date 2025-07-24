@@ -28,7 +28,7 @@
 				<div class="form-box">
 					<h1>Modifica Libro</h1>
 					
-					<form th:action="@{/updateBook}" method="post" th:object="${bookDto}">
+					<form th:action="@{'/updateBook/' + ${id}}" method="post" th:object="${bookDto}">
 						<div class="input-field">
 							<label for="title">Titolo</label>
 							<input type="text" name="title" id="title" th:field="*{title}" required>
