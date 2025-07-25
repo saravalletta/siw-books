@@ -1,7 +1,11 @@
 package it.uniroma3.siw.model;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +24,11 @@ public class Review {
 	@Max(5)
 	private Integer score;
 	private String text;
+	
+	// Per gestire le ultime recensioni inserite
+	@CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 	
 	// Getter e setter
 	public Long getId() {
@@ -49,6 +58,13 @@ public class Review {
 	public void setText(String text) {
 		this.text = text;
 	}
+	
+	public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 	
 	
 	
