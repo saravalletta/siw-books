@@ -47,7 +47,7 @@ public class BookService {
 	}
 	
 	// Per prendere gli ultimi 10 libri inseriti
-	public Set<Book> getLast10Books() {
+	public List<Book> getLast10Books() {
         return this.bookRepository.findTop10ByOrderByCreatedAtDesc();
     }
 	

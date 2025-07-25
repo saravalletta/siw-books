@@ -43,7 +43,7 @@ public class AuthController {
 	
 	@GetMapping("/") 
 	public String getHomePage(Model model) {
-		Set<Book> lastBooks  = this.bookService.getLast10Books(); // Per prendere gli ultimi 10 libri inseriti
+		List<Book> lastBooks  = this.bookService.getLast10Books(); // Per prendere gli ultimi 10 libri inseriti
 		List<Review> lastReviews = this.reviewService.getAllReviews(); // Da cambiare con getLastReviews()
 		model.addAttribute("books", lastBooks);
 		model.addAttribute("reviews", lastReviews);
@@ -62,7 +62,7 @@ public class AuthController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		if(auth instanceof AnonymousAuthenticationToken) {
-			Set<Book> lastBooks  = this.bookService.getAllBooks(); // Da cambiare con getLastBooks()
+			List<Book> lastBooks  = this.bookService.getLast10Books(); // Per prendere gli ultimi 10 libri inseriti
 			model.addAttribute("books", lastBooks);
 			return "homepage.html";
 		}
@@ -71,7 +71,7 @@ public class AuthController {
 			credentials = this.credentialsService.getCredentialsByUsername(userDetails.getUsername());
 			User loggedUser = this.sessionData.getLoggedUser();
 			model.addAttribute("user", loggedUser);
-			Set<Book> lastBooks  = this.bookService.getAllBooks(); // Da cambiare con getLastBooks()
+			List<Book> lastBooks  = this.bookService.getLast10Books(); // Per prendere gli ultimi 10 libri inseriti
 			model.addAttribute("books", lastBooks);
 			
 			if(credentials.getRole().trim().equals(ADMIN)) {

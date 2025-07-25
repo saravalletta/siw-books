@@ -13,7 +13,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 	public List<Book> findAll();
 	
 	// Per ordinare i libri in ordine di creazione (dall'ultimo al primo)
-	public Set<Book> findTop10ByOrderByCreatedAtDesc();
+	public List<Book> findTop10ByOrderByCreatedAtDesc();
 	
 	// Per la ricerca
 	@Query("select b from Book b where CONCAT(b.id,'',b.title) LIKE %?1%")
