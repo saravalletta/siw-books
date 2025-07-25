@@ -44,7 +44,7 @@
 							<input type="number" min="1000" max="2099" name="year" id="year" th:field="*{year}" required>
 						</div>
 						
-						<div class="input-field" style="padding-bottom: 6vh;">
+						<div class="input-field" style="height: auto;">
 							<label for="authorsIds">Autori</label>
 							<div th:if="${#lists.isEmpty(authors)}" class="message">
 								Nessun autore disponibile al momento.
@@ -58,7 +58,7 @@
 							</div>
 						</div>
 						
-						<div class="input-field" style="margin-top: 2rem;">
+						<div class="input-field">
 							<label for="urlImages">Foto</label>
 							<input type="file" name="urlImages" accept="image/*">
 						</div>

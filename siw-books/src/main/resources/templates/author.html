@@ -31,10 +31,10 @@
 					<img src="/images/homepage-image.png" class="author-image">
 				</div>
 				<div>
-					<h1 th:text="${author.name} + ' ' + ${author.surname}">Nome Cognome</h1>
-					<p><strong>Data di nascita: </strong><span th:text="${#temporals.format(author.birthDate, 'dd-MM-yyyy')}">01-01-1900</span></p>
-					<p><strong>Data di morte: </strong><span th:text="${#temporals.format(author.deathDate, 'dd-MM-yyyy')}">01-01-1900</span></p>
-					<p><strong>Nazionalità: </strong><span th:text="${author.nationality}">Italia</span></p>
+					<h1 th:text="${author.name} + ' ' + ${author.surname}">Name Surname</h1>
+					<p><strong>Data di nascita: </strong><span th:text="${#temporals.format(author.birthDate, 'dd/MM/yyyy')}">BirthDate</span></p>
+					<p><strong>Data di morte: </strong><span th:text="${#temporals.format(author.deathDate, 'dd/MM/yyyy')}">DeathDate</span></p>
+					<p><strong>Nazionalità: </strong><span th:text="${author.nationality}">Nationality</span></p>
 					<a th:if="${isAdmin}" th:href="@{'/updateAuthor/' + ${author.id}}" id="update-button">Modifica Autore</a>
 					<a th:if="${isAdmin}" th:href="@{'/deleteAuthor/' + ${author.id}}" id="delete-button">Elimina Autore</a>
 				</div>

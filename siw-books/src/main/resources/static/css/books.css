@@ -24,12 +24,3 @@ h1 {
 .carousel-container {
 	margin-top: -1rem;
 }
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr); /* 6 card per riga */
-    gap: 10px;
-    padding: 20px;
-	margin-top: -1rem;
-	align-items: stretch; /* Questo forza tutte le card a estendersi */
-}

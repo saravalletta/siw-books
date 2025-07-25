@@ -335,3 +335,13 @@ input[type=number] {
 	word-wrap: break-word;        /* spezza parole lunghe */
 	overflow-wrap: break-word;    /* compatibilità */
 }
+
+/*GRIGLIA*/
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 card per riga */
+    gap: 10px;
+    padding: 20px;
+	margin-top: -1rem;
+	align-items: stretch; /* Questo forza tutte le card a estendersi */
+}

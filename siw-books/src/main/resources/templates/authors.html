@@ -31,7 +31,26 @@
 					<input type="text" th:value="${keyword}" placeholder="Cerca libri, autori ...">
 					<button type="submit" class="submit-button">Cerca</button>
 				</form>
-				<a th:if="${isAdmin}" href=""><button type="button" class="add-button">Aggiungi autori</button></a>
+				<a th:if="${isAdmin}" href="/addAuthor"><button type="button" class="add-button">Aggiungi autori</button></a>
+			</section>
+			
+			<section>
+				<div th:if="${#lists.isEmpty(authors)}" class="message">
+					Nessun autore disponibile al momento.
+				</div>
+				<div th:if="${not #lists.isEmpty(authors)}" class="grid-container">
+					<div class="carousel-card" th:each="author : ${authors}">
+						<a th:href="@{'/author/' + ${author.id}}">
+	                        <img src="/images/homepage-image.png">
+							<div class="carousel-card-details">
+								<h4 th:text="${author.name} + ' ' + ${author.surname}">Name Surname</h4>
+	                            <p th:text="${#temporals.format(author.birthDate, 'dd/MM/yyyy')} + ' - ' + 
+								${author.deathDate != null ? #temporals.format(author.deathDate, 'dd/MM/yyyy') : '...'}">Date</p>
+								<p th:text="${author.nationality}">Nationality</p>
+							</div>
+	                    </a>
+					</div>
+				</div>
 			</section>
 		</main>
 		
