@@ -1,0 +1,55 @@
+section {
+	align-items: center;
+	display: flex;
+	margin-top: 8vh;
+	margin-left: 8vw;
+	margin-right: 8vw;
+}
+
+/* DETTAGLI AUTORE*/
+
+.author-image {
+	height: 30vh;
+	margin-right: 8vw;
+}
+
+#update-button {
+	display: inline-block;
+	text-decoration: none;
+	color: white;
+	font-weight: 500;
+	font-size: 18px;
+	background-color: #4276D6;
+	border-radius: 6px;
+	padding: 12px 16px;
+	margin-top: 4vh;
+}
+
+#delete-button {
+	display: inline-block;
+	text-decoration: none;
+	color: #4276D6;
+	font-weight: 500;
+	font-size: 18px;
+	background-color: white;
+	border: 0.5px solid #4276D6;
+	border-radius: 6px;
+	padding: 12px 16px;
+	margin-top: 4vh;
+	margin-left: 2vw;
+}
+
+/*SEZIONE LIBRI*/
+.books-section {
+	height: auto;
+	width: auto;
+	background-color: white;
+	padding: 0.5rem 2rem 2rem 2rem; /* top - right - bottom - left */
+	margin-bottom: 4rem;
+	display: flex;
+	flex-direction: column; /* per centrare gli elementi verticalmente*/
+}
+
+.books-section h2 {
+	width: 100%;
+}

@@ -2,6 +2,8 @@ package it.uniroma3.siw.model;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.validation.constraints.NotBlank;
 
 public class AuthorDto {
@@ -11,8 +13,10 @@ public class AuthorDto {
 	//@NotBlank
 	private String surname;
 	//@NotBlank
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthDate;
 	//@NotBlank
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate deathDate;
 	//@NotBlank
 	private String nationality;

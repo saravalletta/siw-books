@@ -41,12 +41,12 @@
 						
 						<div class="input-field">
 							<label for="birthDate">Data di nascita</label>
-							<input type="date" name="birthDate" id="birthDate" th:field="*{birthDate}" required>
+							<input type="date" name="birthDate" id="birthDate" th:field="*{birthDate}" th:value="${authorDto.birthDate != null ? authorDto.birthDate : ''}" required>
 						</div>
 						
 						<div class="input-field">
 							<label for="deathDate">Data di morte</label>
-							<input type="date" name="deathDate" id="deathDate" th:field="*{deathDate}">
+							<input type="date" name="deathDate" id="deathDate" th:field="*{deathDate}" th:value="${authorDto.deathDate != null ? authorDto.deathDate : ''}">
 						</div>
 						
 						<div class="input-field">
