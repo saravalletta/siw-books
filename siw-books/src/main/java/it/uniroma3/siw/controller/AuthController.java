@@ -43,7 +43,7 @@ public class AuthController {
 	
 	@GetMapping("/") 
 	public String getHomePage(Model model) {
-		Set<Book> lastBooks  = this.bookService.getAllBooks(); // Da cambiare con getLastBooks()
+		Set<Book> lastBooks  = this.bookService.getLast10Books(); // Per prendere gli ultimi 10 libri inseriti
 		List<Review> lastReviews = this.reviewService.getAllReviews(); // Da cambiare con getLastReviews()
 		model.addAttribute("books", lastBooks);
 		model.addAttribute("reviews", lastReviews);

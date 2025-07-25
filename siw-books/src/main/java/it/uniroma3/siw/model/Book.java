@@ -1,8 +1,11 @@
 package it.uniroma3.siw.model;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -17,7 +20,7 @@ import jakarta.persistence.OneToMany;
 public class Book {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
 	@Column(length = 1000)
@@ -29,6 +32,11 @@ public class Book {
 	private List<String> urlImage;
 	@OneToMany
 	private List<Review> reviews;
+	
+	// Per gestire gli ultimi libri inseriti
+	@CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 	
 	public Book(String title, String description, Integer year, List<Author> authors) {
 		this.title = title;
@@ -90,6 +98,13 @@ public class Book {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
+	
+	public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 	
 	// Per copiare un libro esistente 
 	public void copyBook(String title, String description, Integer year, List<Author> authors) {

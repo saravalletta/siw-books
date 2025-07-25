@@ -1,6 +1,7 @@
 package it.uniroma3.siw.service;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -41,8 +42,14 @@ public class BookService {
 	}
 	
 	public Set<Book> getAllBooks() {
-		return bookRepository.findAll();
+		Set<Book> books = new HashSet<>(bookRepository.findAll());
+		return books;
 	}
+	
+	// Per prendere gli ultimi 10 libri inseriti
+	public Set<Book> getLast10Books() {
+        return this.bookRepository.findTop10ByOrderByCreatedAtDesc();
+    }
 	
 	// Per la ricerca
 	public Set<Book> listAllKeyWord(String keyWord){

@@ -52,7 +52,7 @@
 							
 							<div class="checkbox-container">
 								<div th:if="${not #lists.isEmpty(authors)}" th:each="author : ${authors}">
-									<input type="checkbox" th:id="'author-' + ${author.id}" th:name="author" th:value="${author.id}">
+									<input type="checkbox" th:id="'author-' + ${author.id}" th:name="author" th:value="${author.id}" th:checked="${#lists.contains(bookDto.authors, author)}">
 									<label th:for="'author-' + ${author.id}" th:text="${author.name} + '  ' + ${author.surname}"></label>
 								</div>
 							</div>
