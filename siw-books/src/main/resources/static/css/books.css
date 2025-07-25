@@ -1,7 +1,35 @@
 section {
 	align-items: center;
 	display: flex;
+	margin: 5vh 4vw 4rem 4vw; /* top - right - bottom - left */
+	height: auto;
+	width: auto;
+	background-color: white;
+	display: flex;
+	flex-direction: column; /* per centrare gli elementi verticalmente*/
+}
+
+h1 {
+	width: 100%;
+}
+
+.searchbar-field {
+	align-items: center;
+	display: flex;
 	margin-top: 5vh;
 	margin-left: 4vw;
 	margin-right: 4vw;
+}
+
+.carousel-container {
+	margin-top: -1rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 card per riga */
+    gap: 10px;
+    padding: 20px;
+	margin-top: -1rem;
+	align-items: stretch; /* Questo forza tutte le card a estendersi */
 }

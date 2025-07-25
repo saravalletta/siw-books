@@ -49,11 +49,11 @@
 			<div class="homepage-section">
 				<h1>Ultimi Libri</h1>
 				
-				<div th:if="${#sets.isEmpty(books)}" class="message">
+				<div th:if="${#lists.isEmpty(books)}" class="message">
 					Nessun libro disponibile al momento.
 				</div>
 				
-				<div th:if="${not #sets.isEmpty(books)}" class="carousel-container">
+				<div th:if="${not #lists.isEmpty(books)}" class="carousel-container">
 					<div class="carousel-track">
 						<div class="carousel-card" th:each="book : ${books}">
 							<a th:href="@{'/book/' + ${book.id}}">

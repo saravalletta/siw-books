@@ -34,6 +34,7 @@ public class BookController {
 	@GetMapping("/books")
 	public String showBooks(Model model) {
 		model.addAttribute("books", this.bookService.getAllBooks());
+		model.addAttribute("bestsellers", this.bookService.getLast10Books());
 		return "books.html";
 	}
 

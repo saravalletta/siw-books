@@ -26,11 +26,51 @@
 		</header>
 		
 		<main>
-			<section>
+			<div class="searchbar-field">
 				<form th:action="@{/searchBar}" method="post" class="searchbar">
 					<input type="text" th:value="${keyword}" placeholder="Cerca libri, autori ...">
 					<button type="submit" class="submit-button">Cerca</button>
 				</form>
+			</div>
+			
+			<section>
+				<h1>I più votati</h1>
+
+				<div th:if="${#lists.isEmpty(bestsellers)}" class="message">
+					Nessun libro disponibile al momento.
+				</div>
+				
+				<div th:if="${not #lists.isEmpty(bestsellers)}" class="carousel-container">
+					<div class="carousel-track">
+						<div class="carousel-card" th:each="bestseller : ${bestsellers}">
+							<a th:href="@{'/book/' + ${bestseller.id}}">
+	                            <img src="/images/homepage-image.png">
+								<div class="carousel-card-details">
+									<h4 th:text="${bestseller.title}">Title</h4>
+		                            <p th:text="${bestseller.year}">Year</p>
+								</div>
+	                        </a>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<section style="margin-top:-3rem;">
+				<h1>Tutti i libri</h1>
+				<div th:if="${#sets.isEmpty(books)}" class="message">
+					Nessun libro disponibile al momento.
+				</div>
+				<div th:if="${not #sets.isEmpty(books)}" class="grid-container">
+					<div class="carousel-card" th:each="book : ${books}">
+						<a th:href="@{'/book/' + ${book.id}}">
+	                        <img src="/images/homepage-image.png">
+							<div class="carousel-card-details">
+								<h4 th:text="${book.title}">Title</h4>
+	                            <p th:text="${book.year}">Year</p>
+							</div>
+	                    </a>
+					</div>
+				</div>
 			</section>
 			
 		</main>
