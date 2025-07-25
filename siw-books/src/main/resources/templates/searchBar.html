@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>SiwBooks</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/searchBar.css">
+	</head>
+	
+	<body>
+		
+		<header>
+			
+			<div class="logo-title">
+				<span><img src="images/siw-books-logo.png" class="image-logo"></span>
+				<span><h1>SiwBooks</h1></span>
+			</div>
+			
+			<nav class="nav">
+				<a href="/" class="nav-link">Home</a>
+				<a href="/books" class="nav-link">Libri</a>
+				<a href="/authors" class="nav-link">Autori</a>
+				<a th:if="${isAdmin}" href="/addBook" class="login-button">Aggiungi Libro</a>
+				<a th:if="${isAnonymous}" href="/login" class="login-button">Accedi/Registrati</a>
+				<a th:if="${!isAnonymous}" href="/account" class="login-button">Account</a>
+			</nav>
+		</header>
+		
+		<main>
+			<div class="searchbar-field">
+				<form th:action="@{/searchBar}" method="post" class="searchbar">
+					<input type="text" th:value="${keyword}" placeholder="Cerca libri, autori ...">
+					<button type="submit" class="submit-button">Cerca</button>
+				</form>
+			</div>
+			
+			<section>
+				<div th:if="${#sets.isEmpty(books) && #lists.isEmpty(authors)}" class="message">
+					Nessuna corrispondenza trovata.
+				</div>
+				
+				<h1 th:if="${not #lists.isEmpty(authors)}">Libri</h1>
+				<div th:if="${not #sets.isEmpty(books)}" class="grid-container">
+					<div class="carousel-card" th:each="book : ${books}">
+						<a th:href="@{'/book/' + ${book.id}}">
+	                        <img src="/images/homepage-image.png">
+							<div class="carousel-card-details">
+								<h4 th:text="${book.title}">Title</h4>
+	                            <p th:text="${book.year}">Year</p>
+							</div>
+	                    </a>
+					</div>
+				</div>
+				
+				<h1 th:if="${not #sets.isEmpty(books)}">Autori</h1>
+				<div th:if="${not #lists.isEmpty(authors)}" class="grid-container">
+					<div class="carousel-card" th:each="author : ${authors}">
+						<a th:href="@{'/author/' + ${author.id}}">
+	                        <img src="/images/homepage-image.png">
+							<div class="carousel-card-details">
+								<h4 th:text="${author.name} + ' ' + ${author.surname}">Name Surname</h4>
+	                            <p th:text="${#temporals.format(author.birthDate, 'dd/MM/yyyy')} + ' - ' + 
+								${author.deathDate != null ? #temporals.format(author.deathDate, 'dd/MM/yyyy') : '...'}">Date</p>
+								<p th:text="${author.nationality}">Nationality</p>
+							</div>
+	                    </a>
+					</div>
+				</div>
+			</section>
+		</main>
+		
+		<footer>
+			<p>© 2025 SiwBooks - Tutti i diritti riservati</p>
+		</footer>
+		
+	</body>
+</html>

@@ -45,7 +45,7 @@ public class AuthorService {
     }
 	
 	// Per la ricerca
-	public List<Author> listAll(String keyWord){
+	public List<Author> listAllKeyWord(String keyWord){
         if (keyWord != null){
             return this.authorRepository.findAllWithThatKeyWord(keyWord);
         }

@@ -23,9 +23,9 @@ public class SearchBarController {
 	@PostMapping("/searchBar")
     public String searchBar(Model model, @Param("keyword") String keyword) {
         Set<Book> books = this.bookService.listAllKeyWord(keyword);
-        List<Author> authors = this.authorService.listAll(keyword);
+        List<Author> authors = this.authorService.listAllKeyWord(keyword);
         model.addAttribute("books", books);
-        model.addAttribute("autori", authors);
+        model.addAttribute("authors", authors);
         model.addAttribute("keyword", keyword);
         return "searchBar.html";
     }
