@@ -20,7 +20,7 @@ import jakarta.persistence.OneToMany;
 public class Book {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String title;
 	@Column(length = 1000)
