@@ -179,7 +179,7 @@ input[type=number] {
 	font-size: 16px;
 }
 
-#forgot-password {
+.forgot-password {
 	color: #2E2E2E;
 	font-weight: 200;
 	font-size: 12px;

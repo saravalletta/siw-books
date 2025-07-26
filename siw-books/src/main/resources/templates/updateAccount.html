@@ -31,23 +31,28 @@
 					<form th:action="@{/updateAccount}" method="post" th:object="${credentials}">
 						<div class="input-field">
 							<label for="name">Nome</label>
-							<input type="text" name="name" id="name" th:field="*{credentials.user.name}">
+							<input type="text" name="name" id="name" th:field="*{user.name}">
 						</div>
 						
 						<div class="input-field">
 							<label for="name">Cognome</label>
-							<input type="text" name="surname" id="surname" th:field="*{credentials.user.surname}">
+							<input type="text" name="surname" id="surname" th:field="*{user.surname}">
 						</div>
 						
 						<div class="input-field">
 							<label for="name">Email</label>
-							<input type="text" name="email" id="email" th:field="*{credentials.user.email}">
+							<input type="text" name="email" id="email" th:field="*{user.email}">
 						</div>
 						
 						<div class="input-field">
 							<label for="name">Username</label>
-							<input type="text" name="username" id="username" th:field="*{credentials.username}">
+							<input type="text" name="username" id="username" th:field="*{username}">
 						</div>
+						
+						<p class="forgot-password" style="margin: -0.5rem auto 1rem 0; font-size: 14px; width: 100%; text-align: center;">
+							Vuoi modificare la tua password?
+							<a href="/forgotPassword" class="link-button">Clicca qui</a>
+						</p>
 						
 						<div class="input-field">
 							<button type="submit" class="submit-button">Salva Modifiche</button>

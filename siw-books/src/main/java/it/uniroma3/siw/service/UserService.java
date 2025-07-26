@@ -24,6 +24,11 @@ public class UserService {
 		return user;
 	}
 	
+	@Transactional
+	public User save(User user) {
+		return this.userRepository.save(user);
+	}
+	
 	public User getUserById(Long id) {
 		return userRepository.findById(id).orElse(null);
 	}
@@ -42,6 +47,13 @@ public class UserService {
 		Optional<User> user = this.userRepository.findByEmail(email);
 		return user.orElse(null);
 	}
+	
+	// Per verificare se esistono utenti con la stessa email
+	public boolean existsByEmailAndNotId(String email, Long userId) {
+        return userRepository.findByEmail(email)
+                .filter(user -> !user.getId().equals(userId))
+                .isPresent();
+    }
 	
 	// Metodi per il reset password
 	@Transactional

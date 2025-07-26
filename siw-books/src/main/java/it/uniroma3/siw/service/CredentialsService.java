@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.CredentialsRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class CredentialsService {
@@ -34,5 +35,17 @@ public class CredentialsService {
 		credentials = this.credentialsRepository.save(credentials);
 		return credentials;
 	}
+	
+	@Transactional
+	public Credentials save(Credentials credentials) {
+		return this.credentialsRepository.save(credentials);
+	}
+	
+	// Per verificare se esistono utenti con lo stesso username
+	public boolean existsByUsernameAndNotId(String username, Long id) {
+        return credentialsRepository.findByUsername(username)
+                .filter(credentials -> !credentials.getId().equals(id))
+                .isPresent();
+    }
 
 }
