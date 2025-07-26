@@ -109,6 +109,10 @@ public class Book {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+    
+    public void addImage(String img){
+        this.urlImage.add(img);
+    }
 	
 	// Per copiare un libro esistente 
 	public void copyBook(String title, String description, Integer year, List<Author> authors) {

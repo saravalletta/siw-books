@@ -1,5 +1,6 @@
 package it.uniroma3.siw.service;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,7 +37,9 @@ public class BookService {
 		
 		// Setto le immagini
 		if (images != null && !images.isEmpty()) {
-            book.setUrlImage(manageImages(images));;
+			for (String url : manageImages(images)) {
+                book.addImage(url);
+            }
         }
 		book = this.bookRepository.save(book);
 		return book;
@@ -48,6 +51,7 @@ public class BookService {
 	
 	@Transactional
 	public void delete(Long id) {
+		deleteImages(id);
 		this.bookRepository.deleteById(id);
 	}
 	
@@ -73,10 +77,10 @@ public class BookService {
         return this.bookRepository.searchByKeyword(keyWord);
     }
 	
-	// Per le immagini
+	// Per inserire le immagini
 	private List<String> manageImages(List<MultipartFile> file) {
         Date createdAt = new Date();
-        List<String> savedNames = new ArrayList<>(file.size());
+        List<String> url = new ArrayList<>(file.size());
 
         for (MultipartFile image : file) {
             if (image.isEmpty()) continue;
@@ -94,7 +98,7 @@ public class BookService {
                 try (InputStream inputStream = image.getInputStream()) {
                     Path filePath = uploadPath.resolve(storageFileName);
                     Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-                    savedNames.add(storageFileName);
+                    url.add(storageFileName);
                 }
 
             } catch (Exception ex) {
@@ -102,7 +106,25 @@ public class BookService {
             }
         }
 
-        return savedNames;
+        return url;
+    }
+	
+	// Per cancellare le immagini
+	private void deleteImages(Long id) {
+		Book book = this.bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Book not found"));
+        List<String> images = book.getUrlImage(); // lista delle immagini
+        if (images == null || images.isEmpty()) return;
+
+        for (String url : images) {
+            Path imagePath = Paths.get("static/images/" + url);
+
+            try {
+                Files.deleteIfExists(imagePath); // evita eccezioni se il file non esiste
+                System.out.println("Cancellata immagine: " + url);
+            } catch (IOException ex) {
+                System.err.println("Errore durante la cancellazione: " + url + " - " + ex.getMessage());
+            }
+        }
     }
 
 }
