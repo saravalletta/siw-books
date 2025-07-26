@@ -118,7 +118,7 @@ public class SiwBooksController {
     		Model model) {
     	if(!authorBindingResult.hasErrors()) {
     		Author author = this.authorService.createAuthor(authorDto.getName(), authorDto.getSurname(), authorDto.getBirthDate(), 
-    				authorDto.getDeathDate(), authorDto.getNationality(), null);
+    				authorDto.getDeathDate(), authorDto.getNationality(), authorDto.getUrlImage());
     		model.addAttribute("author", author);
     		return "redirect:/author/" + author.getId();
     	}

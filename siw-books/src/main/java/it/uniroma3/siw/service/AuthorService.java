@@ -19,7 +19,7 @@ public class AuthorService {
 	
 	public Author createAuthor(String name, String surname, LocalDate birthDate, LocalDate deathDate, 
 			String nationality, String urlImage) {
-		Author author = new Author(name, surname, birthDate, deathDate, nationality, null);
+		Author author = new Author(name, surname, birthDate, deathDate, nationality, urlImage);
 		author = this.authorRepository.save(author);
 		return author;
 	}
