@@ -27,9 +27,11 @@
 		
 		<main>
 			<section>
-				<div th:each="image : ${book.urlImage}">
-					<img th:if="${book.urlImage != null}" th:src="@{'/images/' + ${image}}" alt="urlImage" class="book-image">
-					<img th:if="${book.urlImage == null}" src="/images/homepage-image.png" alt="defaultImage" class="book-image">
+				<div th:if="${not #lists.isEmpty(book.urlImage)}" th:each="image : ${book.urlImage}">
+					<img th:src="@{'/images/' + ${image}}" alt="urlImage" class="book-image">
+				</div>
+				<div th:if="${#lists.isEmpty(book.urlImage)}">
+					<img src="/images/homepage-image.png" alt="defaultImage" class="book-image">
 				</div>
 				<div>
 					<h1 th:text="${book.title}">Titolo</h1>

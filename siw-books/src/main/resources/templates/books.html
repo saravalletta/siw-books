@@ -44,7 +44,13 @@
 					<div class="carousel-track">
 						<div class="carousel-card" th:each="bestseller : ${bestsellers}">
 							<a th:href="@{'/book/' + ${bestseller.id}}">
-	                            <img src="/images/homepage-image.png">
+								<div th:if="${not #lists.isEmpty(bestseller.urlImage)}">
+									<img th:src="@{'/images/' + ${bestseller.urlImage[0]}}" alt="urlImage">
+								</div>
+								<div th:if="${#lists.isEmpty(bestseller.urlImage)}">
+									<img src="/images/homepage-image.png" alt="defaultImage">
+								</div>
+								
 								<div class="carousel-card-details">
 									<h4 th:text="${bestseller.title}">Title</h4>
 		                            <p th:text="${bestseller.year}">Year</p>
@@ -63,7 +69,13 @@
 				<div th:if="${not #sets.isEmpty(books)}" class="grid-container">
 					<div class="carousel-card" th:each="book : ${books}">
 						<a th:href="@{'/book/' + ${book.id}}">
-	                        <img src="/images/homepage-image.png">
+							<div th:if="${not #lists.isEmpty(book.urlImage)}">
+								<img th:src="@{'/images/' + ${book.urlImage[0]}}" alt="urlImage">
+							</div>
+							<div th:if="${#lists.isEmpty(book.urlImage)}">
+								<img src="/images/homepage-image.png" alt="defaultImage">
+							</div>
+							
 							<div class="carousel-card-details">
 								<h4 th:text="${book.title}">Title</h4>
 	                            <p th:text="${book.year}">Year</p>
