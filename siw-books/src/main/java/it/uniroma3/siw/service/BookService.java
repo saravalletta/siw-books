@@ -84,7 +84,7 @@ public class BookService {
             String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
 
             try {
-                String uploadDir = "public/images/";
+                String uploadDir = "static/images/";
                 Path uploadPath = Paths.get(uploadDir);
 
                 if (!Files.exists(uploadPath)) {

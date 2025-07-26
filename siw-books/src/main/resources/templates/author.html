@@ -28,7 +28,8 @@
 		<main>
 			<section>
 				<div>
-					<img src="/images/homepage-image.png" class="author-image">
+					<img th:if="${author.urlImage != null}" th:src="@{'/images/' + ${author.urlImage}}" alt="urlImage" class="book-image">
+					<img th:if="${author.urlImage == null}" src="/images/homepage-image.png" alt="defaultImage" class="book-image">
 				</div>
 				<div>
 					<h1 th:text="${author.name} + ' ' + ${author.surname}">Name Surname</h1>

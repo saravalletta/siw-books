@@ -27,8 +27,9 @@
 		
 		<main>
 			<section>
-				<div>
-					<img src="/images/homepage-image.png" class="book-image">
+				<div th:each="image : ${book.urlImage}">
+					<img th:if="${book.urlImage != null}" th:src="@{'/images/' + ${image}}" alt="urlImage" class="book-image">
+					<img th:if="${book.urlImage == null}" src="/images/homepage-image.png" alt="defaultImage" class="book-image">
 				</div>
 				<div>
 					<h1 th:text="${book.title}">Titolo</h1>
