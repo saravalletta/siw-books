@@ -13,7 +13,7 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
 	public List<Author> findAll();
 	
 	// Per la ricerca 
-	@Query("select a from Author a where concat(a.id,'',a.name,'',a.surname,'',a.nationality) LIKE %?1%")
+	@Query("select a from Author a where CONCAT(a.id,'',a.name,'',a.surname,'',a.nationality) LIKE %?1%")
     public List<Author> findAllWithThatKeyWord(String keyWord);
 	
 	@Query(value = "SELECT b.* FROM Book b JOIN book_author ba ON b.id = ba.book_id WHERE ba.author_id = ?1", nativeQuery = true)

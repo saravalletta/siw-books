@@ -28,7 +28,7 @@
 		<main>
 			<div class="searchbar-field">
 				<form th:action="@{/searchBar}" method="post" class="searchbar">
-					<input type="text" th:value="${keyword}" placeholder="Cerca libri, autori ...">
+					<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca libri, autori ...">
 					<button type="submit" class="submit-button">Cerca</button>
 				</form>
 			</div>
