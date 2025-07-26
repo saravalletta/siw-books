@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class SiwBooksController {
@@ -41,8 +42,9 @@ public class SiwBooksController {
     
     @PostMapping("/addBook")
     public String insertBook(@Valid @ModelAttribute("bookDto") BookDto bookDto, 
-    		@RequestParam(name = "author", required = false) List<Long> authorsIds, BindingResult bookBindingResult,
-			Model model) {
+    		@RequestParam(name = "author", required = false) List<Long> authorsIds, 
+    		@RequestParam(name = "images", required = false)List<MultipartFile> images, BindingResult bookBindingResult, 
+    		Model model) {
     	if(!bookBindingResult.hasErrors()) {
     		 // Gestione degli autori
     		if(authorsIds != null && !authorsIds.isEmpty()) {
@@ -50,7 +52,7 @@ public class SiwBooksController {
     			bookDto.setAuthors(authors);
     		}
     		
-    		Book book = this.bookService.createBook(bookDto.getTitle(), bookDto.getDescription(), bookDto.getYear(), bookDto.getAuthors());
+    		Book book = this.bookService.createBook(bookDto.getTitle(), bookDto.getDescription(), bookDto.getYear(), bookDto.getAuthors(), images);
     		model.addAttribute("book", book);
     		return "redirect:/book/" + book.getId();
     	}

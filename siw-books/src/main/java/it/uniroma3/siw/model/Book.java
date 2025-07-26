@@ -7,14 +7,17 @@ import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Book {
@@ -28,7 +31,8 @@ public class Book {
 	private Integer year;
 	@ManyToMany
 	private List<Author> authors;
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "book_images", joinColumns = @JoinColumn(name = "book_id"))
 	private List<String> urlImage;
 	@OneToMany
 	private List<Review> reviews;

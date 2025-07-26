@@ -1,12 +1,19 @@
 package it.uniroma3.siw.service;
 
-import java.time.LocalDate;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Author;
 import it.uniroma3.siw.model.Book;
@@ -19,11 +26,18 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
 	
-	public Book createBook(String title, String description, Integer year, List<Author> authors) {
+	public Book createBook(String title, String description, Integer year, List<Author> authors, List<MultipartFile> images) {
 		Book book = new Book(title, description, year, authors);
+		
+		// Aggiungo il libro ai suoi autori
 		for(Author a : authors) {
 			a.addBook(book);
 		}
+		
+		// Setto le immagini
+		if (images != null && !images.isEmpty()) {
+            book.setUrlImage(manageImages(images));;
+        }
 		book = this.bookRepository.save(book);
 		return book;
 	}
@@ -57,6 +71,38 @@ public class BookService {
             return List.of();
         }
         return this.bookRepository.searchByKeyword(keyWord);
+    }
+	
+	// Per le immagini
+	private List<String> manageImages(List<MultipartFile> file) {
+        Date createdAt = new Date();
+        List<String> savedNames = new ArrayList<>(file.size());
+
+        for (MultipartFile image : file) {
+            if (image.isEmpty()) continue;
+
+            String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
+
+            try {
+                String uploadDir = "public/images/";
+                Path uploadPath = Paths.get(uploadDir);
+
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
+                }
+
+                try (InputStream inputStream = image.getInputStream()) {
+                    Path filePath = uploadPath.resolve(storageFileName);
+                    Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+                    savedNames.add(storageFileName);
+                }
+
+            } catch (Exception ex) {
+                System.out.println("Errore durante il salvataggio immagine: " + ex.getMessage());
+            }
+        }
+
+        return savedNames;
     }
 
 }
