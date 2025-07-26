@@ -24,7 +24,7 @@ public class User {
 	private String name;
 	private String surname;
 	private String email;
-	@OneToMany
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
 	private List<Review> reviews;
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Credentials credentials;
