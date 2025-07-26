@@ -52,11 +52,11 @@ public class BookService {
     }
 	
 	// Per la ricerca
-	public Set<Book> listAllKeyWord(String keyWord){
-        if (keyWord != null){
-            return this.bookRepository.findAllWithThatKeyword(keyWord);
+	public List<Book> listAllKeyWord(String keyWord){
+		if (keyWord == null || keyWord.trim().isEmpty()) {
+            return List.of();
         }
-        return this.getAllBooks();
+        return this.bookRepository.searchByKeyword(keyWord);
     }
 
 }

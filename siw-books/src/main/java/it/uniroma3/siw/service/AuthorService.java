@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.model.Author;
+import it.uniroma3.siw.model.Book;
 import it.uniroma3.siw.repository.AuthorRepository;
 import jakarta.transaction.Transactional;
 
@@ -29,6 +30,13 @@ public class AuthorService {
 	
 	@Transactional
 	public void delete(Long id) {
+		Author author = this.authorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Author not found"));
+		
+		// Elimino l'autore dalle liste dei libri che ha scritto
+		for(Book b : author.getBooks()) {
+			b.getAuthors().remove(author);
+		}
+		author.getBooks().clear();
 		this.authorRepository.deleteById(id);
 	}
 	
