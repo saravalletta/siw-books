@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -34,7 +35,7 @@ public class Book {
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "book_images", joinColumns = @JoinColumn(name = "book_id"))
 	private List<String> urlImage;
-	@OneToMany
+	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Review> reviews;
 	
 	// Per gestire gli ultimi libri inseriti
@@ -113,6 +114,10 @@ public class Book {
     public void addImage(String img){
         this.urlImage.add(img);
     }
+    
+    public void addReview(Review review) {
+		this.reviews.add(review);
+	}
 	
 	// Per copiare un libro esistente 
 	public void copyBook(String title, String description, Integer year, List<Author> authors) {

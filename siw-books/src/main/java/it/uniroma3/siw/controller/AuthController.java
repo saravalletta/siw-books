@@ -100,55 +100,5 @@ public class AuthController {
 		}
 		return "register.html";
 	}
-	
-	// GESTIONE ACCOUNT
-	@GetMapping("/account")
-	public String showAccount(Model model) {
-		Credentials credentials = this.sessionData.getLoggedCredentials();
-		// Carico l'utente con le recensioni già inizializzate per evitare problemi di lazying
-	    User userWithReviews = this.userService.getUserWithReviews(credentials.getUser().getId());
-
-		model.addAttribute("credentials", credentials);
-		model.addAttribute("reviews", userWithReviews.getReviews());
-		return "account.html";
-	}
-	
-	@GetMapping("/updateAccount")
-	public String updateAccount( Model model) {
-		Credentials credentials = this.sessionData.getLoggedCredentials();
-		model.addAttribute("credentials", credentials);
-		return "updateAccount.html";
-	}
-	
-	@PostMapping("/updateAccount")
-	public String saveUpdatedAccount(@Valid @ModelAttribute("credentials") Credentials credentials, 
-			BindingResult accountBindingResult, Model model) {
-		if(!accountBindingResult.hasErrors()) {
-			// Verifica se esiste già un altro utente con lo stesso username
-	        if (credentialsService.existsByUsernameAndNotId(credentials.getUsername(), credentials.getId())) {
-	            model.addAttribute("message", "Il nome utente è già in uso.");
-	            model.addAttribute("credentials", credentials);
-	            return "updateAccount.html";
-	        }
-
-	        // Verifica se esiste già un altro utente con la stessa email
-	        if (userService.existsByEmailAndNotId(credentials.getUser().getEmail(), credentials.getUser().getId())) {
-	            model.addAttribute("message", "L'email è già in uso.");
-	            model.addAttribute("credentials", credentials);
-	            return "updateAccount.html";
-	        }
-	        
-	        this.userService.save(credentials.getUser());
-	        this.credentialsService.save(credentials);
-	        return "redirect:/account.html";
-
-		}
-		else {
-			System.out.println("Errori di validazione:");
-    	    accountBindingResult.getAllErrors().forEach(System.out::println);
-    	    return "updateAccount.html";
-		}
-	}
-	
 
 }

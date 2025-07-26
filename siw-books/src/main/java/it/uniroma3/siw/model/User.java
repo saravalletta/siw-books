@@ -81,6 +81,10 @@ public class User {
 	public void setCredentials(Credentials credentials) {
 		this.credentials = credentials;
 	}
+	
+	public void addReview(Review review) {
+		this.reviews.add(review);
+	}
 
 	
 	

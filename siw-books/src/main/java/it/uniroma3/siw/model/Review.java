@@ -29,11 +29,24 @@ public class Review {
 	@ManyToOne
 	@JoinColumn(nullable = false, name = "user_id")
 	private User user;
+	@ManyToOne
+	@JoinColumn(nullable = false, name = "book_id")
+	private Book book;
 	
 	// Per gestire le ultime recensioni inserite
 	@CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
+	
+	public Review(String title, Integer score, String text, User user, Book book) {
+		this.title = title;
+		this.score = score;
+		this.text = text;
+		this.user = user;
+		this.book = book;
+	}
+	
+	public Review() {}
 	
 	// Getter e setter
 	public Long getId() {
@@ -71,12 +84,28 @@ public class Review {
 		this.user = user;
 	}
 	
+	public Book getBook() {
+		return book;
+	}
+	public void setBook(Book book) {
+		this.book = book;
+	}
+	
 	public LocalDateTime getCreatedAt() {
         return createdAt;
     }
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+    
+    // Per copiare una recensione esistente
+ 	public void copyReview(String title, Integer score, String text, User user, Book book) {
+ 		this.setTitle(title);
+ 		this.setScore(score);
+ 		this.setText(text);
+ 		this.setUser(user);
+ 		this.setBook(book);
+ 	}
 	
 	
 	
