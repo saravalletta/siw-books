@@ -74,9 +74,9 @@ public class UserController {
 	}
 	
 	// GESTIONE RECENSIONI
-	@GetMapping("/addReview")
+	/*@GetMapping("/addReview")
 	public String addReview(Model model) {
 		
-	}
+	}*/
 
 }

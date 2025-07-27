@@ -1,10 +1,17 @@
 package it.uniroma3.siw.service;
 
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Author;
 import it.uniroma3.siw.model.Book;
@@ -58,6 +65,47 @@ public class AuthorService {
             return this.authorRepository.findAllWithThatKeyWord(keyWord);
         }
         return this.getAllAuthors();
+    }
+	
+	// Per la gestione delle foto
+	public String addImage(MultipartFile file) {
+        if (file == null || file.isEmpty()) {
+            throw new IllegalArgumentException("File non valido o vuoto");
+        }
+        MultipartFile image = file;
+        Date createdAt = new Date();
+
+        String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
+
+        try {
+            String uploadDir = "static/images/";    //directory dove salvare le immagini
+            Path uploadPath = Paths.get(uploadDir);
+
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+
+            try (InputStream inputStream = image.getInputStream()) {
+                Files.copy(inputStream, Paths.get(uploadDir + storageFileName), StandardCopyOption.REPLACE_EXISTING);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return storageFileName;
+    }
+
+    private void deleteImage(Author author) {
+        try {
+            Path imagePath = Paths.get("static/images/" + author.getUrlImage());
+            try {
+                Files.delete(imagePath);
+            } catch (Exception ex) {
+                System.out.println("Exception: " + ex.getMessage());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
