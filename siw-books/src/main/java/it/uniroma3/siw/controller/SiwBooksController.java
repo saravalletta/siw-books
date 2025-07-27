@@ -115,7 +115,7 @@ public class SiwBooksController {
     
     @PostMapping("/addAuthor")
     public String insertAuthor(@Valid @ModelAttribute("authorDto") AuthorDto authorDto, BindingResult authorBindingResult,
-    		Model model) {
+    		@RequestParam("urlImage") MultipartFile file, Model model) {
     	if(!authorBindingResult.hasErrors()) {
     		Author author = this.authorService.createAuthor(authorDto.getName(), authorDto.getSurname(), authorDto.getBirthDate(), 
     				authorDto.getDeathDate(), authorDto.getNationality(), authorDto.getUrlImage());

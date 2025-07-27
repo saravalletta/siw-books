@@ -26,13 +26,13 @@ public class Author {
 	private Set<Book> books;
 	
 	public Author(String name, String surname, LocalDate birthDate, LocalDate deathDate, 
-			String nationality, String urlImage) {
+			String nationality) {
 		this.name = name;
 		this.surname = surname;
 		this.birthDate = birthDate;
 		this.deathDate = deathDate;
 		this.nationality = nationality;
-		this.urlImage = urlImage;
+		this.urlImage = null;
 	}
 	
 	public Author() {}

@@ -88,7 +88,7 @@ public class BookService {
             String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
 
             try {
-                String uploadDir = "static/images/";
+                String uploadDir = "public/images/";
                 Path uploadPath = Paths.get(uploadDir);
 
                 if (!Files.exists(uploadPath)) {
@@ -116,7 +116,7 @@ public class BookService {
         if (images == null || images.isEmpty()) return;
 
         for (String url : images) {
-            Path imagePath = Paths.get("static/images/" + url);
+            Path imagePath = Paths.get("public/images/" + url);
 
             try {
                 Files.deleteIfExists(imagePath); // evita eccezioni se il file non esiste

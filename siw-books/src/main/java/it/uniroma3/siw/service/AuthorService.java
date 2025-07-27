@@ -25,8 +25,9 @@ public class AuthorService {
 	private AuthorRepository authorRepository;
 	
 	public Author createAuthor(String name, String surname, LocalDate birthDate, LocalDate deathDate, 
-			String nationality, String urlImage) {
-		Author author = new Author(name, surname, birthDate, deathDate, nationality, urlImage);
+			String nationality, MultipartFile image) {
+		Author author = new Author(name, surname, birthDate, deathDate, nationality);
+		author.setUrlImage(this.addImage(image));
 		author = this.authorRepository.save(author);
 		return author;
 	}
@@ -44,6 +45,7 @@ public class AuthorService {
 			b.getAuthors().remove(author);
 		}
 		author.getBooks().clear();
+		this.deleteImage(author);
 		this.authorRepository.deleteById(id);
 	}
 	
@@ -78,7 +80,7 @@ public class AuthorService {
         String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
 
         try {
-            String uploadDir = "static/images/";    //directory dove salvare le immagini
+            String uploadDir = "public/images/";    //directory dove salvare le immagini
             Path uploadPath = Paths.get(uploadDir);
 
             if (!Files.exists(uploadPath)) {
@@ -97,7 +99,7 @@ public class AuthorService {
 
     private void deleteImage(Author author) {
         try {
-            Path imagePath = Paths.get("static/images/" + author.getUrlImage());
+            Path imagePath = Paths.get("public/images/" + author.getUrlImage());
             try {
                 Files.delete(imagePath);
             } catch (Exception ex) {
