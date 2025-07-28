@@ -147,10 +147,12 @@ public class SiwBooksController {
     
     @PostMapping("/updateAuthor/{id}")
     public String saveUpdatedAuthor(@Valid @ModelAttribute("authorDto") AuthorDto authorDto, BindingResult authorBindingResult,
-    		@PathVariable("id") Long id, Model model) {
+    		@PathVariable("id") Long id, @RequestParam("urlImage") MultipartFile file, Model model) {
     	if(!authorBindingResult.hasErrors()) {
     		Author author = this.authorService.getAuthorById(id);
         	author.copyAuthor(authorDto.getName(), authorDto.getSurname(), authorDto.getBirthDate(), authorDto.getDeathDate(), authorDto.getNationality());
+        	//Gestione delle immagini
+        	this.authorService.replaceImage(author, file);
         	Author updatedAuthor = this.authorService.save(author);
         	model.addAttribute("author", updatedAuthor);
         	return "redirect:/author/" + updatedAuthor.getId();

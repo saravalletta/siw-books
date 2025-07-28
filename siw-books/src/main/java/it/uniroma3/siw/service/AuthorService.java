@@ -109,5 +109,14 @@ public class AuthorService {
             throw new RuntimeException(e);
         }
     }
+    
+    public void replaceImage(Author author, MultipartFile image) {
+    	// Cancello l'immagine dall'autore
+    	deleteImage(author);
+    	author.setUrlImage(null);
+    	
+    	// Setto l'immagine
+    	author.setUrlImage(this.addImage(image));
+    }
 
 }
