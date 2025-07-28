@@ -30,13 +30,23 @@ public class BookController {
 		Book book = this.bookService.getBookById(id);
 		List<Review> reviews = book.getReviews();
 		User user = this.sessionData.getLoggedUser();
-		model.addAttribute("book", book);
-		model.addAttribute("reviews", reviews);
+
 		if(user != null) {
 			model.addAttribute("userId", user.getId());
 			boolean hasReviewed = this.reviewService.hasReview(book.getId(), user.getId());
-			model.addAttribute("hasReviewed",hasReviewed);
+			
+			if(hasReviewed) {
+				Review userReview = this.reviewService.getReviewByUserAndBook(user.getId(), book.getId());
+				// rimuovo la recensione dell'utente dalla lista per evitare duplicati
+				reviews.remove(userReview);
+				// rimetto la recensione dell'utente in cima alla lista
+				reviews.add(0, userReview);
+			}
+			model.addAttribute("hasReviewed", hasReviewed);
 		}
+		
+		model.addAttribute("book", book);
+		model.addAttribute("reviews", reviews);
 		return "book.html";
 	}
 	

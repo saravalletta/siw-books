@@ -53,11 +53,14 @@ public class ReviewService {
 		return this.reviewRepository.findTop10ByOrderByCreatedAtDesc();
 	}
 	
-	/**
-	 * metodo che verifica se un utente ha già fatto la recensione ad un certo libro
-	 */
-	public boolean hasReview(Long userId,Long bookId) {
-		return this.reviewRepository.existsByBookIdAndUserId(userId, bookId);
+	// Per verificare se un utente ha già scritto una recensione per un determinato libro
+	public boolean hasReview(Long bookId, Long userId) {
+		return this.reviewRepository.existsByBookIdAndUserId(bookId, userId);
+	}
+	
+	// Per prendere (se esiste) la recensione scritta da un utente per un determinato libro
+	public Review getReviewByUserAndBook(Long userId, Long bookId) {
+		return this.reviewRepository.findByUserIdAndBookId(userId, bookId);
 	}
 
 }
