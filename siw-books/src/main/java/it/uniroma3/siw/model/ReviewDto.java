@@ -10,8 +10,7 @@ public class ReviewDto {
 	@Max(5)
 	private Integer score;
 	private String text;
-	private User user;
-	private Book book;
+	private Long bookId;
 	
 	// Getter e setter
 	public String getTitle() {
@@ -35,18 +34,11 @@ public class ReviewDto {
 		this.text = text;
 	}
 	
-	public User getUser() {
-		return user;
+	public Long getBookId() {
+		return bookId;
 	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	public Book getBook() {
-		return book;
-	}
-	public void setBook(Book book) {
-		this.book = book;
+	public void setBookId(Long bookId) {
+		this.bookId = bookId;
 	}
 	
 	// Per copiare una recensione esistente
@@ -54,8 +46,7 @@ public class ReviewDto {
 		this.setTitle(title);
 		this.setScore(score);
 		this.setText(text);
-		this.setUser(user);
-		this.setBook(book);
+		this.setBookId(bookId);
 	}
 	
 

@@ -25,6 +25,7 @@ public class Review {
 	@Min(1)
 	@Max(5)
 	private Integer score;
+	@Column(length = 1000)
 	private String text;
 	@ManyToOne
 	@JoinColumn(nullable = false, name = "user_id")

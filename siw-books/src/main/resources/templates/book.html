@@ -49,7 +49,7 @@
 			<section class="reviews-section">
 				<h2>Recensioni</h2>
 				<div style="width: 100%;">
-					<a th:if="${!isAnonymous}"><button type="button" class="submit-button" style="width: 13vw;">Scrivi recensione</button></a>
+					<a th:if="${!isAnonymous}" th:href="@{'/addReview/' + ${book.id}}"><button type="button" class="submit-button" style="width: 13vw;">Scrivi recensione</button></a>
 				</div>
 				
 				<div th:if="${#lists.isEmpty(reviews)}" class="message">

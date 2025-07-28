@@ -6,10 +6,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.siw.model.Book;
 import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.model.Review;
+import it.uniroma3.siw.model.ReviewDto;
 import it.uniroma3.siw.model.User;
+import it.uniroma3.siw.service.BookService;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.ReviewService;
 import it.uniroma3.siw.service.UserService;
@@ -22,17 +28,17 @@ public class UserController {
 	@Autowired private UserService userService;
 	@Autowired private CredentialsService credentialsService;
 	@Autowired private ReviewService reviewService;
+	@Autowired private BookService bookService;
 	@Autowired private SessionData sessionData;
 	
 	// GESTIONE ACCOUNT
 	@GetMapping("/account")
 	public String showAccount(Model model) {
 		Credentials credentials = this.sessionData.getLoggedCredentials();
-		// Carico l'utente con le recensioni già inizializzate per evitare problemi di lazying
-	    User userWithReviews = this.userService.getUserWithReviews(credentials.getUser().getId());
+	    User user = this.userService.getUserById(credentials.getUser().getId());
 
 		model.addAttribute("credentials", credentials);
-		model.addAttribute("reviews", userWithReviews.getReviews());
+		model.addAttribute("reviews", user.getReviews());
 		return "account.html";
 	}
 	
@@ -74,9 +80,30 @@ public class UserController {
 	}
 	
 	// GESTIONE RECENSIONI
-	/*@GetMapping("/addReview")
-	public String addReview(Model model) {
-		
-	}*/
+	@GetMapping("/addReview/{bookId}")
+	public String addReview(@PathVariable("bookId") Long bookId, Model model) {
+		ReviewDto reviewDto = new ReviewDto();
+		reviewDto.setBookId(bookId);
+		model.addAttribute("reviewDto", reviewDto);
+		return "addReview.html";
+	}
+	
+	@PostMapping("/addReview/{bookId}")
+	public String insertReview(@Valid @ModelAttribute("reviewDto") ReviewDto reviewDto, @RequestParam("rating") int rating, 
+			BindingResult reviewBindingResult, Model model) {
+		if(!reviewBindingResult.hasErrors()) {
+			Book book = this.bookService.getBookById(reviewDto.getBookId());
+			User user = this.sessionData.getLoggedUser();
+			reviewDto.setScore(rating);
+			Review review = this.reviewService.createReview(reviewDto.getTitle(), reviewDto.getScore(), reviewDto.getText(), user, book);
+			model.addAttribute("review", review);
+			return "redirect:/book/" + book.getId();
+		}
+		else {
+			System.out.println("Errori di validazione:");
+    	    reviewBindingResult.getAllErrors().forEach(System.out::println);
+    	    return "addReview.html"; 
+		}
+	}
 
 }

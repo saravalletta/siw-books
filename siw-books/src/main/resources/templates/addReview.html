@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>SiwBooks</title>
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/review.css">
+	</head>
+	
+	<body>
+		
+		<header>
+			
+			<div class="logo-title">
+				<span><img src="../images/siw-books-logo.png" class="image-logo"></span>
+				<span><h1>SiwBooks</h1></span>
+			</div>
+			
+			<nav class="nav">
+				<a href="/" class="nav-link">Home</a>
+				<a href="/books" class="nav-link">Libri</a>
+				<a href="/authors" class="nav-link">Autori</a>
+				<a href="/addBook" class="login-button">Aggiungi Libro</a>
+				<a href="/account" class="login-button">Account</a>
+			</nav>
+		</header>
+		
+		<main class="main-form">
+			<div class="form-container">
+				<div class="form-box">
+					<h1>Scrivi Recensione</h1>
+					
+					<form th:action="@{'/addReview/' + ${bookId}}" method="post" th:object="${reviewDto}">
+						<div class="input-field">
+							<label for="title">Titolo</label>
+							<input type="text" name="title" id="title" th:field="*{title}" required>
+						</div>
+						
+						<div class="input-field" style="height: 18vh;">
+							<label for="text">Testo</label>
+							<textarea type="text" name="text" id="text" th:field="*{text}" required></textarea>
+						</div>
+						
+						<div class="input-field">
+							<label for="score">Voto</label>
+							
+							<div class="star-rating">
+								<input type="radio" id="star5" name="rating" value="5" />
+								<label for="star5" title="5 stelle">★</label>
+								
+								<input type="radio" id="star4" name="rating" value="4" />
+								<label for="star4" title="4 stelle">★</label>
+								
+								<input type="radio" id="star3" name="rating" value="3" />
+								<label for="star3" title="3 stelle">★</label>
+								
+								<input type="radio" id="star2" name="rating" value="2" />
+								<label for="star2" title="2 stelle">★</label>
+								
+								<input type="radio" id="star1" name="rating" value="1" />
+								<label for="star1" title="1 stella">★</label>
+							</div>
+						</div>
+						
+						<input type="hidden" th:field="*{bookId}" th:value="${bookId}"/>
+						
+						<div class="input-field">
+							<button type="submit" class="submit-button">Salva Recensione</button>
+							<a href="/"><button type="button" class="form-button">Annulla</button></a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</main>
+		
+	</body>
+</html>

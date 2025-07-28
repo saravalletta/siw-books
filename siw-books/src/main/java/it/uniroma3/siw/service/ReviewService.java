@@ -11,6 +11,7 @@ import it.uniroma3.siw.model.Book;
 import it.uniroma3.siw.model.Review;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.ReviewRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ReviewService {
@@ -18,6 +19,7 @@ public class ReviewService {
 	@Autowired
 	private ReviewRepository reviewRepository;
 	
+	@Transactional
 	public Review createReview(String title, Integer score, String text, User user, Book book) {
 		Review review = new Review(title, score, text, user, book);
 		user.addReview(review);
