@@ -27,15 +27,17 @@
 		
 		<main>
 			<section>
-				<button class="carousel-button prev" onclick="moveSlide(-1)">❮</button>
-				<div class="images-carousel-container" th:if="${not #lists.isEmpty(book.urlImage)}">
-					<div class="images-carousel">
-						<div class="images-carousel-track" >
-							<img th:each="image : ${book.urlImage}" th:src="@{'/images/' + ${image}}" alt="urlImage" class="carousel-image">
+				<div th:if="${not #lists.isEmpty(book.urlImage)}">
+					<button class="carousel-button prev" onclick="moveSlide(-1)">❮</button>
+					<div class="images-carousel-container">
+						<div class="images-carousel">
+							<div class="images-carousel-track" >
+								<img th:each="image : ${book.urlImage}" th:src="@{'/images/' + ${image}}" alt="urlImage" class="carousel-image">
+							</div>
 						</div>
 					</div>
+					<button class="carousel-button next" onclick="moveSlide(1)">❯</button>
 				</div>
-				<button class="carousel-button next" onclick="moveSlide(1)">❯</button>
 									
 				<div th:if="${#lists.isEmpty(book.urlImage)}">
 					<img src="/images/homepage-image.png" alt="defaultImage" class="book-image">
