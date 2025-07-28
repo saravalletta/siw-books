@@ -126,5 +126,19 @@ public class BookService {
             }
         }
     }
+	
+	// Per sostituire le immagini
+	public void replaceImages(Book book, List<MultipartFile> images) {
+		// Cancello le immagini vecchie
+		deleteImages(book.getId());
+		book.getUrlImage().clear();
+		
+		// Setto le immagini
+		if (images != null && !images.isEmpty()) {
+			for (String url : manageImages(images)) {
+                book.addImage(url);
+            }
+        }
+	}
 
 }

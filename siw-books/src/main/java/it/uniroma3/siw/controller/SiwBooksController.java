@@ -77,7 +77,8 @@ public class SiwBooksController {
     
     @PostMapping("/updateBook/{id}")
     public String saveUpdatedBook(@Valid @ModelAttribute("bookDto") BookDto bookDto, BindingResult bookBindingResult, 
-    		@PathVariable("id") Long id, @RequestParam(name = "author", required = false) List<Long> authorsIds, Model model) {
+    		@PathVariable("id") Long id, @RequestParam(name = "author", required = false) List<Long> authorsIds, 
+    		@RequestParam(name = "images", required = false) List<MultipartFile> images, Model model) {
     	if(!bookBindingResult.hasErrors()) {
     		// Gestione degli autori
     		if(authorsIds != null && !authorsIds.isEmpty()) {
@@ -87,6 +88,11 @@ public class SiwBooksController {
     		
     		Book book = this.bookService.getBookById(id);
     		book.copyBook(bookDto.getTitle(), bookDto.getDescription(), bookDto.getYear(), bookDto.getAuthors());
+    		
+    		System.err.println(images);
+    		
+    		// Gestione delle immagini
+    		this.bookService.replaceImages(book, images);
     		Book updatedBook = this.bookService.save(book);
     		model.addAttribute("book", updatedBook);
     		return "redirect:/book/" + updatedBook.getId();
