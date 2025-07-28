@@ -52,5 +52,12 @@ public class ReviewService {
 	public List<Review> getLast10Reviews() {
 		return this.reviewRepository.findTop10ByOrderByCreatedAtDesc();
 	}
+	
+	/**
+	 * metodo che verifica se un utente ha già fatto la recensione ad un certo libro
+	 */
+	public boolean hasReview(Long userId,Long bookId) {
+		return this.reviewRepository.existsByBookIdAndUserId(userId,bookId);
+	}
 
 }

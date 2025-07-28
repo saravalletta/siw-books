@@ -22,6 +22,8 @@ public class BookController {
 	@Autowired
 	private SessionData sessionData;
 	
+	//@Autowired private ReviewService ReviewService;
+	
 	@GetMapping("/book/{id}")
 	public String getBook(@PathVariable("id") Long id, Model model) {
 		Book book = this.bookService.getBookById(id);
@@ -31,6 +33,8 @@ public class BookController {
 		model.addAttribute("reviews", reviews);
 		if(user != null) {
 			model.addAttribute("userId", user.getId());
+			 // boolean hasReviewed = this.ReviewService.hasReview(user.getId(),book.getId());
+			//model.addAttribute("hasReviewed",hasReviewed);
 		}
 		return "book.html";
 	}
