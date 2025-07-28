@@ -27,9 +27,16 @@
 		
 		<main>
 			<section>
-				<div th:if="${not #lists.isEmpty(book.urlImage)}" th:each="image : ${book.urlImage}">
-					<img th:src="@{'/images/' + ${image}}" alt="urlImage" class="book-image">
+				<button class="carousel-button prev" onclick="moveSlide(-1)">❮</button>
+				<div class="images-carousel-container" th:if="${not #lists.isEmpty(book.urlImage)}">
+					<div class="images-carousel">
+						<div class="images-carousel-track" >
+							<img th:each="image : ${book.urlImage}" th:src="@{'/images/' + ${image}}" alt="urlImage" class="carousel-image">
+						</div>
+					</div>
 				</div>
+				<button class="carousel-button next" onclick="moveSlide(1)">❯</button>
+									
 				<div th:if="${#lists.isEmpty(book.urlImage)}">
 					<img src="/images/homepage-image.png" alt="defaultImage" class="book-image">
 				</div>
@@ -80,6 +87,22 @@
 		<footer>
 			<p>© 2025 SiwBooks - Tutti i diritti riservati</p>
 		</footer>
+		
+		<script>
+		    let currentSlide = 0;
+
+		    function moveSlide(direction) {
+		        const track = document.querySelector('.images-carousel-track');
+		        const totalSlides = track.children.length;
+
+		        currentSlide += direction;
+
+		        if (currentSlide < 0) currentSlide = totalSlides - 1;
+		        if (currentSlide >= totalSlides) currentSlide = 0;
+
+		        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+		    }
+		</script>
 		
 	</body>
 </html>
