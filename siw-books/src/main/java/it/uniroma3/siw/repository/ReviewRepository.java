@@ -16,7 +16,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 	// Per ordinare le recensioni in ordine di creazione (dall'ultima alla prima)
 	public List<Review> findTop10ByOrderByCreatedAtDesc();
 
-	// PEr verificare se un utente ha già scritto una recensione per un determinato libro
+	// Per verificare se un utente ha già scritto una recensione per un determinato libro
 	@Query("SELECT COUNT(r) > 0 FROM Review r WHERE r.book.id = :bookId AND r.user.id = :userId")
 	boolean existsByBookIdAndUserId(@Param("bookId") Long bookId, @Param("userId") Long userId);
 
