@@ -28,7 +28,7 @@
 				<div class="form-box">
 					<h1>Aggiungi Autore</h1>
 					
-					<form th:action="@{/addAuthor}" method="post" th:object="${authorDto}">
+					<form th:action="@{/addAuthor}" enctype="multipart/form-data" method="post" th:object="${authorDto}">
 						<div class="input-field">
 							<label for="name">Nome</label>
 							<input type="text" name="name" id="name" th:field="*{name}" required>
@@ -56,7 +56,7 @@
 						
 						<div class="input-field">
 							<label for="urlImages">Foto</label>
-							<input type="file" name="urlImages" accept="image/*">
+							<input type="file" name="urlImage" accept="image/*">
 						</div>
 						
 						<div class="input-field">

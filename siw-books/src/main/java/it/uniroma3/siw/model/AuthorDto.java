@@ -3,6 +3,7 @@ package it.uniroma3.siw.model;
 import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -21,7 +22,7 @@ public class AuthorDto {
 	//@NotBlank
 	private String nationality;
 	//@NotBlank
-	private String urlImage;
+	private MultipartFile urlImage;
 	
 	// Getter e setter
 	public String getName() {
@@ -59,10 +60,10 @@ public class AuthorDto {
 		this.nationality = nationality;
 	}
 	
-	public String getUrlImage() {
+	public MultipartFile getUrlImage() {
 		return urlImage;
 	}
-	public void setUrlImage(String urlImage) {
+	public void setUrlImage(MultipartFile urlImage) {
 		this.urlImage = urlImage;
 	}
 	
