@@ -57,7 +57,7 @@ public class ReviewService {
 	 * metodo che verifica se un utente ha già fatto la recensione ad un certo libro
 	 */
 	public boolean hasReview(Long userId,Long bookId) {
-		return this.reviewRepository.existsByBookIdAndUserId(userId,bookId);
+		return this.reviewRepository.existsByBookIdAndUserId(userId, bookId);
 	}
 
 }

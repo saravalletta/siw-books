@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import it.uniroma3.siw.service.BookService;
+import it.uniroma3.siw.service.ReviewService;
 import it.uniroma3.siw.sessionData.SessionData;
 import it.uniroma3.siw.model.Book;
 import it.uniroma3.siw.model.Review;
@@ -21,8 +22,8 @@ public class BookController {
 	private BookService bookService;
 	@Autowired
 	private SessionData sessionData;
-	
-	//@Autowired private ReviewService ReviewService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	@GetMapping("/book/{id}")
 	public String getBook(@PathVariable("id") Long id, Model model) {
@@ -33,8 +34,8 @@ public class BookController {
 		model.addAttribute("reviews", reviews);
 		if(user != null) {
 			model.addAttribute("userId", user.getId());
-			 // boolean hasReviewed = this.ReviewService.hasReview(user.getId(),book.getId());
-			//model.addAttribute("hasReviewed",hasReviewed);
+			boolean hasReviewed = this.reviewService.hasReview(book.getId(), user.getId());
+			model.addAttribute("hasReviewed",hasReviewed);
 		}
 		return "book.html";
 	}
