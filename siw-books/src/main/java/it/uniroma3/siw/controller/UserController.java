@@ -134,5 +134,13 @@ public class UserController {
     	    return "updateReview.html"; 
 		}
 	}
+	
+	@GetMapping("/deleteReview/{id}")
+	public String deleteReview(@PathVariable("id") Long id) {
+		Review review = this.reviewService.getReviewById(id);
+		Book book = review.getBook();
+		this.reviewService.delete(id);
+		return "redirect:/book/" + book.getId();
+	}
 
 }

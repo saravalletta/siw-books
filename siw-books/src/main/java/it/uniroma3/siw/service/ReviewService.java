@@ -32,6 +32,14 @@ public class ReviewService {
 		return this.reviewRepository.save(review);
 	}
 	
+	@Transactional
+	public void delete(Long id) {
+		Review review = this.reviewRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Review not found"));
+		review.getUser().getReviews().remove(review);
+		review.getBook().getReviews().remove(review);
+		this.reviewRepository.deleteById(id);
+	}
+	
 	public Review getReviewById(Long id) {
 		return reviewRepository.findById(id).orElse(null);
 	}
