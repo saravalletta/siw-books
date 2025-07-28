@@ -69,6 +69,10 @@ public class BookService {
         return this.bookRepository.findTop10ByOrderByCreatedAtDesc();
     }
 	
+	public List<Book> getBooksWithBestScore() {
+		return this.bookRepository.findBooksWithBestScore();
+	}
+	
 	// Per la ricerca
 	public List<Book> listAllKeyWord(String keyWord){
 		if (keyWord == null || keyWord.trim().isEmpty()) {

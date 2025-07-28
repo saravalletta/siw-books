@@ -23,5 +23,12 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 	// Per selezionare i libri scritti da un determinato autore
     @Query(value = "SELECT b.* FROM Book b JOIN book_author ba ON ba.book_id = b.id WHERE ba_author.id =?1",nativeQuery = true)
     public List<Book> findBooksWrittenBy(Long authorId);
+    
+    @Query(value = "SELECT b.*, AVG(r.score) as avg " +
+            "FROM Book b " +
+            "JOIN Review r ON b.id = r.book_id " +
+            "GROUP BY b.id " +
+            "ORDER BY avg DESC", nativeQuery = true)
+    public List<Book> findBooksWithBestScore();
 
 }
