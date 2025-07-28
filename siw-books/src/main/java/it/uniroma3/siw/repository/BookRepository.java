@@ -17,8 +17,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 	public List<Book> findTop10ByOrderByCreatedAtDesc();
 	
 	// Per la ricerca
-	@Query("select b from Book b where CONCAT(b.title,'',b.year,'',b.id) LIKE %?1%")
-    List<Book> searchByKeyword(@Param("keyWord") String keyWord);
+	@Query("SELECT b FROM Book b WHERE " + "LOWER(CONCAT(b.title, '', b.year, '', b.id)) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    List<Book> searchByKeyword(@Param("keyword") String keyword);
 	
 	// Per selezionare i libri scritti da un determinato autore
     @Query(value = "SELECT b.* FROM Book b JOIN book_author ba ON ba.book_id = b.id WHERE ba_author.id =?1",nativeQuery = true)

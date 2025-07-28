@@ -27,8 +27,8 @@
 		
 		<main>
 			<section>
-				<form th:action="@{/searchBar}" method="post" class="searchbar">
-					<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca libri, autori ...">
+				<form th:action="@{/authorsResults}" method="post" class="searchbar">
+					<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca autori">
 					<button type="submit" class="submit-button">Cerca</button>
 				</form>
 				<a th:if="${isAdmin}" href="/addAuthor"><button type="button" class="add-button">Aggiungi autori</button></a>

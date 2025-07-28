@@ -20,14 +20,20 @@ public class SearchBarController {
 	@Autowired private BookService bookService;
 	@Autowired private AuthorService authorService; 
 	
-	@PostMapping("/searchBar")
-    public String searchBar(Model model, @Param("keyword") String keyword) {
+	@PostMapping("/booksResults")
+    public String booksSearchBar(Model model, @Param("keyword") String keyword) {
         List<Book> books = this.bookService.listAllKeyWord(keyword);
-        List<Author> authors = this.authorService.listAllKeyWord(keyword);
         model.addAttribute("books", books);
+        model.addAttribute("keyword", keyword);
+        return "booksResults.html";
+    }
+	
+	@PostMapping("/authorsResults")
+    public String authorsSearchBar(Model model, @Param("keyword") String keyword) {
+        List<Author> authors = this.authorService.listAllKeyWord(keyword);
         model.addAttribute("authors", authors);
         model.addAttribute("keyword", keyword);
-        return "searchBar.html";
+        return "authorsResults.html";
     }
 
 
