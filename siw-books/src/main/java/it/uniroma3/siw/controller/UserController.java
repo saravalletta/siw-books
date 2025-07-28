@@ -105,5 +105,34 @@ public class UserController {
     	    return "addReview.html"; 
 		}
 	}
+	
+	@GetMapping("/updateReview/{id}")
+	public String updateReview(@PathVariable("id") Long id, Model model) {
+		Review review = this.reviewService.getReviewById(id);
+		ReviewDto reviewDto = new ReviewDto();
+		reviewDto.copyReview(review.getTitle(), review.getScore(), review.getText(), review.getUser().getId(), review.getBook().getId());
+		model.addAttribute("id", id);
+		model.addAttribute("reviewDto", reviewDto);
+		return "updateReview.html";
+	}
+	
+	@PostMapping("/updateReview/{id}")
+	public String saveUpdatedReview(@Valid @ModelAttribute("reviewDto") ReviewDto reviewDto, @PathVariable("id") Long id,
+			BindingResult reviewBindingResult, Model model) {
+		if(!reviewBindingResult.hasErrors()) {
+			Review review = this.reviewService.getReviewById(id);
+			Book book = this.bookService.getBookById(reviewDto.getBookId());
+			User user = this.userService.getUserById(reviewDto.getUserId());
+			review.copyReview(reviewDto.getTitle(), reviewDto.getScore(), reviewDto.getText(), user, book);
+			Review updatedReview = this.reviewService.save(review);
+			model.addAttribute("review", updatedReview);
+			return "redirect:/book/" + book.getId();
+		}
+		else {
+			System.out.println("Errori di validazione:");
+    	    reviewBindingResult.getAllErrors().forEach(System.out::println);
+    	    return "updateReview.html"; 
+		}
+	}
 
 }

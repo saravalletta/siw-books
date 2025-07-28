@@ -84,11 +84,7 @@
 				<div th:if="${not #lists.isEmpty(reviews)}" th:each="review : ${reviews}">
 					<div class="carousel-track">
 						<div class="carousel-card" th:each="review : ${reviews}">
-							<a th:href="@{'/book/' + ${book.id}}">
-	                            <img th:if="${book.urlImgage} != null" th:src="@{'/images/' + ${book.urlImgage}}" alt="Immagine">
-	                            <h5 th:text="${book.title}">Title</h5>
-	                            <p th:text="${book.year}">Year</p>
-	                        </a>
+							
 						</div>
 					</div>
 				</div>

@@ -26,8 +26,12 @@ public class BookController {
 	public String getBook(@PathVariable("id") Long id, Model model) {
 		Book book = this.bookService.getBookById(id);
 		List<Review> reviews = book.getReviews();
+		User user = this.sessionData.getLoggedUser();
 		model.addAttribute("book", book);
 		model.addAttribute("reviews", reviews);
+		if(user != null) {
+			model.addAttribute("userId", user.getId());
+		}
 		return "book.html";
 	}
 	

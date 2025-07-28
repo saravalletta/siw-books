@@ -28,6 +28,10 @@ public class ReviewService {
 		return review;
 	}
 	
+	public Review save(Review review) {
+		return this.reviewRepository.save(review);
+	}
+	
 	public Review getReviewById(Long id) {
 		return reviewRepository.findById(id).orElse(null);
 	}
