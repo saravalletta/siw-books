@@ -72,11 +72,22 @@ public class UserController {
 	@GetMapping("/updateReview/{id}")
 	public String updateReview(@PathVariable("id") Long id, Model model) {
 		Review review = this.reviewService.getReviewById(id);
-		ReviewDto reviewDto = new ReviewDto();
-		reviewDto.copyReview(review.getTitle(), review.getScore(), review.getText(), review.getUser().getId(), review.getBook().getId());
-		model.addAttribute("id", id);
-		model.addAttribute("reviewDto", reviewDto);
-		return "updateReview.html";
+		User loggedUser = this.sessionData.getLoggedUser();
+		System.err.println(loggedUser.getId());
+		System.err.println(review.getUser().getId());
+		System.err.println(loggedUser.getId() == review.getUser().getId());
+		// Controllo che l'utente stia cercando di modificare una delle sue recensioni
+		if(loggedUser.getId().equals(review.getUser().getId())) {
+			ReviewDto reviewDto = new ReviewDto();
+			reviewDto.copyReview(review.getTitle(), review.getScore(), review.getText(), review.getUser().getId(), review.getBook().getId());
+			model.addAttribute("id", id);
+			model.addAttribute("reviewDto", reviewDto);
+			return "updateReview.html";
+		}
+		else {
+			System.out.println("Utente non autorizzato a modificare questa recensione");
+			return "redirect:/book/" + review.getBook().getId();
+		}
 	}
 	
 	@PostMapping("/updateReview/{id}")
