@@ -3,7 +3,6 @@
 	<head>
 	    <title>SiwBooks</title>
 		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/books.css">
 	</head>
 	
 	<body>
@@ -55,14 +54,9 @@
 					</div>
 					
 					<div>
-						<a href="/updateAccount"><button type="button" class="submit-button">Modifica Account</button></a>
+						<a href="/logout"><button type="button" class="submit-button">Logout</button></a>
 					</div>
 				</form>
-				
-				<div style="margin-top: 1rem; width: 25vw; display: flex; justify-content: space-between;">
-					<a href="/logout" class="generic-button2" style="width: 40%; display: inline-block; text-align: center;">Logout</a>
-					<a href="" class="generic-button2" style="width: 40%; display: inline-block; text-align: center;">Elimina Account</a>
-				</div>
 			</section>
 			
 			<section class="form-box" style="border: 0.5px solid #2E2E2E; margin-top: 2rem;">
@@ -70,6 +64,25 @@
 				
 				<div th:if="${#lists.isEmpty(reviews)}" class="message">
 					Nessuna recensione disponibile al momento.
+				</div>
+				
+				<div th:if="${not #lists.isEmpty(reviews)}"> 
+					<div class="review-container" th:each="review : ${reviews}" style="width: 30vw; margin-top: 0.5rem;">
+						<a th:href="@{'/book/' + ${review.book.id}}" th:text="${review.book.title}"></a>
+						<div>
+					        <span th:each="star : ${#numbers.sequence(1, 5)}"
+					              th:text="${star <= review.score} ? '★' : '☆'"
+					              class="star">
+							</span>
+							<span class="username" th:text="${review.user.credentials.username}"></span>
+					    </div>
+						<h4 th:text="${review.title}"></h4>
+						<p th:text="${review.text}"></p>
+						<div th:if="${!isAnonymous}" class="review-buttons">
+							<a th:href="@{'/updateReview/' + ${review.id}}" class="update">Modifica</a>
+							<a th:href="@{'/deleteReview/' + ${review.id}}">Elimina</a>
+						</div>
+					</div>
 				</div>
 			</section>
 		</main>

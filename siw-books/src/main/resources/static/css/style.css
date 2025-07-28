@@ -359,8 +359,9 @@ input[type=number] {
 
 .review-container a {
 	text-decoration: none;
-	font-size: 18px;
+	font-size: 24px;
 	font-weight: bold;
+	color: #2E2E2E;
 }
 
 .review-container p {

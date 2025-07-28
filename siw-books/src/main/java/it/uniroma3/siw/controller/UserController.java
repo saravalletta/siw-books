@@ -42,43 +42,6 @@ public class UserController {
 		return "account.html";
 	}
 	
-	@GetMapping("/updateAccount")
-	public String updateAccount( Model model) {
-		Credentials credentials = this.sessionData.getLoggedCredentials();
-		model.addAttribute("credentials", credentials);
-		return "updateAccount.html";
-	}
-	
-	@PostMapping("/updateAccount")
-	public String saveUpdatedAccount(@Valid @ModelAttribute("credentials") Credentials credentials, 
-			BindingResult accountBindingResult, Model model) {
-		if(!accountBindingResult.hasErrors()) {
-			// Verifica se esiste già un altro utente con lo stesso username
-	        if (credentialsService.existsByUsernameAndNotId(credentials.getUsername(), credentials.getId())) {
-	            model.addAttribute("message", "Il nome utente è già in uso.");
-	            model.addAttribute("credentials", credentials);
-	            return "updateAccount.html";
-	        }
-
-	        // Verifica se esiste già un altro utente con la stessa email
-	        if (userService.existsByEmailAndNotId(credentials.getUser().getEmail(), credentials.getUser().getId())) {
-	            model.addAttribute("message", "L'email è già in uso.");
-	            model.addAttribute("credentials", credentials);
-	            return "updateAccount.html";
-	        }
-	        
-	        this.userService.save(credentials.getUser());
-	        this.credentialsService.save(credentials);
-	        return "redirect:/account.html";
-
-		}
-		else {
-			System.out.println("Errori di validazione:");
-    	    accountBindingResult.getAllErrors().forEach(System.out::println);
-    	    return "updateAccount.html";
-		}
-	}
-	
 	// GESTIONE RECENSIONI
 	@GetMapping("/addReview/{bookId}")
 	public String addReview(@PathVariable("bookId") Long bookId, Model model) {
