@@ -73,9 +73,6 @@ public class UserController {
 	public String updateReview(@PathVariable("id") Long id, Model model) {
 		Review review = this.reviewService.getReviewById(id);
 		User loggedUser = this.sessionData.getLoggedUser();
-		System.err.println(loggedUser.getId());
-		System.err.println(review.getUser().getId());
-		System.err.println(loggedUser.getId() == review.getUser().getId());
 		// Controllo che l'utente stia cercando di modificare una delle sue recensioni
 		if(loggedUser.getId().equals(review.getUser().getId())) {
 			ReviewDto reviewDto = new ReviewDto();
@@ -86,7 +83,7 @@ public class UserController {
 		}
 		else {
 			System.out.println("Utente non autorizzato a modificare questa recensione");
-			return "redirect:/book/" + review.getBook().getId();
+			return "redirect:/";
 		}
 	}
 	
