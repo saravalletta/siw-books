@@ -311,6 +311,8 @@ input[type=number] {
 
 .carousel-card img {
 	width: 13vw;
+	height: 20vh;
+	object-fit: fill;
 }
 
 .carousel-card-details {
