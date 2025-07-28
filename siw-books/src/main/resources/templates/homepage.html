@@ -39,13 +39,6 @@
 				</div>
 			</section>
 			
-			<section>
-				<form th:action="@{/searchBar}" method="post" class="searchbar">
-					<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca libri, autori ...">
-					<button type="submit" class="submit-button">Cerca</button>
-				</form>
-			</section>
-			
 			<div class="homepage-section">
 				<h1>Ultimi Libri</h1>
 				
@@ -81,10 +74,21 @@
 					Nessuna recensione disponibile al momento.
 				</div>
 				
-				<div th:if="${not #lists.isEmpty(reviews)}" th:each="review : ${reviews}">
-					<div class="carousel-track">
-						<div class="carousel-card" th:each="review : ${reviews}">
-							
+				<div th:if="${not #lists.isEmpty(reviews)}"> 
+					<div class="review-container" th:each="review : ${reviews}" style="width: 80vw;">
+						<a th:href="@{'/book/' + ${review.book.id}}" th:text="${review.book.title}"></a>
+						<div>
+					        <span th:each="star : ${#numbers.sequence(1, 5)}"
+					              th:text="${star <= review.score} ? '★' : '☆'"
+					              class="star">
+							</span>
+							<span class="username" th:text="${review.user.credentials.username}"></span>
+					    </div>
+						<h4 th:text="${review.title}"></h4>
+						<p th:text="${review.text}"></p>
+						<div th:if="${!isAnonymous}" class="review-buttons">
+							<a th:if="${review.user.id == userId}" th:href="@{'/updateReview/' + ${review.id}}" class="update">Modifica</a>
+							<a th:if="${review.user.id == userId or isAdmin}" th:href="@{'/deleteReview/' + ${review.id}}">Elimina</a>
 						</div>
 					</div>
 				</div>

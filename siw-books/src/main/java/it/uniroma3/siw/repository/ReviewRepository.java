@@ -10,5 +10,8 @@ import it.uniroma3.siw.model.Review;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 	
 	public List<Review> findAll();
+	
+	// Per ordinare le recensioni in ordine di creazione (dall'ultima alla prima)
+	public List<Review> findTop10ByOrderByCreatedAtDesc();
 
 }

@@ -47,5 +47,10 @@ public class ReviewService {
 	public List<Review> getAllReviews() {
 		return reviewRepository.findAll();
 	}
+	
+	// Per prendere le ultime 10 recensioni inserite
+	public List<Review> getLast10Reviews() {
+		return this.reviewRepository.findTop10ByOrderByCreatedAtDesc();
+	}
 
 }

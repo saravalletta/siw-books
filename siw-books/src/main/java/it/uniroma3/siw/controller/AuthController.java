@@ -44,7 +44,7 @@ public class AuthController {
 	@GetMapping("/") 
 	public String getHomePage(Model model) {
 		List<Book> lastBooks  = this.bookService.getLast10Books(); // Per prendere gli ultimi 10 libri inseriti
-		List<Review> lastReviews = this.reviewService.getAllReviews(); // Da cambiare con getLastReviews()
+		List<Review> lastReviews = this.reviewService.getLast10Reviews(); // Per prendere le ultime 10 recensioni inserite
 		model.addAttribute("books", lastBooks);
 		model.addAttribute("reviews", lastReviews);
 		return "homepage.html";
@@ -63,7 +63,9 @@ public class AuthController {
 		
 		if(auth instanceof AnonymousAuthenticationToken) {
 			List<Book> lastBooks  = this.bookService.getLast10Books(); // Per prendere gli ultimi 10 libri inseriti
+			List<Review> lastReviews = this.reviewService.getLast10Reviews(); // Per prendere le ultime 10 recensioni inserite
 			model.addAttribute("books", lastBooks);
+			model.addAttribute("reviews", lastReviews);
 			return "homepage.html";
 		}
 		else {
@@ -72,13 +74,18 @@ public class AuthController {
 			User loggedUser = this.sessionData.getLoggedUser();
 			model.addAttribute("user", loggedUser);
 			List<Book> lastBooks  = this.bookService.getLast10Books(); // Per prendere gli ultimi 10 libri inseriti
+			List<Review> lastReviews = this.reviewService.getLast10Reviews(); // Per prendere le ultime 10 recensioni inserite
 			model.addAttribute("books", lastBooks);
+			model.addAttribute("reviews", lastReviews);
 			
 			if(credentials.getRole().trim().equals(ADMIN)) {
 				return "homepage.html";
 			}
 		}
-		
+		List<Book> lastBooks  = this.bookService.getLast10Books(); // Per prendere gli ultimi 10 libri inseriti
+		List<Review> lastReviews = this.reviewService.getLast10Reviews(); // Per prendere le ultime 10 recensioni inserite
+		model.addAttribute("books", lastBooks);
+		model.addAttribute("reviews", lastReviews);
 		return "homepage.html";
 	}
 	
