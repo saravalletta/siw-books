@@ -42,7 +42,7 @@
 				
 				<div th:if="${not #lists.isEmpty(bestsellers)}" class="carousel-container">
 					<div class="carousel-track">
-						<div class="carousel-card" th:each="bestseller : ${bestsellers}">
+						<div class="carousel-card" th:each="bestseller, b : ${bestsellers}" th:if="${b.index < 10}">
 							<a th:href="@{'/book/' + ${bestseller.id}}">
 								<div th:if="${not #lists.isEmpty(bestseller.urlImage)}">
 									<img th:src="@{'/images/' + ${bestseller.urlImage[0]}}" alt="urlImage">
