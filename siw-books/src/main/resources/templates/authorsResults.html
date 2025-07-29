@@ -43,7 +43,12 @@
 				<div th:if="${not #lists.isEmpty(authors)}" class="grid-container">
 					<div class="carousel-card" th:each="author : ${authors}">
 						<a th:href="@{'/author/' + ${author.id}}">
-	                        <img src="/images/homepage-image.png">
+							<div th:if="${author.urlImage != null}">
+								<img th:src="@{'/images/' + ${author.urlImage}}" alt="urlImage" class="author-image">
+							</div>
+							<div th:if="${author.urlImage == null}">
+								<img src="/images/homepage-image.png" alt="defaultImage" class="author-image">
+							</div>
 							<div class="carousel-card-details">
 								<h4 th:text="${author.name} + ' ' + ${author.surname}">Name Surname</h4>
 	                            <p th:text="${#temporals.format(author.birthDate, 'dd/MM/yyyy')} + ' - ' + 
